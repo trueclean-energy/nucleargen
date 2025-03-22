@@ -4,6 +4,7 @@ Simple Plan
 Input SAPHIRE Schemas
 
 0) I will generate more examples from SAPHIRE (Domain)
+ - Common Tool - https://thrumming-haze-5713.fly.dev/
 
 1) Agent 1 - Schema Converstion (Tushin)
 
@@ -48,3 +49,9 @@ Must expose a visualizeComponent() function
 
 
 
+Demo Flow:
+User interacts with Agent_1 UI for schema assistance
+Agent_1 sends a message to central hub
+Hub visualizes the message and routes it to data-validation agent
+data-validation processes request and sends results back via hub
+Hub visualizes this flow and includes links to open each agent's UI to see results
