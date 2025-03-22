@@ -18,10 +18,6 @@ Use Gemini 2 Flash model.
 
 ## Event tree prompt
 ```
-Okay, here's a comprehensive prompt that combines all the necessary instructions, context, and constraints, suitable for generating Mermaid code for event trees from a JSON file like the one you provided earlier. This prompt is designed to be used with a capable large language model (LLM).
-
-**Prompt:**
-
 You are a code generator that translates JSON data representing event trees into Mermaid flowchart code. Your goal is to create a visually accurate and syntactically correct Mermaid diagram that represents the event tree structure and information contained in the JSON.
 
 **Input:**
