@@ -1,0 +1,520 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SAPHIRE Model Visualization</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.30.1/min/vs/loader.js"></script>
+        <style>
+            :root {
+                --primary-color: #3b71ca;
+                --background-color: #f5f5f5;
+                --card-background: #ffffff;
+                --header-color: #2c3e50;
+                --text-primary: #333333;
+                --text-secondary: #6c757d;
+                --border-color: #dee2e6;
+                --hover-color: #f8f9fa;
+            }
+            
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: var(--text-primary);
+                background-color: var(--background-color);
+                margin: 0;
+                padding: 0;
+            }
+            
+            .header {
+                background-color: var(--header-color);
+                color: white;
+                padding: 1rem;
+                text-align: center;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            
+            .container {
+                display: flex;
+                height: calc(100vh - 60px);
+            }
+            
+            .main-content {
+                flex: 1;
+                overflow-y: auto;
+                padding: 1.5rem;
+            }
+            
+            .json-panel {
+                width: 40%;
+                border-left: 1px solid var(--border-color);
+                display: flex;
+                flex-direction: column;
+                resize: horizontal;
+                overflow: auto;
+                min-width: 200px;
+                max-width: 80%;
+            }
+            
+            .resize-handle {
+                width: 4px;
+                background-color: var(--border-color);
+                cursor: col-resize;
+            }
+            
+            .panel-header {
+                padding: 0.75rem;
+                background-color: var(--header-color);
+                color: white;
+            }
+            
+            .monaco-container {
+                flex: 1;
+                overflow: hidden;
+            }
+            
+            .card {
+                background-color: var(--card-background);
+                border-radius: 4px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+                margin-bottom: 1.5rem;
+                overflow: hidden;
+            }
+            
+            .card-header {
+                padding: 1rem;
+                background-color: var(--primary-color);
+                color: white;
+                font-weight: 500;
+            }
+            
+            .card-body {
+                padding: 1rem;
+            }
+            
+            .summary {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .summary-item {
+                background-color: var(--card-background);
+                padding: 1.25rem;
+                border-radius: 4px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+                text-align: center;
+                cursor: pointer;
+                transition: transform 0.2s, box-shadow 0.2s;
+            }
+            
+            .summary-item:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            
+            .summary-item h3 {
+                color: var(--text-secondary);
+                font-size: 0.875rem;
+                text-transform: uppercase;
+                margin-bottom: 0.5rem;
+            }
+            
+            .summary-item p {
+                font-size: 1.75rem;
+                font-weight: 600;
+                color: var(--primary-color);
+            }
+            
+            .section {
+                margin-top: 2rem;
+            }
+            
+            .section-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-bottom: 0.5rem;
+                margin-bottom: 1rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .section-title {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: var(--text-primary);
+            }
+            
+            .list-container {
+                max-height: 300px;
+                overflow-y: auto;
+                border: 1px solid var(--border-color);
+                border-radius: 4px;
+            }
+            
+            .list-item {
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid var(--border-color);
+                cursor: pointer;
+            }
+            
+            .list-item:last-child {
+                border-bottom: none;
+            }
+            
+            .list-item:hover {
+                background-color: var(--hover-color);
+            }
+            
+            .list-item.active {
+                background-color: var(--hover-color);
+                border-left: 3px solid var(--primary-color);
+            }
+            
+            .id-column {
+                font-weight: 500;
+            }
+            
+            .comment-section {
+                padding: 1rem;
+                border-top: 1px solid var(--border-color);
+            }
+            
+            .comment-input {
+                width: 100%;
+                padding: 0.5rem;
+                margin-bottom: 0.5rem;
+                border: 1px solid var(--border-color);
+                border-radius: 4px;
+            }
+            
+            .comments-list {
+                max-height: 200px;
+                overflow-y: auto;
+            }
+            
+            .comment-item {
+                padding: 0.5rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            .comment-timestamp {
+                font-size: 0.8rem;
+                color: var(--text-secondary);
+            }
+            
+            .btn {
+                padding: 0.5rem 1rem;
+                background-color: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.2s;
+            }
+            
+            .btn:hover {
+                background-color: #2b5592;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h2>SAPHIRE Model Visualization</h2>
+        </div>
+        
+        <div class="container">
+            <div class="main-content">
+                <div class="card">
+                    <div class="card-header">Project Information</div>
+                    <div class="card-body">
+                        
+        <p><strong>Project Name:</strong> Not specified</p>
+        <p><strong>Description:</strong> </p>
+        <p><strong>Job ID:</strong> 1742508304</p>
+        
+        
+    
+                    </div>
+                </div>
+                
+                <div class="summary">
+                    
+        <div class="summary-item" data-section="fault-trees">
+            <h3>Fault Trees</h3>
+            <p>0</p>
+        </div>
+        <div class="summary-item" data-section="event-trees">
+            <h3>Event Trees</h3>
+            <p>8</p>
+        </div>
+        <div class="summary-item" data-section="basic-events">
+            <h3>Basic Events</h3>
+            <p>0</p>
+        </div>
+        <div class="summary-item" data-section="end-states">
+            <h3>End States</h3>
+            <p>26</p>
+        </div>
+        <div class="summary-item" data-section="sequences">
+            <h3>Sequences</h3>
+            <p>0</p>
+        </div>
+                </div>
+                
+                
+        <div id="fault-trees" class="section">
+            <div class="section-header">
+                <h3 class="section-title">Fault Trees (0)</h3>
+            </div>
+            <div class="empty-state">No fault trees found in the model.</div>
+        </div>
+        <div id="event-trees" class="section">
+            <div class="section-header">
+                <h3 class="section-title">Event Trees (8)</h3>
+            </div>
+            <div class="list-container" id="event-trees-list"></div>
+        </div>
+        <div id="basic-events" class="section">
+            <div class="section-header">
+                <h3 class="section-title">Basic Events (0)</h3>
+            </div>
+            <div class="empty-state">No basic events found in the model.</div>
+        </div>
+        <div id="end-states" class="section">
+            <div class="section-header">
+                <h3 class="section-title">End States (26)</h3>
+            </div>
+            <div class="list-container" id="end-states-list"></div>
+        </div>
+        <div id="sequences" class="section">
+            <div class="section-header">
+                <h3 class="section-title">Sequences (0)</h3>
+            </div>
+            <div class="empty-state">No sequences found in the model.</div>
+        </div>
+            </div>
+            
+            <div class="json-panel">
+                <div class="resize-handle"></div>
+                <div class="panel-header">Raw JSON</div>
+                <div class="monaco-container" id="jsonEditor"></div>
+                <div class="comment-section">
+                    <h4>Comments</h4>
+                    <textarea class="comment-input" placeholder="Add a comment..."></textarea>
+                    <button onclick="addComment()" class="btn">Add Comment</button>
+                    <div class="comments-list" id="commentsList"></div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            // Store the SAPHIRE data and file paths
+            const saphireData = {"fault_trees": [], "event_trees": [{"id": "ATWS", "name": "ATWS", "top_events": [{"id": "TRIP-CR", "description": "TRIP-CR"}, {"id": "TRIP-RSCE", "description": "TRIP-RSCE"}, {"id": "OP-TRIP", "description": "OP-TRIP"}, {"id": "HTS-FAILURE", "description": "HTS-FAILURE"}, {"id": "SCS-1COOLING", "description": "SCS-1COOLING"}], "sequences": [{"id": "RS-AA", "end_state": "NONE", "path": []}, {"id": "RS-AB", "end_state": "NONE", "path": []}, {"id": "RS-AC", "end_state": "NONE", "path": []}, {"id": "RS-AD", "end_state": "NONE", "path": []}, {"id": "RS-AE", "end_state": "NONE", "path": []}, {"id": "RS-AF", "end_state": "NONE", "path": []}, {"id": "RS-AG", "end_state": "NONE", "path": []}, {"id": "RS-AH", "end_state": "NONE", "path": []}, {"id": "RS-AI", "end_state": "NONE", "path": []}, {"id": "RS-AJ", "end_state": "NONE", "path": []}, {"id": "RS-AK", "end_state": "DC-2", "path": []}, {"id": "RS-AL", "end_state": "NONE", "path": []}, {"id": "RS-AM", "end_state": "--", "path": []}, {"id": "RS-AN", "end_state": "NONE", "path": []}, {"id": "RS-AO", "end_state": "NONE", "path": []}, {"id": "RS-AP", "end_state": "NONE", "path": []}, {"id": "RS-AQ", "end_state": "--", "path": []}, {"id": "RS-AR", "end_state": "NONE", "path": []}, {"id": "RS-AS", "end_state": "--", "path": []}], "node_descriptions": {"11": "1 MODULE                           ", "12": "2 MODULES                           ", "13": "4 MODULES                           ", "19": "1 MODULE                           ", "20": "4 MODULES                           ", "26": "1 MODULE                           ", "27": "2 MODULES                           ", "28": "3 MODULES                           ", "29": "4 MODULES                           ", "33": "1 MODULE                           ", "35": "1 MODULE                           ", "38": "1 MODULE                           ", "40": "1 MODULE                           ", "49": "1 MODULE                           ", "55": "1 MODULE                           ", "60": "1 MODULE                           ", "64": "1 MODULE                           ", "72": "1 MODULE                           ", "79": "1 MODULE                           "}, "node_substitutions": {"11": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-124-1"}, "12": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-124-2"}, "13": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-124-4"}, "19": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-14"}, "20": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-14"}, "26": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-1"}, "27": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-2"}, "28": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-3"}, "29": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-4"}, "32": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-1"}, "34": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-1"}, "37": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-2"}, "39": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-2"}}}, {"id": "CR-GROUP-WITHDRAWAL", "name": "CR-GROUP-WITHDRAWAL", "top_events": [{"id": "TRIP-CR", "description": "TRIP-CR"}, {"id": "TRIP-RSCE", "description": "TRIP-RSCE"}, {"id": "HTS-FAILURE", "description": "HTS-FAILURE"}, {"id": "SCS-1COOLING", "description": "SCS-1COOLING"}, {"id": "RCCS-COOLING", "description": "RCCS-COOLING"}], "sequences": [{"id": "RW-AA", "end_state": "NONE", "path": []}, {"id": "RW-AB", "end_state": "NONE", "path": []}, {"id": "RW-AC", "end_state": "NONE", "path": []}, {"id": "RW-AD", "end_state": "--", "path": []}, {"id": "RW-AE", "end_state": "NONE", "path": []}, {"id": "RW-AF", "end_state": "NONE", "path": []}, {"id": "RW-AG", "end_state": "--", "path": []}, {"id": "RW-AH", "end_state": "--", "path": []}], "node_descriptions": {}, "node_substitutions": {}}, {"id": "EARTHQUAKE", "name": "EARTHQUAKE", "top_events": [{"id": "SEISMIC-INTENSITY", "description": "SEISMIC-INTENSITY"}, {"id": "PRIMARY-BOUNDARY", "description": "PRIMARY-BOUNDARY"}, {"id": "HTS-COOLING", "description": "HTS-COOLING"}, {"id": "REACTOR-TRIP-RODS", "description": "REACTOR-TRIP-RODS"}, {"id": "REACTOR-TRIP-RSCE", "description": "REACTOR-TRIP-RSCE"}], "sequences": [{"id": "EQ-AA", "end_state": "NONE", "path": []}, {"id": "EQ-AB", "end_state": "NONE", "path": []}, {"id": "EQ-AC", "end_state": "NONE", "path": []}, {"id": "EQ-AD", "end_state": "--", "path": []}, {"id": "EQ-AE", "end_state": "NONE", "path": []}, {"id": "EQ-AF", "end_state": "--", "path": []}, {"id": "EQ-AG", "end_state": "--", "path": []}, {"id": "EQ-AH", "end_state": "--", "path": []}, {"id": "EQ-AI", "end_state": "NONE", "path": []}, {"id": "EQ-AJ", "end_state": "NONE", "path": []}, {"id": "EQ-AK", "end_state": "NONE", "path": []}, {"id": "EQ-AL", "end_state": "--", "path": []}, {"id": "EQ-AM", "end_state": "NONE", "path": []}, {"id": "EQ-AN", "end_state": "NONE", "path": []}, {"id": "EQ-AO", "end_state": "--", "path": []}, {"id": "EQ-AP", "end_state": "--", "path": []}, {"id": "EQ-AQ", "end_state": "--", "path": []}, {"id": "EQ-AR", "end_state": "NONE", "path": []}, {"id": "EQ-AS", "end_state": "NONE", "path": []}, {"id": "EQ-AT", "end_state": "NONE", "path": []}, {"id": "EQ-AU", "end_state": "--", "path": []}, {"id": "EQ-AV", "end_state": "NONE", "path": []}, {"id": "EQ-AW", "end_state": "NONE", "path": []}, {"id": "EQ-AX", "end_state": "--", "path": []}, {"id": "EQ-AY", "end_state": "--", "path": []}, {"id": "EQ-AZ", "end_state": "--", "path": []}, {"id": "EQ-BA", "end_state": "NONE", "path": []}, {"id": "EQ-BB", "end_state": "NONE", "path": []}, {"id": "EQ-BC", "end_state": "NONE", "path": []}, {"id": "EQ-BD", "end_state": "NONE", "path": []}, {"id": "EQ-BE", "end_state": "DC-1", "path": []}, {"id": "EQ-BF", "end_state": "NONE", "path": []}, {"id": "EQ-BG", "end_state": "NONE", "path": []}, {"id": "EQ-BH", "end_state": "--", "path": []}, {"id": "EQ-BI", "end_state": "--", "path": []}, {"id": "EQ-BJ", "end_state": "--", "path": []}, {"id": "EQ-BK", "end_state": "NONE", "path": []}, {"id": "EQ-BL", "end_state": "NONE", "path": []}, {"id": "EQ-BM", "end_state": "DC-3", "path": []}, {"id": "EQ-DN", "end_state": "--", "path": []}, {"id": "EQ-BO", "end_state": "--", "path": []}, {"id": "EQ-BP", "end_state": "--", "path": []}, {"id": "EQ-BQ", "end_state": "--", "path": []}], "node_descriptions": {"2": "0.06 TO 0.2 g ", "40": "0.2 TO 0.4 g ", "80": "0.4 TO O.8 g ", "120": "0.8 TO 2.0 g "}, "node_substitutions": {}}, {"id": "HTS-COOLING-LOSS", "name": "HTS-COOLING-LOSS", "top_events": [{"id": "TRIP-CR", "description": "TRIP-CR"}, {"id": "TRIP-RSCE", "description": "TRIP-RSCE"}, {"id": "SCS-1COOLING", "description": "SCS-1COOLING"}, {"id": "RCCS-COOLING", "description": "RCCS-COOLING"}, {"id": "INT-DEP", "description": "INT-DEP"}], "sequences": [{"id": "HTS-AA", "end_state": "NONE", "path": []}, {"id": "HTS-AB", "end_state": "NONE", "path": []}, {"id": "HTS-AC", "end_state": "NONE", "path": []}, {"id": "HTS-AD", "end_state": "NONE", "path": []}, {"id": "HTS-AE", "end_state": "NONE", "path": []}, {"id": "HTS-AF", "end_state": "NONE", "path": []}, {"id": "HTS-AG", "end_state": "NONE", "path": []}, {"id": "HTS-AH", "end_state": "DC-2", "path": []}, {"id": "HTS-AI", "end_state": "NONE", "path": []}, {"id": "HTS-AJ", "end_state": "--", "path": []}, {"id": "HTS-AK", "end_state": "NONE", "path": []}, {"id": "HTS-AL", "end_state": "NONE", "path": []}, {"id": "HTS-AM", "end_state": "--", "path": []}, {"id": "HTS-AN", "end_state": "--", "path": []}], "node_descriptions": {"8": "1 MODULE          ", "9": "4 MODULES          ", "15": "1 MODULE          ", "16": "2 MODULES          ", "17": "3 MODULES          ", "18": "4 MODULES          ", "22": "1 MODULE          ", "24": "1 MODULE          ", "27": "1 MODULE          ", "29": "1 MODULE          ", "36": "1 MODULE          ", "41": "1 MODULE          ", "45": "1 MODULE          ", "51": "1 MODULE          "}, "node_substitutions": {"15": {"original": "HTS-NO-MODULES-14", "substitute": "HTS-NO-MODULES-1"}, "16": {"original": "HTS-NO-MODULES-14", "substitute": "HTS-NO-MODULES-2"}, "17": {"original": "HTS-NO-MODULES-14", "substitute": "HTS-NO-MODULES-3"}, "18": {"original": "HTS-NO-MODULES-14", "substitute": "HTS-NO-MODULES-4"}, "20": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "21": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-1"}, "23": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-1"}, "25": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "26": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-2"}, "28": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-2"}}}, {"id": "LOSP", "name": "LOSP", "top_events": [{"id": "TRIP-CR", "description": "TRIP-CR"}, {"id": "TRIP-RSCE", "description": "TRIP-RSCE"}, {"id": "SCS-1COOLING", "description": "SCS-1COOLING"}, {"id": "RCCS-COOLING", "description": "RCCS-COOLING"}, {"id": "NO-OF-MODULES", "description": "NO-OF-MODULES"}], "sequences": [{"id": "LOSP-AA", "end_state": "NONE", "path": []}, {"id": "LOSP-AB", "end_state": "NONE", "path": []}, {"id": "LOSP-AC", "end_state": "NONE", "path": []}, {"id": "LOSP-AD", "end_state": "NONE", "path": []}, {"id": "LOSP-AE", "end_state": "NONE", "path": []}, {"id": "LOSP-AF", "end_state": "--", "path": []}, {"id": "LOSP-AG", "end_state": "NONE", "path": []}, {"id": "LOSP-AH", "end_state": "--", "path": []}, {"id": "LOSP-AI", "end_state": "--", "path": []}], "node_descriptions": {"6": "4 MODULES     ", "10": "1 MODULE     ", "11": "2 MODULES     ", "12": "3 MODULES     ", "13": "4 MODULES     ", "15": "1 MODULE     ", "20": "1 MODULE     ", "23": "1 MODULE     ", "27": "1 MODULE     "}, "node_substitutions": {"10": {"original": "NO-OF-MODULES", "substitute": "LOOP-NO-MODULES-1"}, "11": {"original": "NO-OF-MODULES", "substitute": "LOOP-NO-MODULES-2"}, "12": {"original": "NO-OF-MODULES", "substitute": "LOOP-NO-MODULES-3"}, "13": {"original": "NO-OF-MODULES", "substitute": "LOOP-NO-MODULES-4"}}}, {"id": "PRIMARY-LOCA", "name": "PRIMARY-LOCA", "top_events": [{"id": "LSD", "description": "LSD"}, {"id": "TRIP-CR", "description": "TRIP-CR"}, {"id": "TRIP-RSCE", "description": "TRIP-RSCE"}, {"id": "HTS-FAILURE-PRIMARY-LOCA", "description": "HTS-FAILURE-PRIMARY-LOCA"}, {"id": "SCS-1COOLING", "description": "SCS-1COOLING"}], "sequences": [{"id": "PC-AA", "end_state": "DF-4", "path": []}, {"id": "PC-AB", "end_state": "DF-3", "path": []}, {"id": "PC-AC", "end_state": "DF-4", "path": []}, {"id": "PC-AD", "end_state": "DF-3", "path": []}, {"id": "PC-AE", "end_state": "DC-9", "path": []}, {"id": "PC-AF", "end_state": "DC-9", "path": []}, {"id": "PC-AG", "end_state": "--", "path": []}, {"id": "PC-AH", "end_state": "DF-4", "path": []}, {"id": "PC-AI", "end_state": "--", "path": []}, {"id": "PC-AJ", "end_state": "DF-4", "path": []}, {"id": "PC-AK", "end_state": "DF-3", "path": []}, {"id": "PC-AL", "end_state": "DC-9", "path": []}, {"id": "PC-AL", "end_state": "--", "path": []}, {"id": "PC-AN", "end_state": "--", "path": []}, {"id": "PC-AO", "end_state": "--", "path": []}, {"id": "PC-AP", "end_state": "DF-4", "path": []}, {"id": "PC-AQ", "end_state": "DF-3", "path": []}, {"id": "PC-AR", "end_state": "DF-4", "path": []}, {"id": "PC-AS", "end_state": "DF-3", "path": []}, {"id": "PC-AT", "end_state": "DC-6", "path": []}, {"id": "PC-AU", "end_state": "DC-4", "path": []}, {"id": "PC-AV", "end_state": "--", "path": []}, {"id": "PC-AW", "end_state": "DF-4", "path": []}, {"id": "PC-AX", "end_state": "--", "path": []}, {"id": "PC-AY", "end_state": "DF-4", "path": []}, {"id": "PC-AZ", "end_state": "--", "path": []}, {"id": "PC-BA", "end_state": "--", "path": []}, {"id": "PC-BB", "end_state": "--", "path": []}, {"id": "PC-BC", "end_state": "DF-2", "path": []}, {"id": "PC-BD", "end_state": "DF-2", "path": []}, {"id": "PC-BE", "end_state": "DF-2", "path": []}, {"id": "PC-BF", "end_state": "DF-2", "path": []}, {"id": "PC-BG", "end_state": "DC-7", "path": []}, {"id": "PC-BH", "end_state": "DC-5", "path": []}, {"id": "PC-BI", "end_state": "--", "path": []}, {"id": "PC-BJ", "end_state": "DF-2", "path": []}, {"id": "PC-BK", "end_state": "--", "path": []}, {"id": "PC-BL", "end_state": "DF-2", "path": []}, {"id": "PC-BM", "end_state": "--", "path": []}, {"id": "PC-BN", "end_state": "--", "path": []}, {"id": "PC-BO", "end_state": "--", "path": []}, {"id": "PC-BP", "end_state": "DF-1", "path": []}, {"id": "PC-BQ", "end_state": "DF-1", "path": []}, {"id": "PC-BR", "end_state": "DC-8", "path": []}, {"id": "PC-BS", "end_state": "--", "path": []}, {"id": "PC-BT", "end_state": "--", "path": []}, {"id": "PC-BU", "end_state": "DF-1", "path": []}, {"id": "PC-BV", "end_state": "--", "path": []}, {"id": "PC-BW", "end_state": "--", "path": []}, {"id": "PC-BX", "end_state": "--", "path": []}], "node_descriptions": {"2": "No leak                           ", "9": "3E-5 TO 2E-3 IN^2                                                ", "51": "2E-3 TO 0.03 IN^2                                                ", "90": "0.03 TO 1 IN^2                                                ", "129": "1 TO 13 IN^2                                                ", "163": "13 IN^2                                                "}, "node_substitutions": {"9": {"original": "LSD", "substitute": "LSD1"}, "20": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "21": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "24": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "25": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "38": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "39": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "42": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "43": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "51": {"original": "LSD", "substitute": "LSD2"}, "54": {"original": "HTS-FAILURE-PRIMARY-LOCA", "substitute": "HTS-FAILURE-LK-SIZE"}, "59": {"original": "HTS-FAILURE-PRIMARY-LOCA", "substitute": "HTS-FAILURE-LK-SIZE"}, "62": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "63": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "66": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "67": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "72": {"original": "HTS-FAILURE-PRIMARY-LOCA", "substitute": "HTS-FAILURE-LK-SIZE"}, "77": {"original": "HTS-FAILURE-PRIMARY-LOCA", "substitute": "HTS-FAILURE-LK-SIZE"}, "80": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "81": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "90": {"original": "LSD", "substitute": "LSD3"}, "101": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "102": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "105": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "106": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "119": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "120": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "129": {"original": "LSD", "substitute": "LSD4"}, "163": {"original": "LSD", "substitute": "LSD5"}}}, {"id": "SG-LK-MODERATE", "name": "SG-LK-MODERATE", "top_events": [{"id": "MMD", "description": "MMD"}, {"id": "TRIP-HM", "description": "TRIP-HM"}, {"id": "TRIP-HP", "description": "TRIP-HP"}, {"id": "SG-ISOLATION", "description": "SG-ISOLATION"}, {"id": "SG-ISOLATION-DELAYED", "description": "SG-ISOLATION-DELAYED"}], "sequences": [{"id": "MS-AA", "end_state": "NONE", "path": []}, {"id": "MS-AB", "end_state": "NONE", "path": []}, {"id": "MS-AC", "end_state": "WC-7", "path": []}, {"id": "MS-AD", "end_state": "WC-5", "path": []}, {"id": "MS-AE", "end_state": "--", "path": []}, {"id": "MS-AF", "end_state": "NONE", "path": []}, {"id": "MS-AG", "end_state": "WC-6", "path": []}, {"id": "MS-AH", "end_state": "WC-2", "path": []}, {"id": "MS-AI", "end_state": "--", "path": []}, {"id": "MS-AJ", "end_state": "--", "path": []}, {"id": "MS-AK", "end_state": "WF-4", "path": []}, {"id": "MS-AL", "end_state": "WF-2", "path": []}, {"id": "MS-AM", "end_state": "--", "path": []}, {"id": "MS-AN", "end_state": "WC-6", "path": []}, {"id": "MS-AO", "end_state": "--", "path": []}, {"id": "MS-AP", "end_state": "--", "path": []}, {"id": "MS-AQ", "end_state": "WF-4", "path": []}, {"id": "MS-AR", "end_state": "--", "path": []}, {"id": "MS-AS", "end_state": "--", "path": []}, {"id": "MS-AT", "end_state": "--", "path": []}, {"id": "MS-AU", "end_state": "--", "path": []}, {"id": "MS-AV", "end_state": "--", "path": []}, {"id": "MS-AW", "end_state": "WF-3", "path": []}, {"id": "MS-AX", "end_state": "WF-1", "path": []}, {"id": "MS-AY", "end_state": "--", "path": []}, {"id": "MS-AZ", "end_state": "WC-4", "path": []}, {"id": "MS-BA", "end_state": "--", "path": []}, {"id": "MS-BB", "end_state": "--", "path": []}, {"id": "MS-BC", "end_state": "--", "path": []}, {"id": "MS-BD", "end_state": "WF-3", "path": []}, {"id": "MS-BE", "end_state": "--", "path": []}, {"id": "MS-BF", "end_state": "--", "path": []}, {"id": "MS-BG", "end_state": "--", "path": []}, {"id": "MS-BH", "end_state": "--", "path": []}, {"id": "MS-BI", "end_state": "WF-4", "path": []}, {"id": "MS-BJ", "end_state": "WF-2", "path": []}, {"id": "MS-BK", "end_state": "--", "path": []}, {"id": "MS-BL", "end_state": "--", "path": []}, {"id": "MS-BM", "end_state": "--", "path": []}, {"id": "MS-BN", "end_state": "--", "path": []}, {"id": "MS-BO", "end_state": "--", "path": []}, {"id": "MS-BP", "end_state": "--", "path": []}, {"id": "MS-BQ", "end_state": "NONE", "path": []}, {"id": "MS-BR", "end_state": "--", "path": []}, {"id": "MS-BS", "end_state": "--", "path": []}, {"id": "MS-BT", "end_state": "--", "path": []}, {"id": "MS-BU", "end_state": "--", "path": []}, {"id": "MS-BV", "end_state": "WF-4", "path": []}, {"id": "MS-BW", "end_state": "WF-2", "path": []}, {"id": "MS-BX", "end_state": "--", "path": []}, {"id": "MS-BY", "end_state": "WC-6", "path": []}, {"id": "MS-BZ", "end_state": "WC-2", "path": []}, {"id": "MS-CA", "end_state": "--", "path": []}, {"id": "MS-CB", "end_state": "--", "path": []}, {"id": "MS-CC", "end_state": "WF-4", "path": []}, {"id": "MS-CD", "end_state": "WF-2", "path": []}, {"id": "MS-CE", "end_state": "--", "path": []}, {"id": "MS-CF", "end_state": "WC-6", "path": []}, {"id": "MS-CG", "end_state": "WC-2", "path": []}, {"id": "MS-CH", "end_state": "--", "path": []}, {"id": "MS-CI", "end_state": "--", "path": []}, {"id": "MS-CJ", "end_state": "--", "path": []}, {"id": "MS-CK", "end_state": "--", "path": []}], "node_descriptions": {"15": "STAYS SHUT                        ", "16": "OPENS/CLOSES                        ", "17": "FAIL OPEN                        ", "20": "FAIL CLOSED                        ", "28": "OPENS/CLOSES                        ", "29": "FAIL OPEN                        ", "30": "FAIL CLOSED                        ", "33": "FW VALVES FAIL OPEN                        ", "34": "GT 30                      ", "40": "BYPASS                        ", "44": "OPENS/CLOSES                     ", "45": "FAIL OPEN                        ", "46": "FAIL CLOSED                        ", "50": "OPENS/CLOSES                     ", "51": "OTHERS                     ", "54": "OPENS/CLOSES                        ", "58": "OPENS/CLOSES                     ", "59": "OTHERS                        ", "63": "FAIL OPEN                        ", "67": "FAIL CLOSED                        ", "72": "LT 30 MIN                        ", "78": "STEAM VALVES FAIL OPEN                        ", "85": "LT 20 MIN                      ", "91": "OPENS/CLOSES                     ", "92": "FAIL OPEN                        ", "93": "FAIL CLOSED                        ", "96": "OPENS/CLOSES                        ", "97": "OTHERS                     ", "100": "FAIL CLOSED                        ", "105": "20-30 MIN                        ", "111": "OPENS/CLOSES                        ", "112": "OTHERS                     ", "116": "FAIL CLOSED                        ", "121": "GT 30 MIN                      ", "127": "FW AND STEAM VALVES FAIL OPEN                        ", "128": "LT 30 MIN                      ", "134": "OPENS/CLOSES                        ", "135": "FAIL OPEN                        ", "136": "FAIL CLOSED                        ", "140": "OPENS/CLOSES                        ", "141": "OTHERS                        ", "144": "FAIL CLOSED                        ", "149": "GT 30 MIN                        ", "167": "FAIL CLOSED                        ", "192": "LT 10                       ", "197": "OPENS/CLOSES                        ", "198": "FAIL OPEN                        ", "199": "FAIL CLOSED                        ", "203": "OPENS/CLOSES                        ", "204": "FAIL OPEN                        ", "205": "FAIL CLOSED                        ", "208": "GT 10 MIN                        ", "213": "OPENS/CLOSES                        ", "214": "FAIL OPEN                        ", "215": "FAIL CLOSED                        ", "219": "OPENS/CLOSES                        ", "220": "FAIL OPEN                        ", "221": "FAIL CLOSED                        ", "224": "GT 6 MIN                        "}, "node_substitutions": {"16": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-STAYSSHUT"}, "17": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO-2"}, "25": {"original": "SCS-1COOLING", "substitute": "SCS-1COOLING-WC4-ALT"}, "28": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "29": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "30": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "33": {"original": "SG-ISOLATION", "substitute": "SG-ISOLATION-FW-FO"}, "34": {"original": "SG-ISOLATION-DELAYED", "substitute": "SG-ISO-DEL-30"}, "40": {"original": "SG-PR", "substitute": "SG-PR-BYPASS"}, "44": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "45": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "46": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "50": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "51": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "54": {"original": "SG-PR", "substitute": "SG-PR-OC"}, "58": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "59": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "63": {"original": "SG-PR", "substitute": "SG-PR-FO"}, "72": {"original": "SG-ISOLATION-DELAYED", "substitute": "SG-ISO-DEL-30"}, "78": {"original": "SG-ISOLATION", "substitute": "SG-ISOLATION-SV-FO"}, "85": {"original": "SG-ISOLATION-DELAYED", "substitute": "SG-ISO-DEL-20"}, "91": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "92": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "93": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "94": {"original": "SCS-1COOLING", "substitute": "SCS-1COOLING-WC4-ALT"}, "96": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OTHERS"}, "97": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OTHERS"}, "105": {"original": "SG-ISOLATION-DELAYED", "substitute": "SG-ISO-DEL-20-30"}, "111": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "112": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "121": {"original": "SG-ISOLATION-DELAYED", "substitute": "SG-ISO-DEL-30-2"}, "127": {"original": "SG-ISOLATION", "substitute": "SG-ISOLATION-SFV-FO"}, "128": {"original": "SG-ISOLATION-DELAYED", "substitute": "SG-ISO-DEL-30"}, "134": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "135": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "136": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "140": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "141": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "149": {"original": "SG-ISOLATION-DELAYED", "substitute": "SG-ISO-DEL-30"}, "192": {"original": "SG-DUMP-AUTO", "substitute": "SG-AUTO-DUMP-10"}, "197": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "198": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "199": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "203": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "204": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "205": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "208": {"original": "SG-DUMP-AUTO", "substitute": "SG-AUTO-DUMP-10"}, "213": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "214": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO-3"}, "215": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "219": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "220": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO-3"}, "221": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}}}, {"id": "SG-LK-SMALL", "name": "SG-LK-SMALL", "top_events": [{"id": "MMD", "description": "MMD"}, {"id": "TRIP-HM", "description": "TRIP-HM"}, {"id": "TRIP-MANUAL", "description": "TRIP-MANUAL"}, {"id": "TRIP-HP", "description": "TRIP-HP"}, {"id": "SG-ISOLATION", "description": "SG-ISOLATION"}], "sequences": [{"id": "SS-AA", "end_state": "NONE", "path": []}, {"id": "SS-AB", "end_state": "NONE", "path": []}, {"id": "SS-AC", "end_state": "--", "path": []}, {"id": "SS-AD", "end_state": "NONE", "path": []}, {"id": "SS-AE", "end_state": "WC-3", "path": []}, {"id": "SS-AF", "end_state": "WC-1", "path": []}, {"id": "SS-AG", "end_state": "--", "path": []}, {"id": "SS-AH", "end_state": "--", "path": []}, {"id": "SS-AI", "end_state": "NONE", "path": []}, {"id": "SS-AJ", "end_state": "NONE", "path": []}, {"id": "SS-AK", "end_state": "--", "path": []}, {"id": "SS-AL", "end_state": "NONE", "path": []}, {"id": "SS-AM", "end_state": "NONE", "path": []}, {"id": "SS-AN", "end_state": "--", "path": []}, {"id": "SS-AO", "end_state": "--", "path": []}, {"id": "SS-AP", "end_state": "NONE", "path": []}, {"id": "SS-AQ", "end_state": "--", "path": []}, {"id": "SS-AR", "end_state": "--", "path": []}, {"id": "SS-AS", "end_state": "--", "path": []}, {"id": "SS-AT", "end_state": "NONE", "path": []}, {"id": "SS-AU", "end_state": "NONE", "path": []}, {"id": "SS-AV", "end_state": "--", "path": []}, {"id": "SS-AW", "end_state": "--", "path": []}, {"id": "SS-AX", "end_state": "--", "path": []}, {"id": "SS-AY", "end_state": "NONE", "path": []}, {"id": "SS-AZ", "end_state": "NONE", "path": []}, {"id": "SS-BA", "end_state": "--", "path": []}, {"id": "SS-BB", "end_state": "--", "path": []}, {"id": "SS-BC", "end_state": "--", "path": []}, {"id": "SS-BD", "end_state": "NONE", "path": []}, {"id": "SS-BE", "end_state": "NONE", "path": []}, {"id": "SS-BF", "end_state": "--", "path": []}, {"id": "SS-BG", "end_state": "--", "path": []}, {"id": "SS-BH", "end_state": "--", "path": []}, {"id": "SS-BI", "end_state": "--", "path": []}, {"id": "SS-BJ", "end_state": "NONE", "path": []}, {"id": "SS-BK", "end_state": "NONE", "path": []}, {"id": "SS-BL", "end_state": "--", "path": []}, {"id": "SS-BM", "end_state": "NONE", "path": []}, {"id": "SS-BN", "end_state": "--", "path": []}, {"id": "SS-BO", "end_state": "--", "path": []}, {"id": "SS-BP", "end_state": "NONE", "path": []}, {"id": "SS-BQ", "end_state": "--", "path": []}, {"id": "SS-BR", "end_state": "--", "path": []}, {"id": "SS-BS", "end_state": "--", "path": []}, {"id": "SS-BT", "end_state": "--", "path": []}], "node_descriptions": {"18": "FAILS CLOSED         ", "26": "OPENS/CLOSES        ", "27": "FAILS OPEN        ", "28": "FAILS CLOSED        ", "31": "FW VALVES FAIL OPEN         ", "38": "BYPASS         ", "47": "OPENS/CLOSES         ", "56": "FAILS OPEN         ", "60": "FAILS CLOSED         ", "65": "BYPASS         ", "72": "OTHERS         ", "82": "STEAM VALVES FAIL OPEN         ", "94": "FAILS CLOSED         ", "105": "STEAM AND FW VALVES FAIL OPEN         ", "117": "FAILS CLOSED         ", "143": "FAILS CLOSED         ", "180": "FAILS CLOSED         ", "206": "FAILS CLOSED         "}, "node_substitutions": {"8": {"original": "SG-DUMP-AUTO", "substitute": "SG-DUMP-SMALL-ALT"}, "18": {"original": "SG-DUMP-AUTO", "substitute": "SG-DUMP-SMALL-ALT"}, "26": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "27": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "28": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "31": {"original": "SG-ISOLATION", "substitute": "SG-ISOLATION-FW-FO"}, "38": {"original": "SG-PR", "substitute": "SG-PR-BYPASS"}, "47": {"original": "SG-PR", "substitute": "SG-PR-OC"}, "56": {"original": "SG-PR", "substitute": "SG-PR-FO"}, "65": {"original": "SG-PR", "substitute": "SG-PR-BYPASS"}, "72": {"original": "SG-PR", "substitute": "SG-PR-OC"}, "82": {"original": "SG-ISOLATION", "substitute": "SG-ISOLATION-SV-FO"}, "105": {"original": "SG-ISOLATION", "substitute": "SG-ISOLATION-SFV-FO"}}}], "basic_events": [], "end_states": [{"id": "DF-1", "name": "DF-1", "description": "End state DF-1"}, {"id": "WC-6", "name": "WC-6", "description": "End state WC-6"}, {"id": "WF-3", "name": "WF-3", "description": "End state WF-3"}, {"id": "DC-7", "name": "DC-7", "description": "End state DC-7"}, {"id": "DC-2", "name": "DC-2", "description": "End state DC-2"}, {"id": "DF-2", "name": "DF-2", "description": "End state DF-2"}, {"id": "DC-9", "name": "DC-9", "description": "End state DC-9"}, {"id": "WC-7", "name": "WC-7", "description": "End state WC-7"}, {"id": "WC-5", "name": "WC-5", "description": "End state WC-5"}, {"id": "WC-3", "name": "WC-3", "description": "End state WC-3"}, {"id": "DC-3", "name": "DC-3", "description": "End state DC-3"}, {"id": "DF-3", "name": "DF-3", "description": "End state DF-3"}, {"id": "WC-2", "name": "WC-2", "description": "End state WC-2"}, {"id": "WF-2", "name": "WF-2", "description": "End state WF-2"}, {"id": "DC-6", "name": "DC-6", "description": "End state DC-6"}, {"id": "WF-1", "name": "WF-1", "description": "End state WF-1"}, {"id": "DF-4", "name": "DF-4", "description": "End state DF-4"}, {"id": "DC-1", "name": "DC-1", "description": "End state DC-1"}, {"id": "WF-4", "name": "WF-4", "description": "End state WF-4"}, {"id": "WC-1", "name": "WC-1", "description": "End state WC-1"}, {"id": "DC-8", "name": "DC-8", "description": "End state DC-8"}, {"id": "NONE", "name": "NONE", "description": "End state NONE"}, {"id": "DC-5", "name": "DC-5", "description": "End state DC-5"}, {"id": "--", "name": "--", "description": "End state --"}, {"id": "WC-4", "name": "WC-4", "description": "End state WC-4"}, {"id": "DC-4", "name": "DC-4", "description": "End state DC-4"}], "sequences": [], "project": {"type": "unknown", "data": {}, "errors": ["Unknown file type: .FAT"]}};
+            const commentsFile = "$/Users/rahulagarwal/Documents/TrueClean_Code/TrueCleanRepo/vyom/vyom-alpha/visual/comments_20250320_150510.json";
+            
+            // Store comments
+            let comments = [];
+            
+            // Load existing comments if available
+            async function loadComments() {
+                try {
+                    const response = await fetch(commentsFile);
+                    if (response.ok) {
+                        comments = await response.json();
+                        updateCommentsList();
+                    }
+                } catch (e) {
+                    console.log('No existing comments found');
+                }
+            }
+            
+            // Save comments to file
+            async function saveComments() {
+                try {
+                    const response = await fetch(commentsFile, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(comments)
+                    });
+                    if (!response.ok) {
+                        console.error('Failed to save comments');
+                    }
+                } catch (e) {
+                    console.error('Error saving comments:', e);
+                }
+            }
+            
+            // Function to initialize Monaco editor
+            let editor;
+            function initMonacoEditor() {
+                require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.30.1/min/vs' }});
+                require(['vs/editor/editor.main'], function() {
+                    editor = monaco.editor.create(document.getElementById('jsonEditor'), {
+                        value: JSON.stringify(saphireData, null, 2),
+                        language: 'json',
+                        theme: 'vs',
+                        automaticLayout: true,
+                        readOnly: false,
+                        minimap: { enabled: true },
+                        scrollBeyondLastLine: false,
+                        wordWrap: 'on'
+                    });
+                    
+                    // Add keyboard shortcut to search
+                    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyF, function() {
+                        editor.getAction('actions.find').run();
+                    });
+                });
+            }
+            
+            // Function to update JSON editor with selected item
+            function updateJsonEditor(item) {
+                if (!editor) return;
+                editor.setValue(JSON.stringify(item, null, 2));
+            }
+            
+            // Function to populate list containers
+            function populateList(containerId, items, idKey = 'id', descKey = 'description') {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                
+                container.innerHTML = '';
+                
+                if (!Array.isArray(items)) {
+                    console.error('Items is not an array:', items);
+                    container.innerHTML = '<div class="empty-state">Error loading data</div>';
+                    return;
+                }
+                
+                items.forEach((item, idx) => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'list-item';
+                    
+                    const id = item[idKey] || `Item ${idx + 1}`;
+                    itemDiv.innerHTML = `<span class="id-column">${id}</span>`;
+                    if (item[descKey]) {
+                        itemDiv.innerHTML += ` - ${item[descKey]}`;
+                    }
+                    
+                    itemDiv.addEventListener('click', () => {
+                        // Remove active class from all items
+                        document.querySelectorAll('.list-item').forEach(el => {
+                            el.classList.remove('active');
+                        });
+                        
+                        // Add active class to clicked item
+                        itemDiv.classList.add('active');
+                        
+                        // Update JSON editor
+                        updateJsonEditor(item);
+                    });
+                    
+                    container.appendChild(itemDiv);
+                });
+            }
+            
+            // Function to add comment
+            async function addComment() {
+                const input = document.querySelector('.comment-input');
+                const comment = input.value.trim();
+                if (!comment) return;
+
+                const timestamp = new Date().toLocaleString();
+                comments.push({ text: comment, timestamp });
+                input.value = '';
+                updateCommentsList();
+                await saveComments();
+            }
+
+            // Function to update comments list
+            function updateCommentsList() {
+                const list = document.getElementById('commentsList');
+                list.innerHTML = comments.map(comment => `
+                    <div class="comment-item">
+                        <div>${comment.text}</div>
+                        <div class="comment-timestamp">${comment.timestamp}</div>
+                    </div>
+                `).join('');
+            }
+            
+            // Function to scroll to section
+            function scrollToSection(sectionId) {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Initialize resizable panel
+            function initResizable() {
+                const handle = document.querySelector('.resize-handle');
+                const panel = document.querySelector('.json-panel');
+                let isResizing = false;
+
+                handle.addEventListener('mousedown', (e) => {
+                    isResizing = true;
+                    document.addEventListener('mousemove', handleMouseMove);
+                    document.addEventListener('mouseup', () => {
+                        isResizing = false;
+                        document.removeEventListener('mousemove', handleMouseMove);
+                    });
+                });
+
+                function handleMouseMove(e) {
+                    if (!isResizing) return;
+                    const containerWidth = document.querySelector('.container').offsetWidth;
+                    const newWidth = containerWidth - e.clientX;
+                    const minWidth = 200;
+                    const maxWidth = containerWidth * 0.8;
+                    
+                    if (newWidth >= minWidth && newWidth <= maxWidth) {
+                        panel.style.width = newWidth + 'px';
+                        if (editor) {
+                            editor.layout();
+                        }
+                    }
+                }
+            }
+
+            // Initialize the page
+            document.addEventListener('DOMContentLoaded', function() {
+                // Initialize Monaco editor
+                initMonacoEditor();
+                
+                // Initialize resizable panel
+                initResizable();
+
+                // Initialize data elements
+                const dataElements = [{"id": "fault-trees", "title": "Fault Trees", "data": [], "id_key": "id", "desc_key": "description"}, {"id": "event-trees", "title": "Event Trees", "data": [{"id": "ATWS", "name": "ATWS", "top_events": [{"id": "TRIP-CR", "description": "TRIP-CR"}, {"id": "TRIP-RSCE", "description": "TRIP-RSCE"}, {"id": "OP-TRIP", "description": "OP-TRIP"}, {"id": "HTS-FAILURE", "description": "HTS-FAILURE"}, {"id": "SCS-1COOLING", "description": "SCS-1COOLING"}], "sequences": [{"id": "RS-AA", "end_state": "NONE", "path": []}, {"id": "RS-AB", "end_state": "NONE", "path": []}, {"id": "RS-AC", "end_state": "NONE", "path": []}, {"id": "RS-AD", "end_state": "NONE", "path": []}, {"id": "RS-AE", "end_state": "NONE", "path": []}, {"id": "RS-AF", "end_state": "NONE", "path": []}, {"id": "RS-AG", "end_state": "NONE", "path": []}, {"id": "RS-AH", "end_state": "NONE", "path": []}, {"id": "RS-AI", "end_state": "NONE", "path": []}, {"id": "RS-AJ", "end_state": "NONE", "path": []}, {"id": "RS-AK", "end_state": "DC-2", "path": []}, {"id": "RS-AL", "end_state": "NONE", "path": []}, {"id": "RS-AM", "end_state": "--", "path": []}, {"id": "RS-AN", "end_state": "NONE", "path": []}, {"id": "RS-AO", "end_state": "NONE", "path": []}, {"id": "RS-AP", "end_state": "NONE", "path": []}, {"id": "RS-AQ", "end_state": "--", "path": []}, {"id": "RS-AR", "end_state": "NONE", "path": []}, {"id": "RS-AS", "end_state": "--", "path": []}], "node_descriptions": {"11": "1 MODULE                           ", "12": "2 MODULES                           ", "13": "4 MODULES                           ", "19": "1 MODULE                           ", "20": "4 MODULES                           ", "26": "1 MODULE                           ", "27": "2 MODULES                           ", "28": "3 MODULES                           ", "29": "4 MODULES                           ", "33": "1 MODULE                           ", "35": "1 MODULE                           ", "38": "1 MODULE                           ", "40": "1 MODULE                           ", "49": "1 MODULE                           ", "55": "1 MODULE                           ", "60": "1 MODULE                           ", "64": "1 MODULE                           ", "72": "1 MODULE                           ", "79": "1 MODULE                           "}, "node_substitutions": {"11": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-124-1"}, "12": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-124-2"}, "13": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-124-4"}, "19": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-14"}, "20": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-14"}, "26": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-1"}, "27": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-2"}, "28": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-3"}, "29": {"original": "NO-OF-MODULES", "substitute": "ATWS-NO-MODULES-4"}, "32": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-1"}, "34": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-1"}, "37": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-2"}, "39": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-2"}}}, {"id": "CR-GROUP-WITHDRAWAL", "name": "CR-GROUP-WITHDRAWAL", "top_events": [{"id": "TRIP-CR", "description": "TRIP-CR"}, {"id": "TRIP-RSCE", "description": "TRIP-RSCE"}, {"id": "HTS-FAILURE", "description": "HTS-FAILURE"}, {"id": "SCS-1COOLING", "description": "SCS-1COOLING"}, {"id": "RCCS-COOLING", "description": "RCCS-COOLING"}], "sequences": [{"id": "RW-AA", "end_state": "NONE", "path": []}, {"id": "RW-AB", "end_state": "NONE", "path": []}, {"id": "RW-AC", "end_state": "NONE", "path": []}, {"id": "RW-AD", "end_state": "--", "path": []}, {"id": "RW-AE", "end_state": "NONE", "path": []}, {"id": "RW-AF", "end_state": "NONE", "path": []}, {"id": "RW-AG", "end_state": "--", "path": []}, {"id": "RW-AH", "end_state": "--", "path": []}], "node_descriptions": {}, "node_substitutions": {}}, {"id": "EARTHQUAKE", "name": "EARTHQUAKE", "top_events": [{"id": "SEISMIC-INTENSITY", "description": "SEISMIC-INTENSITY"}, {"id": "PRIMARY-BOUNDARY", "description": "PRIMARY-BOUNDARY"}, {"id": "HTS-COOLING", "description": "HTS-COOLING"}, {"id": "REACTOR-TRIP-RODS", "description": "REACTOR-TRIP-RODS"}, {"id": "REACTOR-TRIP-RSCE", "description": "REACTOR-TRIP-RSCE"}], "sequences": [{"id": "EQ-AA", "end_state": "NONE", "path": []}, {"id": "EQ-AB", "end_state": "NONE", "path": []}, {"id": "EQ-AC", "end_state": "NONE", "path": []}, {"id": "EQ-AD", "end_state": "--", "path": []}, {"id": "EQ-AE", "end_state": "NONE", "path": []}, {"id": "EQ-AF", "end_state": "--", "path": []}, {"id": "EQ-AG", "end_state": "--", "path": []}, {"id": "EQ-AH", "end_state": "--", "path": []}, {"id": "EQ-AI", "end_state": "NONE", "path": []}, {"id": "EQ-AJ", "end_state": "NONE", "path": []}, {"id": "EQ-AK", "end_state": "NONE", "path": []}, {"id": "EQ-AL", "end_state": "--", "path": []}, {"id": "EQ-AM", "end_state": "NONE", "path": []}, {"id": "EQ-AN", "end_state": "NONE", "path": []}, {"id": "EQ-AO", "end_state": "--", "path": []}, {"id": "EQ-AP", "end_state": "--", "path": []}, {"id": "EQ-AQ", "end_state": "--", "path": []}, {"id": "EQ-AR", "end_state": "NONE", "path": []}, {"id": "EQ-AS", "end_state": "NONE", "path": []}, {"id": "EQ-AT", "end_state": "NONE", "path": []}, {"id": "EQ-AU", "end_state": "--", "path": []}, {"id": "EQ-AV", "end_state": "NONE", "path": []}, {"id": "EQ-AW", "end_state": "NONE", "path": []}, {"id": "EQ-AX", "end_state": "--", "path": []}, {"id": "EQ-AY", "end_state": "--", "path": []}, {"id": "EQ-AZ", "end_state": "--", "path": []}, {"id": "EQ-BA", "end_state": "NONE", "path": []}, {"id": "EQ-BB", "end_state": "NONE", "path": []}, {"id": "EQ-BC", "end_state": "NONE", "path": []}, {"id": "EQ-BD", "end_state": "NONE", "path": []}, {"id": "EQ-BE", "end_state": "DC-1", "path": []}, {"id": "EQ-BF", "end_state": "NONE", "path": []}, {"id": "EQ-BG", "end_state": "NONE", "path": []}, {"id": "EQ-BH", "end_state": "--", "path": []}, {"id": "EQ-BI", "end_state": "--", "path": []}, {"id": "EQ-BJ", "end_state": "--", "path": []}, {"id": "EQ-BK", "end_state": "NONE", "path": []}, {"id": "EQ-BL", "end_state": "NONE", "path": []}, {"id": "EQ-BM", "end_state": "DC-3", "path": []}, {"id": "EQ-DN", "end_state": "--", "path": []}, {"id": "EQ-BO", "end_state": "--", "path": []}, {"id": "EQ-BP", "end_state": "--", "path": []}, {"id": "EQ-BQ", "end_state": "--", "path": []}], "node_descriptions": {"2": "0.06 TO 0.2 g ", "40": "0.2 TO 0.4 g ", "80": "0.4 TO O.8 g ", "120": "0.8 TO 2.0 g "}, "node_substitutions": {}}, {"id": "HTS-COOLING-LOSS", "name": "HTS-COOLING-LOSS", "top_events": [{"id": "TRIP-CR", "description": "TRIP-CR"}, {"id": "TRIP-RSCE", "description": "TRIP-RSCE"}, {"id": "SCS-1COOLING", "description": "SCS-1COOLING"}, {"id": "RCCS-COOLING", "description": "RCCS-COOLING"}, {"id": "INT-DEP", "description": "INT-DEP"}], "sequences": [{"id": "HTS-AA", "end_state": "NONE", "path": []}, {"id": "HTS-AB", "end_state": "NONE", "path": []}, {"id": "HTS-AC", "end_state": "NONE", "path": []}, {"id": "HTS-AD", "end_state": "NONE", "path": []}, {"id": "HTS-AE", "end_state": "NONE", "path": []}, {"id": "HTS-AF", "end_state": "NONE", "path": []}, {"id": "HTS-AG", "end_state": "NONE", "path": []}, {"id": "HTS-AH", "end_state": "DC-2", "path": []}, {"id": "HTS-AI", "end_state": "NONE", "path": []}, {"id": "HTS-AJ", "end_state": "--", "path": []}, {"id": "HTS-AK", "end_state": "NONE", "path": []}, {"id": "HTS-AL", "end_state": "NONE", "path": []}, {"id": "HTS-AM", "end_state": "--", "path": []}, {"id": "HTS-AN", "end_state": "--", "path": []}], "node_descriptions": {"8": "1 MODULE          ", "9": "4 MODULES          ", "15": "1 MODULE          ", "16": "2 MODULES          ", "17": "3 MODULES          ", "18": "4 MODULES          ", "22": "1 MODULE          ", "24": "1 MODULE          ", "27": "1 MODULE          ", "29": "1 MODULE          ", "36": "1 MODULE          ", "41": "1 MODULE          ", "45": "1 MODULE          ", "51": "1 MODULE          "}, "node_substitutions": {"15": {"original": "HTS-NO-MODULES-14", "substitute": "HTS-NO-MODULES-1"}, "16": {"original": "HTS-NO-MODULES-14", "substitute": "HTS-NO-MODULES-2"}, "17": {"original": "HTS-NO-MODULES-14", "substitute": "HTS-NO-MODULES-3"}, "18": {"original": "HTS-NO-MODULES-14", "substitute": "HTS-NO-MODULES-4"}, "20": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "21": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-1"}, "23": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-1"}, "25": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "26": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-2"}, "28": {"original": "COOLING-RESTORED", "substitute": "COOLING-RESTORED-2"}}}, {"id": "LOSP", "name": "LOSP", "top_events": [{"id": "TRIP-CR", "description": "TRIP-CR"}, {"id": "TRIP-RSCE", "description": "TRIP-RSCE"}, {"id": "SCS-1COOLING", "description": "SCS-1COOLING"}, {"id": "RCCS-COOLING", "description": "RCCS-COOLING"}, {"id": "NO-OF-MODULES", "description": "NO-OF-MODULES"}], "sequences": [{"id": "LOSP-AA", "end_state": "NONE", "path": []}, {"id": "LOSP-AB", "end_state": "NONE", "path": []}, {"id": "LOSP-AC", "end_state": "NONE", "path": []}, {"id": "LOSP-AD", "end_state": "NONE", "path": []}, {"id": "LOSP-AE", "end_state": "NONE", "path": []}, {"id": "LOSP-AF", "end_state": "--", "path": []}, {"id": "LOSP-AG", "end_state": "NONE", "path": []}, {"id": "LOSP-AH", "end_state": "--", "path": []}, {"id": "LOSP-AI", "end_state": "--", "path": []}], "node_descriptions": {"6": "4 MODULES     ", "10": "1 MODULE     ", "11": "2 MODULES     ", "12": "3 MODULES     ", "13": "4 MODULES     ", "15": "1 MODULE     ", "20": "1 MODULE     ", "23": "1 MODULE     ", "27": "1 MODULE     "}, "node_substitutions": {"10": {"original": "NO-OF-MODULES", "substitute": "LOOP-NO-MODULES-1"}, "11": {"original": "NO-OF-MODULES", "substitute": "LOOP-NO-MODULES-2"}, "12": {"original": "NO-OF-MODULES", "substitute": "LOOP-NO-MODULES-3"}, "13": {"original": "NO-OF-MODULES", "substitute": "LOOP-NO-MODULES-4"}}}, {"id": "PRIMARY-LOCA", "name": "PRIMARY-LOCA", "top_events": [{"id": "LSD", "description": "LSD"}, {"id": "TRIP-CR", "description": "TRIP-CR"}, {"id": "TRIP-RSCE", "description": "TRIP-RSCE"}, {"id": "HTS-FAILURE-PRIMARY-LOCA", "description": "HTS-FAILURE-PRIMARY-LOCA"}, {"id": "SCS-1COOLING", "description": "SCS-1COOLING"}], "sequences": [{"id": "PC-AA", "end_state": "DF-4", "path": []}, {"id": "PC-AB", "end_state": "DF-3", "path": []}, {"id": "PC-AC", "end_state": "DF-4", "path": []}, {"id": "PC-AD", "end_state": "DF-3", "path": []}, {"id": "PC-AE", "end_state": "DC-9", "path": []}, {"id": "PC-AF", "end_state": "DC-9", "path": []}, {"id": "PC-AG", "end_state": "--", "path": []}, {"id": "PC-AH", "end_state": "DF-4", "path": []}, {"id": "PC-AI", "end_state": "--", "path": []}, {"id": "PC-AJ", "end_state": "DF-4", "path": []}, {"id": "PC-AK", "end_state": "DF-3", "path": []}, {"id": "PC-AL", "end_state": "DC-9", "path": []}, {"id": "PC-AL", "end_state": "--", "path": []}, {"id": "PC-AN", "end_state": "--", "path": []}, {"id": "PC-AO", "end_state": "--", "path": []}, {"id": "PC-AP", "end_state": "DF-4", "path": []}, {"id": "PC-AQ", "end_state": "DF-3", "path": []}, {"id": "PC-AR", "end_state": "DF-4", "path": []}, {"id": "PC-AS", "end_state": "DF-3", "path": []}, {"id": "PC-AT", "end_state": "DC-6", "path": []}, {"id": "PC-AU", "end_state": "DC-4", "path": []}, {"id": "PC-AV", "end_state": "--", "path": []}, {"id": "PC-AW", "end_state": "DF-4", "path": []}, {"id": "PC-AX", "end_state": "--", "path": []}, {"id": "PC-AY", "end_state": "DF-4", "path": []}, {"id": "PC-AZ", "end_state": "--", "path": []}, {"id": "PC-BA", "end_state": "--", "path": []}, {"id": "PC-BB", "end_state": "--", "path": []}, {"id": "PC-BC", "end_state": "DF-2", "path": []}, {"id": "PC-BD", "end_state": "DF-2", "path": []}, {"id": "PC-BE", "end_state": "DF-2", "path": []}, {"id": "PC-BF", "end_state": "DF-2", "path": []}, {"id": "PC-BG", "end_state": "DC-7", "path": []}, {"id": "PC-BH", "end_state": "DC-5", "path": []}, {"id": "PC-BI", "end_state": "--", "path": []}, {"id": "PC-BJ", "end_state": "DF-2", "path": []}, {"id": "PC-BK", "end_state": "--", "path": []}, {"id": "PC-BL", "end_state": "DF-2", "path": []}, {"id": "PC-BM", "end_state": "--", "path": []}, {"id": "PC-BN", "end_state": "--", "path": []}, {"id": "PC-BO", "end_state": "--", "path": []}, {"id": "PC-BP", "end_state": "DF-1", "path": []}, {"id": "PC-BQ", "end_state": "DF-1", "path": []}, {"id": "PC-BR", "end_state": "DC-8", "path": []}, {"id": "PC-BS", "end_state": "--", "path": []}, {"id": "PC-BT", "end_state": "--", "path": []}, {"id": "PC-BU", "end_state": "DF-1", "path": []}, {"id": "PC-BV", "end_state": "--", "path": []}, {"id": "PC-BW", "end_state": "--", "path": []}, {"id": "PC-BX", "end_state": "--", "path": []}], "node_descriptions": {"2": "No leak                           ", "9": "3E-5 TO 2E-3 IN^2                                                ", "51": "2E-3 TO 0.03 IN^2                                                ", "90": "0.03 TO 1 IN^2                                                ", "129": "1 TO 13 IN^2                                                ", "163": "13 IN^2                                                "}, "node_substitutions": {"9": {"original": "LSD", "substitute": "LSD1"}, "20": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "21": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "24": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "25": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "38": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "39": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "42": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "43": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "51": {"original": "LSD", "substitute": "LSD2"}, "54": {"original": "HTS-FAILURE-PRIMARY-LOCA", "substitute": "HTS-FAILURE-LK-SIZE"}, "59": {"original": "HTS-FAILURE-PRIMARY-LOCA", "substitute": "HTS-FAILURE-LK-SIZE"}, "62": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "63": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "66": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "67": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "72": {"original": "HTS-FAILURE-PRIMARY-LOCA", "substitute": "HTS-FAILURE-LK-SIZE"}, "77": {"original": "HTS-FAILURE-PRIMARY-LOCA", "substitute": "HTS-FAILURE-LK-SIZE"}, "80": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "81": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "90": {"original": "LSD", "substitute": "LSD3"}, "101": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "102": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "105": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "106": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS-SCS"}, "119": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "120": {"original": "INT-DEP", "substitute": "HPS-PUMPDOWN-HTS"}, "129": {"original": "LSD", "substitute": "LSD4"}, "163": {"original": "LSD", "substitute": "LSD5"}}}, {"id": "SG-LK-MODERATE", "name": "SG-LK-MODERATE", "top_events": [{"id": "MMD", "description": "MMD"}, {"id": "TRIP-HM", "description": "TRIP-HM"}, {"id": "TRIP-HP", "description": "TRIP-HP"}, {"id": "SG-ISOLATION", "description": "SG-ISOLATION"}, {"id": "SG-ISOLATION-DELAYED", "description": "SG-ISOLATION-DELAYED"}], "sequences": [{"id": "MS-AA", "end_state": "NONE", "path": []}, {"id": "MS-AB", "end_state": "NONE", "path": []}, {"id": "MS-AC", "end_state": "WC-7", "path": []}, {"id": "MS-AD", "end_state": "WC-5", "path": []}, {"id": "MS-AE", "end_state": "--", "path": []}, {"id": "MS-AF", "end_state": "NONE", "path": []}, {"id": "MS-AG", "end_state": "WC-6", "path": []}, {"id": "MS-AH", "end_state": "WC-2", "path": []}, {"id": "MS-AI", "end_state": "--", "path": []}, {"id": "MS-AJ", "end_state": "--", "path": []}, {"id": "MS-AK", "end_state": "WF-4", "path": []}, {"id": "MS-AL", "end_state": "WF-2", "path": []}, {"id": "MS-AM", "end_state": "--", "path": []}, {"id": "MS-AN", "end_state": "WC-6", "path": []}, {"id": "MS-AO", "end_state": "--", "path": []}, {"id": "MS-AP", "end_state": "--", "path": []}, {"id": "MS-AQ", "end_state": "WF-4", "path": []}, {"id": "MS-AR", "end_state": "--", "path": []}, {"id": "MS-AS", "end_state": "--", "path": []}, {"id": "MS-AT", "end_state": "--", "path": []}, {"id": "MS-AU", "end_state": "--", "path": []}, {"id": "MS-AV", "end_state": "--", "path": []}, {"id": "MS-AW", "end_state": "WF-3", "path": []}, {"id": "MS-AX", "end_state": "WF-1", "path": []}, {"id": "MS-AY", "end_state": "--", "path": []}, {"id": "MS-AZ", "end_state": "WC-4", "path": []}, {"id": "MS-BA", "end_state": "--", "path": []}, {"id": "MS-BB", "end_state": "--", "path": []}, {"id": "MS-BC", "end_state": "--", "path": []}, {"id": "MS-BD", "end_state": "WF-3", "path": []}, {"id": "MS-BE", "end_state": "--", "path": []}, {"id": "MS-BF", "end_state": "--", "path": []}, {"id": "MS-BG", "end_state": "--", "path": []}, {"id": "MS-BH", "end_state": "--", "path": []}, {"id": "MS-BI", "end_state": "WF-4", "path": []}, {"id": "MS-BJ", "end_state": "WF-2", "path": []}, {"id": "MS-BK", "end_state": "--", "path": []}, {"id": "MS-BL", "end_state": "--", "path": []}, {"id": "MS-BM", "end_state": "--", "path": []}, {"id": "MS-BN", "end_state": "--", "path": []}, {"id": "MS-BO", "end_state": "--", "path": []}, {"id": "MS-BP", "end_state": "--", "path": []}, {"id": "MS-BQ", "end_state": "NONE", "path": []}, {"id": "MS-BR", "end_state": "--", "path": []}, {"id": "MS-BS", "end_state": "--", "path": []}, {"id": "MS-BT", "end_state": "--", "path": []}, {"id": "MS-BU", "end_state": "--", "path": []}, {"id": "MS-BV", "end_state": "WF-4", "path": []}, {"id": "MS-BW", "end_state": "WF-2", "path": []}, {"id": "MS-BX", "end_state": "--", "path": []}, {"id": "MS-BY", "end_state": "WC-6", "path": []}, {"id": "MS-BZ", "end_state": "WC-2", "path": []}, {"id": "MS-CA", "end_state": "--", "path": []}, {"id": "MS-CB", "end_state": "--", "path": []}, {"id": "MS-CC", "end_state": "WF-4", "path": []}, {"id": "MS-CD", "end_state": "WF-2", "path": []}, {"id": "MS-CE", "end_state": "--", "path": []}, {"id": "MS-CF", "end_state": "WC-6", "path": []}, {"id": "MS-CG", "end_state": "WC-2", "path": []}, {"id": "MS-CH", "end_state": "--", "path": []}, {"id": "MS-CI", "end_state": "--", "path": []}, {"id": "MS-CJ", "end_state": "--", "path": []}, {"id": "MS-CK", "end_state": "--", "path": []}], "node_descriptions": {"15": "STAYS SHUT                        ", "16": "OPENS/CLOSES                        ", "17": "FAIL OPEN                        ", "20": "FAIL CLOSED                        ", "28": "OPENS/CLOSES                        ", "29": "FAIL OPEN                        ", "30": "FAIL CLOSED                        ", "33": "FW VALVES FAIL OPEN                        ", "34": "GT 30                      ", "40": "BYPASS                        ", "44": "OPENS/CLOSES                     ", "45": "FAIL OPEN                        ", "46": "FAIL CLOSED                        ", "50": "OPENS/CLOSES                     ", "51": "OTHERS                     ", "54": "OPENS/CLOSES                        ", "58": "OPENS/CLOSES                     ", "59": "OTHERS                        ", "63": "FAIL OPEN                        ", "67": "FAIL CLOSED                        ", "72": "LT 30 MIN                        ", "78": "STEAM VALVES FAIL OPEN                        ", "85": "LT 20 MIN                      ", "91": "OPENS/CLOSES                     ", "92": "FAIL OPEN                        ", "93": "FAIL CLOSED                        ", "96": "OPENS/CLOSES                        ", "97": "OTHERS                     ", "100": "FAIL CLOSED                        ", "105": "20-30 MIN                        ", "111": "OPENS/CLOSES                        ", "112": "OTHERS                     ", "116": "FAIL CLOSED                        ", "121": "GT 30 MIN                      ", "127": "FW AND STEAM VALVES FAIL OPEN                        ", "128": "LT 30 MIN                      ", "134": "OPENS/CLOSES                        ", "135": "FAIL OPEN                        ", "136": "FAIL CLOSED                        ", "140": "OPENS/CLOSES                        ", "141": "OTHERS                        ", "144": "FAIL CLOSED                        ", "149": "GT 30 MIN                        ", "167": "FAIL CLOSED                        ", "192": "LT 10                       ", "197": "OPENS/CLOSES                        ", "198": "FAIL OPEN                        ", "199": "FAIL CLOSED                        ", "203": "OPENS/CLOSES                        ", "204": "FAIL OPEN                        ", "205": "FAIL CLOSED                        ", "208": "GT 10 MIN                        ", "213": "OPENS/CLOSES                        ", "214": "FAIL OPEN                        ", "215": "FAIL CLOSED                        ", "219": "OPENS/CLOSES                        ", "220": "FAIL OPEN                        ", "221": "FAIL CLOSED                        ", "224": "GT 6 MIN                        "}, "node_substitutions": {"16": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-STAYSSHUT"}, "17": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO-2"}, "25": {"original": "SCS-1COOLING", "substitute": "SCS-1COOLING-WC4-ALT"}, "28": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "29": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "30": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "33": {"original": "SG-ISOLATION", "substitute": "SG-ISOLATION-FW-FO"}, "34": {"original": "SG-ISOLATION-DELAYED", "substitute": "SG-ISO-DEL-30"}, "40": {"original": "SG-PR", "substitute": "SG-PR-BYPASS"}, "44": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "45": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "46": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "50": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "51": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "54": {"original": "SG-PR", "substitute": "SG-PR-OC"}, "58": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "59": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "63": {"original": "SG-PR", "substitute": "SG-PR-FO"}, "72": {"original": "SG-ISOLATION-DELAYED", "substitute": "SG-ISO-DEL-30"}, "78": {"original": "SG-ISOLATION", "substitute": "SG-ISOLATION-SV-FO"}, "85": {"original": "SG-ISOLATION-DELAYED", "substitute": "SG-ISO-DEL-20"}, "91": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "92": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "93": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "94": {"original": "SCS-1COOLING", "substitute": "SCS-1COOLING-WC4-ALT"}, "96": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OTHERS"}, "97": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OTHERS"}, "105": {"original": "SG-ISOLATION-DELAYED", "substitute": "SG-ISO-DEL-20-30"}, "111": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "112": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "121": {"original": "SG-ISOLATION-DELAYED", "substitute": "SG-ISO-DEL-30-2"}, "127": {"original": "SG-ISOLATION", "substitute": "SG-ISOLATION-SFV-FO"}, "128": {"original": "SG-ISOLATION-DELAYED", "substitute": "SG-ISO-DEL-30"}, "134": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "135": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "136": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "140": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "141": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "149": {"original": "SG-ISOLATION-DELAYED", "substitute": "SG-ISO-DEL-30"}, "192": {"original": "SG-DUMP-AUTO", "substitute": "SG-AUTO-DUMP-10"}, "197": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "198": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "199": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "203": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "204": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "205": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "208": {"original": "SG-DUMP-AUTO", "substitute": "SG-AUTO-DUMP-10"}, "213": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "214": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO-3"}, "215": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "219": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "220": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO-3"}, "221": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}}}, {"id": "SG-LK-SMALL", "name": "SG-LK-SMALL", "top_events": [{"id": "MMD", "description": "MMD"}, {"id": "TRIP-HM", "description": "TRIP-HM"}, {"id": "TRIP-MANUAL", "description": "TRIP-MANUAL"}, {"id": "TRIP-HP", "description": "TRIP-HP"}, {"id": "SG-ISOLATION", "description": "SG-ISOLATION"}], "sequences": [{"id": "SS-AA", "end_state": "NONE", "path": []}, {"id": "SS-AB", "end_state": "NONE", "path": []}, {"id": "SS-AC", "end_state": "--", "path": []}, {"id": "SS-AD", "end_state": "NONE", "path": []}, {"id": "SS-AE", "end_state": "WC-3", "path": []}, {"id": "SS-AF", "end_state": "WC-1", "path": []}, {"id": "SS-AG", "end_state": "--", "path": []}, {"id": "SS-AH", "end_state": "--", "path": []}, {"id": "SS-AI", "end_state": "NONE", "path": []}, {"id": "SS-AJ", "end_state": "NONE", "path": []}, {"id": "SS-AK", "end_state": "--", "path": []}, {"id": "SS-AL", "end_state": "NONE", "path": []}, {"id": "SS-AM", "end_state": "NONE", "path": []}, {"id": "SS-AN", "end_state": "--", "path": []}, {"id": "SS-AO", "end_state": "--", "path": []}, {"id": "SS-AP", "end_state": "NONE", "path": []}, {"id": "SS-AQ", "end_state": "--", "path": []}, {"id": "SS-AR", "end_state": "--", "path": []}, {"id": "SS-AS", "end_state": "--", "path": []}, {"id": "SS-AT", "end_state": "NONE", "path": []}, {"id": "SS-AU", "end_state": "NONE", "path": []}, {"id": "SS-AV", "end_state": "--", "path": []}, {"id": "SS-AW", "end_state": "--", "path": []}, {"id": "SS-AX", "end_state": "--", "path": []}, {"id": "SS-AY", "end_state": "NONE", "path": []}, {"id": "SS-AZ", "end_state": "NONE", "path": []}, {"id": "SS-BA", "end_state": "--", "path": []}, {"id": "SS-BB", "end_state": "--", "path": []}, {"id": "SS-BC", "end_state": "--", "path": []}, {"id": "SS-BD", "end_state": "NONE", "path": []}, {"id": "SS-BE", "end_state": "NONE", "path": []}, {"id": "SS-BF", "end_state": "--", "path": []}, {"id": "SS-BG", "end_state": "--", "path": []}, {"id": "SS-BH", "end_state": "--", "path": []}, {"id": "SS-BI", "end_state": "--", "path": []}, {"id": "SS-BJ", "end_state": "NONE", "path": []}, {"id": "SS-BK", "end_state": "NONE", "path": []}, {"id": "SS-BL", "end_state": "--", "path": []}, {"id": "SS-BM", "end_state": "NONE", "path": []}, {"id": "SS-BN", "end_state": "--", "path": []}, {"id": "SS-BO", "end_state": "--", "path": []}, {"id": "SS-BP", "end_state": "NONE", "path": []}, {"id": "SS-BQ", "end_state": "--", "path": []}, {"id": "SS-BR", "end_state": "--", "path": []}, {"id": "SS-BS", "end_state": "--", "path": []}, {"id": "SS-BT", "end_state": "--", "path": []}], "node_descriptions": {"18": "FAILS CLOSED         ", "26": "OPENS/CLOSES        ", "27": "FAILS OPEN        ", "28": "FAILS CLOSED        ", "31": "FW VALVES FAIL OPEN         ", "38": "BYPASS         ", "47": "OPENS/CLOSES         ", "56": "FAILS OPEN         ", "60": "FAILS CLOSED         ", "65": "BYPASS         ", "72": "OTHERS         ", "82": "STEAM VALVES FAIL OPEN         ", "94": "FAILS CLOSED         ", "105": "STEAM AND FW VALVES FAIL OPEN         ", "117": "FAILS CLOSED         ", "143": "FAILS CLOSED         ", "180": "FAILS CLOSED         ", "206": "FAILS CLOSED         "}, "node_substitutions": {"8": {"original": "SG-DUMP-AUTO", "substitute": "SG-DUMP-SMALL-ALT"}, "18": {"original": "SG-DUMP-AUTO", "substitute": "SG-DUMP-SMALL-ALT"}, "26": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-OC"}, "27": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FO"}, "28": {"original": "PRIMARY-RT", "substitute": "PRIMARY-RT-FC"}, "31": {"original": "SG-ISOLATION", "substitute": "SG-ISOLATION-FW-FO"}, "38": {"original": "SG-PR", "substitute": "SG-PR-BYPASS"}, "47": {"original": "SG-PR", "substitute": "SG-PR-OC"}, "56": {"original": "SG-PR", "substitute": "SG-PR-FO"}, "65": {"original": "SG-PR", "substitute": "SG-PR-BYPASS"}, "72": {"original": "SG-PR", "substitute": "SG-PR-OC"}, "82": {"original": "SG-ISOLATION", "substitute": "SG-ISOLATION-SV-FO"}, "105": {"original": "SG-ISOLATION", "substitute": "SG-ISOLATION-SFV-FO"}}}], "id_key": "id", "desc_key": "description"}, {"id": "basic-events", "title": "Basic Events", "data": [], "id_key": "id", "desc_key": "description"}, {"id": "end-states", "title": "End States", "data": [{"id": "DF-1", "name": "DF-1", "description": "End state DF-1"}, {"id": "WC-6", "name": "WC-6", "description": "End state WC-6"}, {"id": "WF-3", "name": "WF-3", "description": "End state WF-3"}, {"id": "DC-7", "name": "DC-7", "description": "End state DC-7"}, {"id": "DC-2", "name": "DC-2", "description": "End state DC-2"}, {"id": "DF-2", "name": "DF-2", "description": "End state DF-2"}, {"id": "DC-9", "name": "DC-9", "description": "End state DC-9"}, {"id": "WC-7", "name": "WC-7", "description": "End state WC-7"}, {"id": "WC-5", "name": "WC-5", "description": "End state WC-5"}, {"id": "WC-3", "name": "WC-3", "description": "End state WC-3"}, {"id": "DC-3", "name": "DC-3", "description": "End state DC-3"}, {"id": "DF-3", "name": "DF-3", "description": "End state DF-3"}, {"id": "WC-2", "name": "WC-2", "description": "End state WC-2"}, {"id": "WF-2", "name": "WF-2", "description": "End state WF-2"}, {"id": "DC-6", "name": "DC-6", "description": "End state DC-6"}, {"id": "WF-1", "name": "WF-1", "description": "End state WF-1"}, {"id": "DF-4", "name": "DF-4", "description": "End state DF-4"}, {"id": "DC-1", "name": "DC-1", "description": "End state DC-1"}, {"id": "WF-4", "name": "WF-4", "description": "End state WF-4"}, {"id": "WC-1", "name": "WC-1", "description": "End state WC-1"}, {"id": "DC-8", "name": "DC-8", "description": "End state DC-8"}, {"id": "NONE", "name": "NONE", "description": "End state NONE"}, {"id": "DC-5", "name": "DC-5", "description": "End state DC-5"}, {"id": "--", "name": "--", "description": "End state --"}, {"id": "WC-4", "name": "WC-4", "description": "End state WC-4"}, {"id": "DC-4", "name": "DC-4", "description": "End state DC-4"}], "id_key": "id", "desc_key": "description"}, {"id": "sequences", "title": "Sequences", "data": [], "id_key": "id", "desc_key": "description"}];
+                dataElements.forEach(element => {
+                    populateList(
+                        `${element.id}-list`,
+                        element.data,
+                        element.id_key,
+                        element.desc_key
+                    );
+                });
+                
+                // Add click events to summary items
+                document.querySelectorAll('.summary-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        const section = this.getAttribute('data-section');
+                        scrollToSection(section);
+                    });
+                });
+            });
+        </script>
+    </body>
+    </html>
+    "

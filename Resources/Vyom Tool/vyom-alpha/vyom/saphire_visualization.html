@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SAPHIRE Model Visualization</title>
+    <link rel="stylesheet" href="saphire_visualization.css">
+</head>
+<body>
+    <div id="app">
+        <div class="header">
+            <h1>SAPHIRE Model Visualization</h1>
+            <p>Interactive visualization of SAPHIRE model components</p>
+        </div>
+        
+        <div class="container">
+            <div class="card">
+                <h2>Project Information</h2>
+                <p><strong>Project Name:</strong> <span id="projectName">Loading...</span></p>
+                <p><strong>Description:</strong> <span id="projectDesc">Loading...</span></p>
+                <p><strong>Job ID:</strong> <span id="jobId">Loading...</span></p>
+            </div>
+            
+            <div class="card summary">
+                <div class="summary-item">
+                    <h3>Fault Trees</h3>
+                    <p id="faultTreeCount">-</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Event Trees</h3>
+                    <p id="eventTreeCount">-</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Basic Events</h3>
+                    <p id="basicEventCount">-</p>
+                </div>
+                <div class="summary-item">
+                    <h3>End States</h3>
+                    <p id="endStateCount">-</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="tab">
+                    <button class="tablinks active" onclick="openTab(event, 'Overview')" id="defaultOpen">Overview</button>
+                    <button class="tablinks" onclick="openTab(event, 'BasicEvents')">Basic Events</button>
+                    <button class="tablinks" onclick="openTab(event, 'FaultTrees')">Fault Trees</button>
+                    <button class="tablinks" onclick="openTab(event, 'EventTrees')">Event Trees</button>
+                    <button class="tablinks" onclick="openTab(event, 'RawJSON')">Raw JSON</button>
+                </div>
+
+                <div id="Overview" class="tabcontent" style="display: block;">
+                    <h3>SAPHIRE Model Overview</h3>
+                    <p>This visualization provides an interactive view of the SAPHIRE model components.</p>
+                    <p>Use the tabs above to explore specific components of the model:</p>
+                    <ul>
+                        <li><strong>Basic Events:</strong> View the basic events in the model</li>
+                        <li><strong>Fault Trees:</strong> Explore fault tree structures</li>
+                        <li><strong>Event Trees:</strong> View event tree sequences</li>
+                        <li><strong>Raw JSON:</strong> Examine the raw SAPHIRE data</li>
+                    </ul>
+                </div>
+
+                <div id="BasicEvents" class="tabcontent">
+                    <h3>Basic Events</h3>
+                    <div class="list-container" id="basicEventsList">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div id="FaultTrees" class="tabcontent">
+                    <h3>Fault Trees</h3>
+                    <div class="list-container" id="faultTreesList">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div id="EventTrees" class="tabcontent">
+                    <h3>Event Trees</h3>
+                    <div class="list-container" id="eventTreesList">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div id="RawJSON" class="tabcontent">
+                    <h3>Raw SAPHIRE Data</h3>
+                    <pre id="jsonViewer"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SAPHIRE data will be injected here -->
+    <script src="saphire_visualization.js"></script>
+</body>
+</html> 

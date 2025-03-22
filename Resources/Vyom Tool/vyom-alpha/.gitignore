@@ -1,0 +1,103 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+
+# Testing artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# IDE artifacts
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Vyom specific
+# Exclude large input files
+data/inputs/*.zip
+# Exclude exports directory contents except README
+data/exports/*
+!data/exports/README.md
+# Exclude visualization files
+data/visual/*.html
+# Specific files from sample that shouldn't be committed
+data/samples/*.zip
+
+# Visualization files
+data/visual/
+data/visual/**/*
+data/visual/**/*.html
+data/visual/**/*.json
+data/visual/**/*.css
+data/visual/**/*.js
+visual/
+visual/**/*
+visual/**/*.html
+visual/**/*.json
+visual/**/*.css
+visual/**/*.js
+**/visual/*.html
+**/visual/*.json
+**/visual/comments_*.json
+**/visual/saphire_*.html
+**/visual/visualization_*.html
+**/visual/saphire_viz_*.html
+
+# Data files
+data/comments_*.json
+data/saphire_visualization_*.html
+
+# Job data
+.vyom/
+vyom_jobs/
+
+# Allow specific samples to be committed
+!data/samples/HTGR_PRA_saphire_20240320.json
+!data/samples/htgr_saphire_20240320.json
+!data/samples/htgr_export_20240320.json
+
+# Logs
+*.log 
+.cursorrules
+
+vyom/vyom-alpha/data/comments/
+vyom/vyom-alpha/data/visual/
+vyom/vyom-alpha/data/visual/**/*
+vyom/vyom-alpha/data/visual/**/*.html
+vyom/vyom-alpha/data/visual/**/*.json
+vyom/vyom-alpha/data/visual/**/*.css
+vyom/vyom-alpha/data/visual/**/*.js
+
+docs/working
+vyom/vyom-alpha/docs/working/
+vyom/vyom-alpha/docs/working/**/*
+vyom/vyom-alpha/docs/working/**/*.html
+vyom/vyom-alpha/docs/working/**/*.json
+vyom/vyom-alpha/docs/working/**/*.css
+vyom/vyom-alpha/docs/working/**/*.js

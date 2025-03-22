@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "metadata": {
+    "title": "",
+    "description": "",
+    "created_date": "2025-03-19T18:41:23.471884",
+    "source": "",
+    "schema_version": "2.0.0",
+    "attributes": {}
+  },
+  "models": {
+    "fault_trees": [],
+    "event_trees": [],
+    "basic_events": [],
+    "initiating_events": [],
+    "end_states": [],
+    "sequences": []
+  },
+  "analysis": {
+    "quantifications": [],
+    "importance_measures": [],
+    "uncertainty": {}
+  },
+  "lmp": {
+    "lbes": [],
+    "sscs": [],
+    "drm": {}
+  }
+}
