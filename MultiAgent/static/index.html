@@ -10,6 +10,7 @@
       margin: 0;
       padding: 0;
       background-color: #f5f7fa;
+      line-height: 1.5;
     }
     
     .header {
@@ -17,6 +18,7 @@
       color: white;
       padding: 1rem;
       text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     
     .container {
@@ -35,19 +37,22 @@
     
     input[type="text"] {
       width: calc(100% - 80px);
-      padding: 0.5rem;
+      padding: 0.75rem;
       border: 1px solid #ced4da;
       border-radius: 4px;
+      font-size: 16px;
     }
     
     button {
-      padding: 0.5rem 1rem;
+      padding: 0.75rem 1rem;
       background-color: #0d6efd;
       color: white;
       border: none;
       border-radius: 4px;
       cursor: pointer;
       margin-left: 8px;
+      font-weight: bold;
+      transition: background-color 0.2s;
     }
     
     button:hover {
@@ -65,6 +70,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 1rem;
+      min-height: 500px;
     }
     
     @media (max-width: 992px) {
@@ -78,12 +84,15 @@
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
     
     .agent-header {
       padding: 0.75rem;
       font-weight: bold;
       color: white;
+      font-size: 1.1rem;
     }
     
     #tushin-header {
@@ -102,19 +111,33 @@
       padding: 1rem;
       height: 500px;
       overflow-y: auto;
+      flex-grow: 1;
     }
     
     .agent-response {
       border-left: 3px solid #0d6efd;
-      padding-left: 0.5rem;
+      padding-left: 0.75rem;
       margin-bottom: 1rem;
+      background-color: #f8f9fa;
+      padding: 0.75rem;
+      border-radius: 0 4px 4px 0;
+    }
+    
+    .user-message {
+      background-color: #e9ecef;
+      padding: 0.5rem 0.75rem;
+      margin-bottom: 0.75rem;
+      border-radius: 4px;
+      font-style: italic;
+      color: #495057;
     }
     
     .validation-report .stats {
       background-color: #f8f9fa;
-      padding: 0.5rem;
+      padding: 0.75rem;
       border-radius: 4px;
       margin-bottom: 1rem;
+      border-left: 3px solid #198754;
     }
     
     .critical {
@@ -141,6 +164,11 @@
       margin: 1rem 0;
     }
     
+    svg {
+      max-width: 100%;
+      height: auto;
+    }
+    
     .controls {
       margin-top: 1rem;
     }
@@ -148,7 +176,7 @@
     .log-panel {
       background-color: #212529;
       color: #f8f9fa;
-      padding: 0.5rem;
+      padding: 0.75rem;
       border-radius: 4px;
       margin-top: 1rem;
       font-family: monospace;
@@ -164,6 +192,13 @@
     .log-time {
       color: #6c757d;
       margin-right: 0.5rem;
+    }
+    
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+      color: #6c757d;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -215,6 +250,10 @@
     <div class="log-panel">
       <h4>Agent Communication Log</h4>
       <div id="message-log"></div>
+    </div>
+    
+    <div class="footer">
+      <p>Nuclear Generation Hackathon Demo - 2024</p>
     </div>
   </div>
 
