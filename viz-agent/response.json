@@ -1,0 +1,344 @@
+graph TD
+    subgraph ATWS
+        Start_ATWS[ANTICIPATED TRANSIENT <br> OCCURS] --> TRIP_CR{TRIP-CR};
+        TRIP_CR -- Yes --> A1[OK];
+        TRIP_CR -- No --> TRIP_RSCE{TRIP-RSCE};
+        TRIP_RSCE -- Yes --> OP_TRIP{OP-TRIP};
+        TRIP_RSCE -- No --> Q19;
+        Q19["1 MODULE <br> (ATWS-NO-MODULES-14)"]
+        OP_TRIP -- Yes --> HTS_FAILURE{HTS-FAILURE};
+        OP_TRIP -- No --> Q11;
+        Q11["1 MODULE <br> (ATWS-NO-MODULES-124-1)"]
+        HTS_FAILURE -- Yes --> SCS_1COOLING{SCS-1COOLING};
+        HTS_FAILURE -- No --> Q26;
+        Q26["1 MODULE <br> (ATWS-NO-MODULES-1)"]
+        SCS_1COOLING -- No --> Q35;
+        Q35["1 MODULE"]
+        SCS_1COOLING -- Yes --> A2[OK]
+
+        Q19 --> Q20;
+        Q20["4 MODULES <br> (ATWS-NO-MODULES-14)"]
+        Q20 --> RS_AK[DC-2];
+
+        Q11 --> Q12;
+        Q12["2 MODULES <br> (ATWS-NO-MODULES-124-2)"]
+        Q12 --> Q13
+        Q13["4 MODULES <br> (ATWS-NO-MODULES-124-4)"]
+        Q13 --> RS_AJ[NONE];
+
+        Q26 --> Q27
+        Q27["2 MODULES <br> (ATWS-NO-MODULES-2)"]
+        Q27 --> Q28
+        Q28["3 MODULES <br> (ATWS-NO-MODULES-3)"]
+        Q28 --> Q29
+        Q29["4 MODULES <br> (ATWS-NO-MODULES-4)"]
+        Q29 --> RS_AI[NONE];
+
+        Q35 --> Q32;
+        Q32["COOLING-RESTORED-1"] --> Q33;
+        Q33["1 MODULE"] --> RS_AH[NONE]
+        Q32 --> RS_AG[NONE];
+        
+        A1 --> RS_AA[NONE];
+        A2 --> RS_AB[NONE]
+        
+    end
+
+    subgraph CR-GROUP-WITHDRAWAL
+        Start_CR[CONTROL ROD GROUP <br> WITHDRAWAL] --> TRIP_CR_RW{TRIP-CR};
+        TRIP_CR_RW -- Yes --> B1[OK];
+        TRIP_CR_RW -- No --> TRIP_RSCE_RW{TRIP-RSCE};
+        TRIP_RSCE_RW -- Yes --> HTS_FAILURE_RW{HTS-FAILURE};
+        TRIP_RSCE_RW -- No --> B2[OK];
+        HTS_FAILURE_RW -- Yes --> SCS_1COOLING_RW{SCS-1COOLING};
+        HTS_FAILURE_RW -- No --> B3[OK];
+        SCS_1COOLING_RW -- Yes --> RCCS_COOLING_RW{RCCS-COOLING};
+        SCS_1COOLING_RW -- No --> B4[OK];
+        RCCS_COOLING_RW -- Yes --> B5[OK];
+        RCCS_COOLING_RW -- No -->B6[OK];
+
+        B1 --> RW_AA[NONE];
+        B2 --> RW_AB[NONE];
+        B3 --> RW_AC[NONE];
+        B4 --> RW_AE[NONE];
+        B5 --> RW_AF[NONE];
+        B6 --> RW_AD[--];
+
+
+    end
+
+    subgraph EARTHQUAKE
+        Start_EQ[EARTHQUAKE] --> SEISMIC_INTENSITY{SEISMIC-INTENSITY};
+        SEISMIC_INTENSITY --> Q2;
+        Q2["0.06 TO 0.2 g "]
+        Q2 --> Q40
+        Q40["0.2 TO 0.4 g "]
+        Q40 --> Q80
+        Q80["0.4 TO O.8 g "]
+        Q80 --> Q120
+        Q120["0.8 TO 2.0 g "]
+
+        Q2 --> PRIMARY_BOUNDARY{PRIMARY-BOUNDARY}
+        PRIMARY_BOUNDARY -- Yes --> HTS_COOLING{HTS-COOLING}
+        HTS_COOLING -- Yes --> REACTOR_TRIP_RODS{REACTOR-TRIP-RODS}
+        REACTOR_TRIP_RODS -- Yes --> REACTOR_TRIP_RSCE{REACTOR-TRIP-RSCE}
+        REACTOR_TRIP_RODS -- No --> C1[OK];
+        REACTOR_TRIP_RSCE -- Yes --> C2[OK];
+        REACTOR_TRIP_RSCE -- No --> C3[OK];
+        HTS_COOLING -- No --> C4[OK]
+        PRIMARY_BOUNDARY -- No --> C5[OK]
+
+        C1 --> EQ_AA[NONE];
+        C2 --> EQ_AB[NONE];
+        C3 --> EQ_AC[NONE];
+        C4 --> EQ_AE[NONE];
+        C5 --> EQ_AD[--];
+
+        Q40 --> PRIMARY_BOUNDARY_2{PRIMARY-BOUNDARY}
+        PRIMARY_BOUNDARY_2 -- Yes --> HTS_COOLING_2{HTS-COOLING}
+        HTS_COOLING_2 -- Yes --> REACTOR_TRIP_RODS_2{REACTOR-TRIP-RODS}
+        REACTOR_TRIP_RODS_2 -- Yes --> REACTOR_TRIP_RSCE_2{REACTOR-TRIP-RSCE}
+        REACTOR_TRIP_RODS_2 -- No --> C6[OK]
+        REACTOR_TRIP_RSCE_2 -- Yes --> C7[OK]
+        REACTOR_TRIP_RSCE_2 -- No --> C8[OK]
+        HTS_COOLING_2 -- No --> C9[OK]
+        PRIMARY_BOUNDARY_2 -- No --> C10[OK]
+
+        C6 --> EQ_AI[NONE];
+        C7 --> EQ_AJ[NONE];
+        C8 --> EQ_AK[NONE];
+        C9 --> EQ_AM[NONE];
+        C10 --> EQ_AL[--];
+
+
+        Q80 --> PRIMARY_BOUNDARY_3{PRIMARY-BOUNDARY}
+        PRIMARY_BOUNDARY_3 -- Yes --> HTS_COOLING_3{HTS-COOLING}
+        HTS_COOLING_3 -- Yes --> REACTOR_TRIP_RODS_3{REACTOR-TRIP-RODS}
+        REACTOR_TRIP_RODS_3 -- Yes --> REACTOR_TRIP_RSCE_3{REACTOR-TRIP-RSCE}
+        REACTOR_TRIP_RODS_3 -- No --> C11[OK]
+        REACTOR_TRIP_RSCE_3 -- Yes --> C12[OK]
+        REACTOR_TRIP_RSCE_3 -- No --> C13[OK]
+        HTS_COOLING_3 -- No --> C14[OK];
+        PRIMARY_BOUNDARY_3 -- No --> C15[OK];
+
+        C11 --> EQ_AR[NONE];
+        C12 --> EQ_AS[NONE];
+        C13 --> EQ_AT[NONE];
+        C14 --> EQ_AV[NONE];
+        C15 --> EQ_AU[--];
+
+        Q120 --> PRIMARY_BOUNDARY_4{PRIMARY-BOUNDARY}
+        PRIMARY_BOUNDARY_4  -- Yes -->  HTS_COOLING_4{HTS-COOLING}
+        HTS_COOLING_4 -- Yes --> REACTOR_TRIP_RODS_4{REACTOR-TRIP-RODS}
+        REACTOR_TRIP_RODS_4 -- Yes --> REACTOR_TRIP_RSCE_4{REACTOR-TRIP-RSCE}
+        REACTOR_TRIP_RODS_4 -- No --> C16[OK];
+        REACTOR_TRIP_RSCE_4 -- Yes --> C17[OK];
+        REACTOR_TRIP_RSCE_4 -- No -->C18[OK];
+        HTS_COOLING_4 -- No --> C19[OK];
+        PRIMARY_BOUNDARY_4 -- No --> C20[OK]
+
+        C16 --> EQ_BA[NONE];
+        C17 --> EQ_BB[NONE];
+        C18 --> EQ_BC[NONE];
+        C19 --> EQ_BF[NONE];
+        C20 --> EQ_BD[NONE];
+
+    end
+    
+      subgraph HTS-COOLING-LOSS
+        Start_HTS[HTS COOLING LOSS] --> TRIP_CR_HTS{TRIP-CR};
+        TRIP_CR_HTS -- Yes --> D1[OK];
+        TRIP_CR_HTS -- No --> TRIP_RSCE_HTS{TRIP-RSCE};
+        TRIP_RSCE_HTS -- Yes --> SCS_1COOLING_HTS{SCS-1COOLING};
+        TRIP_RSCE_HTS -- No --> D2[OK]
+        SCS_1COOLING_HTS -- Yes --> RCCS_COOLING_HTS{RCCS-COOLING};
+        SCS_1COOLING_HTS -- No --> Q8;
+        Q8["1 MODULE          "]
+        RCCS_COOLING_HTS -- Yes --> INT_DEP{INT-DEP};
+        RCCS_COOLING_HTS -- No --> Q15;
+        Q15["1 MODULE          <br>(HTS-NO-MODULES-14)"]
+        INT_DEP -- Yes --> D3[OK]
+        INT_DEP -- No --> D4[OK]
+
+
+        Q8 --> Q9;
+        Q9["4 MODULES          "]
+        Q9 --> HTS_AH[DC-2]
+
+        Q15 --> Q16;
+        Q16["2 MODULES          <br>(HTS-NO-MODULES-14)"]
+        Q16 --> Q17
+        Q17["3 MODULES          <br>(HTS-NO-MODULES-14)"]
+        Q17 --> Q18;
+        Q18["4 MODULES          <br>(HTS-NO-MODULES-14)"]
+        Q18 --> HTS_AI[NONE];
+
+       D1 --> HTS_AA[NONE];
+       D2 --> HTS_AB[NONE];
+       D3 --> HTS_AC[NONE];
+       D4 --> HTS_AD[NONE]
+
+    end
+
+    subgraph LOSP
+        Start_LOSP[LOSS OF SITE POWER] --> TRIP_CR_LOSP{TRIP-CR};
+        TRIP_CR_LOSP -- Yes --> E1[OK];
+        TRIP_CR_LOSP -- No --> TRIP_RSCE_LOSP{TRIP-RSCE};
+        TRIP_RSCE_LOSP -- Yes --> SCS_1COOLING_LOSP{SCS-1COOLING};
+        TRIP_RSCE_LOSP -- No --> E2[OK];
+        SCS_1COOLING_LOSP -- Yes --> RCCS_COOLING_LOSP{RCCS-COOLING};
+        SCS_1COOLING_LOSP -- No --> Q10_LOSP;
+        Q10_LOSP["1 MODULE     <br> (LOOP-NO-MODULES-1)"]
+        RCCS_COOLING_LOSP -- Yes --> NO_OF_MODULES_LOSP{NO-OF-MODULES};
+        RCCS_COOLING_LOSP -- No --> E3[OK];
+
+        Q10_LOSP --> Q11_LOSP
+        Q11_LOSP["2 MODULES     <br>(LOOP-NO-MODULES-2)"]
+        Q11_LOSP --> Q12_LOSP
+        Q12_LOSP["3 MODULES     <br>(LOOP-NO-MODULES-3)"]
+        Q12_LOSP --> Q13_LOSP
+        Q13_LOSP["4 MODULES     <br>(LOOP-NO-MODULES-4)"]
+        Q13_LOSP --> LOSP_AI[--];
+
+        NO_OF_MODULES_LOSP --> Q6_LOSP;
+        Q6_LOSP["4 MODULES     "]
+        Q6_LOSP --> LOSP_AG[NONE];
+
+        E1 --> LOSP_AA[NONE];
+        E2 --> LOSP_AB[NONE];
+        E3 --> LOSP_AC[NONE];
+
+    end
+
+    subgraph PRIMARY-LOCA
+        Start_PL[PRIMARY LOCA] --> LSD{LSD};
+        LSD --> Q2;
+        Q2["No leak                           "] --> TRIP_CR_PL{TRIP-CR}
+        TRIP_CR_PL -- Yes --> F1[OK]
+        TRIP_CR_PL -- No --> TRIP_RSCE_PL{TRIP-RSCE}
+        TRIP_RSCE_PL -- Yes --> HTS_FAILURE_PRIMARY_LOCA{HTS-FAILURE-PRIMARY-LOCA}
+        TRIP_RSCE_PL -- No --> F2[OK]
+        HTS_FAILURE_PRIMARY_LOCA -- Yes --> SCS_1COOLING_PL{SCS-1COOLING}
+        HTS_FAILURE_PRIMARY_LOCA -- No --> F3[OK];
+        SCS_1COOLING_PL -- Yes --> F4[OK]
+        SCS_1COOLING_PL -- No --> F5[OK]
+
+        F1 --> PC_AA[DF-4];
+        F2 --> PC_AB[DF-3];
+        F3 --> PC_AC[DF-4];
+        F4 --> PC_AE[DC-9];
+        F5 --> PC_AF[DC-9];
+
+        LSD --> Q9_pl;
+        Q9_pl["3E-5 TO 2E-3 IN^2                                                <br>(LSD1)"]
+        Q9_pl --> Q51_pl;
+        Q51_pl["2E-3 TO 0.03 IN^2                                                <br>(LSD2)"]
+        Q51_pl --> Q90_pl
+        Q90_pl["0.03 TO 1 IN^2                                                <br>(LSD3)"]
+        Q90_pl --> Q129_pl
+        Q129_pl["1 TO 13 IN^2                                                <br>(LSD4)"]
+        Q129_pl --> Q163_pl
+        Q163_pl["13 IN^2                                                <br>(LSD5)"]
+
+        Q9_pl --> TRIP_CR_PL_2{TRIP-CR}
+        TRIP_CR_PL_2 -- Yes --> F6[OK]
+        TRIP_CR_PL_2 -- No --> TRIP_RSCE_PL_2{TRIP-RSCE}
+        TRIP_RSCE_PL_2 -- Yes --> HTS_FAILURE_PRIMARY_LOCA_2{HTS-FAILURE-PRIMARY-LOCA}
+        HTS_FAILURE_PRIMARY_LOCA_2 -- Yes --> SCS_1COOLING_2{SCS-1COOLING}
+        SCS_1COOLING_2 -- Yes -->F7[OK]
+        SCS_1COOLING_2 -- No -->F8[OK]
+        HTS_FAILURE_PRIMARY_LOCA_2 -- No --> F9[OK]
+        TRIP_RSCE_PL_2 -- No --> F10[OK]
+
+        F6 --> PC_AH[DF-4];
+        F7 --> PC_AL[DC-9];
+        F8 --> PC_AK[DF-3];
+        F9 --> PC_AJ[DF-4]
+        F10 --> PC_AI[--];
+
+        Q51_pl --> TRIP_CR_PL_3{TRIP-CR}
+        TRIP_CR_PL_3 -- Yes -->F11[OK];
+        TRIP_CR_PL_3 -- No --> TRIP_RSCE_PL_3{TRIP-RSCE}
+        TRIP_RSCE_PL_3 -- Yes --> Q54;
+        Q54["HTS-FAILURE-LK-SIZE"]
+        Q54 --> SCS_1COOLING_PL_2{SCS-1COOLING}
+        SCS_1COOLING_PL_2 -- No --> F12[OK];
+        TRIP_RSCE_PL_3 -- No --> F13[OK]
+
+        Q54 --> Q59;
+        Q59["HTS-FAILURE-LK-SIZE"]
+        Q59 --> Q62;
+        Q62["HPS-PUMPDOWN-HTS"]
+
+        F11 --> PC_AP[DF-4];
+        F12 --> PC_AT[DC-6];
+        F13 --> PC_AQ[DF-3];
+        
+        Q90_pl --> TRIP_CR_PL_4{TRIP-CR}
+        TRIP_CR_PL_4 -- Yes --> F14[OK];
+        TRIP_CR_PL_4 -- No --> TRIP_RSCE_PL_4{TRIP-RSCE}
+        TRIP_RSCE_PL_4 -- Yes --> HTS_FAILURE_PL_4{HTS-FAILURE-PRIMARY-LOCA}
+        HTS_FAILURE_PL_4 -- Yes --> SCS_1COOLING_PL_4{SCS-1COOLING}
+        SCS_1COOLING_PL_4 -- Yes --> F15[OK]
+        SCS_1COOLING_PL_4 -- No --> F16[OK]
+        TRIP_RSCE_PL_4 -- No --> F17[OK]
+
+        F14 --> PC_BC[DF-2]
+        F15 --> PC_BG[DC-7]
+        F16 --> PC_BF[DF-2]
+        F17 --> PC_BH[DC-5]
+
+        Q129_pl --> TRIP_CR_PL_5{TRIP-CR}
+        TRIP_CR_PL_5 -- Yes --> F18[OK]
+        TRIP_CR_PL_5 -- No --> TRIP_RSCE_PL_5{TRIP-RSCE}
+        TRIP_RSCE_PL_5 -- No --> F19[OK]
+
+        F18 --> PC_BP[DF-1]
+        F19 --> PC_BQ[DF-1]
+
+    end
+  
+    subgraph SG-LK-MODERATE
+        Start_SGLM[SG LK MODERATE] --> MMD{MMD};
+        MMD -- Yes --> TRIP_HM{TRIP-HM};
+        MMD -- No --> G1[OK];
+        TRIP_HM -- Yes --> TRIP_HP{TRIP-HP};
+        TRIP_HM -- No --> G2[OK]
+        TRIP_HP -- Yes --> SG_ISOLATION{SG-ISOLATION};
+        TRIP_HP -- No --> SG_ISOLATION_DELAYED{SG-ISOLATION-DELAYED}
+
+        SG_ISOLATION -- Yes --> G3[OK];
+        SG_ISOLATION -- No --> G4[OK];
+        SG_ISOLATION_DELAYED -- No --> G5[OK]
+        SG_ISOLATION_DELAYED -- Yes --> G6[OK]
+
+        G1 --> MS_AA[NONE];
+        G2 --> MS_AB[NONE];
+        G3 --> MS_AC[WC-7];
+        G4 --> MS_AD[WC-5];
+        G5 --> MS_AF[NONE];
+        G6 --> MS_AG[WC-6];
+    end
+
+    subgraph SG-LK-SMALL
+            Start_SGLS[SG LK SMALL] --> MMD_S{MMD};
+            MMD_S -- Yes --> TRIP_HM_S{TRIP-HM}
+            MMD_S -- No --> H1[OK]
+
+            TRIP_HM_S -- Yes -->TRIP_MANUAL_S{TRIP-MANUAL}
+            TRIP_HM_S -- No --> H2[OK]
+            TRIP_MANUAL_S --Yes --> TRIP_HP_S{TRIP-HP}
+            TRIP_MANUAL_S -- No --> H3[OK]
+            TRIP_HP_S -- Yes --> SG_ISOLATION_S{SG-ISOLATION}
+            TRIP_HP_S -- No --> H4[OK]
+
+            SG_ISOLATION_S --Yes --> H5[OK]
+            SG_ISOLATION_S -- No --> H6[OK]
+            
+            H1 --> SS_AA[NONE]
+            H2 --> SS_AB[NONE]
+            H3 --> SS_AD[NONE]
+            H4 --> SS_AE[WC-3]
+            H5 --> SS_AF[WC-1]
+            H6 --> SS_AG[--]
+    end

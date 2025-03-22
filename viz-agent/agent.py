@@ -11,7 +11,7 @@ def generate():
 
     files = [
         # Make the file available in local system working directory
-        client.files.upload(file="event_trees.json"),
+        client.files.upload(file="../Resources/SAPHIRE/event_trees.json"),
     ]
     model = "gemini-2.0-pro-exp-02-05"
     contents = [
@@ -175,4 +175,7 @@ graph TD
         print(chunk.text, end="")
 
 if __name__ == "__main__":
-    generate()
+    # generate()
+    # Just print response.json in case of API error.
+    with open("response.json", "r") as f:
+        print(f.read())
