@@ -21,13 +21,30 @@
 
         .container {
             width: 90%;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 30px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+        }
+
+        .header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 18px;
+            margin: 0 auto;
+            max-width: 800px;
         }
 
         h1 {
@@ -82,6 +99,50 @@
             margin: 10px 0;
             padding: 5px;
             border-bottom: 1px solid #eee;
+        }
+
+        /* Input section styling */
+        .content-container {
+            margin-bottom: 30px;
+        }
+
+        .input-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: stretch;
+            gap: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .input-column {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-column label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+
+        .method-content {
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         /* Tab styles */
@@ -199,6 +260,11 @@
             border-radius: 5px;
             transition: border-color 0.3s;
             position: relative;
+            height: 100%;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .file-input-container:hover {
@@ -227,6 +293,7 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             display: none;
+            text-align: left;
         }
 
         .report-header {
@@ -426,25 +493,35 @@
         /* Progress bar */
         .progress-container {
             margin: 20px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            text-align: center;
+            display: none;
+        }
+
+        .progress-wrapper {
             background-color: #f1f1f1;
             border-radius: 5px;
             overflow: hidden;
+            margin: 15px 0;
         }
 
         .progress-bar {
-            height: 20px;
+            height: 25px;
             background-color: #3498db;
             width: 0%;
             text-align: center;
-            line-height: 20px;
+            line-height: 25px;
             color: white;
-            font-size: 12px;
+            font-size: 14px;
             transition: width 0.3s ease;
         }
 
-        .progress-message {
+        #progress-message {
             text-align: center;
-            margin-top: 10px;
+            margin: 15px 0;
             font-style: italic;
             color: #7f8c8d;
         }
@@ -452,382 +529,69 @@
         /* Add timeout handling information */
         .timeout-info {
             margin-top: 15px;
-            padding: 10px;
+            padding: 15px;
             background-color: #f8f9fa;
             border-radius: 5px;
             border-left: 4px solid #f39c12;
             font-size: 14px;
+            text-align: left;
+        }
+
+        .timeout-info p {
+            margin: 5px 0;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Nuclear Data Validation</h1>
-
-        <div class="tab">
-            <button class="tablinks active" onclick="openTab(event, 'validation')">Data Validation</button>
-            <button class="tablinks" onclick="openTab(event, 'schema-validation')">Schema Validation</button>
-            <button class="tablinks" onclick="openTab(event, 'ai-assistant')">AI Assistant</button>
+        <!-- Simplified header with only the JSON Schema Validation functionality -->
+        <div class="header">
+            <h1>JSON Schema Validation and Analysis</h1>
+            <p>Upload or paste a JSON schema to analyze and improve it based on nuclear industry standards</p>
         </div>
 
-        <div id="validation" class="tabcontent" style="display: block;">
-            <p>Enter your data below to validate its format and content.</p>
-
-            <form id="validation-form">
-                <textarea id="data-input" name="data_input" placeholder="Enter your data here..."></textarea>
-                <br>
-                <button type="submit" class="btn">Validate Data</button>
-            </form>
-
-            <div id="results"
-                style="display: none; margin-top: 20px; text-align: left; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
-                <h3 style="margin-top: 0;">Validation Results:</h3>
-                <div id="results-content"></div>
-            </div>
-        </div>
-
-        <div id="schema-validation" class="tabcontent">
-            <p>Paste your JSON schema below to analyze naming conventions and identify inconsistencies.</p>
-            <div class="input-methods">
-                <div class="method-tabs">
-                    <button class="method-tab active" onclick="switchInputMethod(event, 'text-input')">Text
-                        Input</button>
-                    <button class="method-tab" onclick="switchInputMethod(event, 'file-upload')">File Upload</button>
-                </div>
-
-                <div id="text-input" class="input-method" style="display: block;">
-                    <form id="schema-form">
-                        <textarea id="schema-input" name="schema"
-                            placeholder="Paste your JSON schema here (e.g. basic_events.json)..."></textarea>
-                        <br>
-                        <button type="submit" class="btn">Analyze Schema</button>
-                        <button type="button" class="btn" id="generate-report-btn"
-                            style="background-color: #2c3e50;">Generate Report</button>
-                    </form>
-                </div>
-
-                <div id="file-upload" class="input-method" style="display: none;">
-                    <form id="file-upload-form" enctype="multipart/form-data">
+        <!-- Main content - containing only Schema Validation (previously tab 2) -->
+        <div class="content-container">
+            <div id="schema-validation" class="method-content" style="display: block;">
+                <div class="input-section">
+                    <div class="input-column">
+                        <label for="schema-input">Enter JSON Schema:</label>
+                        <textarea id="schema-input" placeholder="Paste your JSON schema here..."></textarea>
+                        <button id="generate-report-btn" class="btn">Analyze Schema</button>
+                    </div>
+                    <div class="divider">OR</div>
+                    <div class="input-column">
                         <div class="file-input-container">
-                            <input type="file" id="json-file" name="file" accept=".json">
-                            <p class="file-instructions">Drag & drop a JSON file or click to browse</p>
+                            <label for="json-file" class="file-label">
+                                <div class="file-instructions">Drag & drop a JSON file or click to browse</div>
+                            </label>
+                            <input type="file" id="json-file" accept=".json" style="display: none;">
                         </div>
-                        <br>
-                        <button type="submit" class="btn">Upload & Analyze</button>
-                        <button type="button" class="btn" id="generate-report-file-btn"
-                            style="background-color: #2c3e50;">Generate Report</button>
-                    </form>
-                </div>
-            </div>
-
-            <div id="schema-results">
-                <h3 style="margin-top: 0;">Schema Analysis:</h3>
-                <div id="schema-analysis-content"></div>
-            </div>
-
-            <!-- Report Container -->
-            <div id="report-container">
-                <div class="report-header">
-                    <h3>Comprehensive Schema Analysis Report</h3>
-                    <div class="report-actions">
-                        <button class="btn download-btn" id="download-schema-btn">Download Improved Schema</button>
+                        <button id="upload-schema-btn" class="btn">Upload & Analyze</button>
                     </div>
-                </div>
-
-                <div class="report-section" id="summary-section">
-                    <h3>Summary</h3>
-                    <p id="report-summary"></p>
-
-                    <div class="stat-cards">
-                        <div class="stat-card">
-                            <div class="stat-value" id="elements-count">-</div>
-                            <div class="stat-label">Total Elements</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value" id="issues-count">-</div>
-                            <div class="stat-label">Issues Found</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-value" id="quality-score">-</div>
-                            <div class="stat-label">Quality Score</div>
-                        </div>
-                    </div>
-
-                    <h4>Quality Assessment</h4>
-                    <div class="quality-meter">
-                        <div class="quality-value" id="quality-bar"></div>
-                        <div class="quality-marker" id="quality-marker"></div>
-                    </div>
-                    <div class="quality-label" id="quality-label"></div>
-                </div>
-
-                <div class="report-section" id="patterns-section">
-                    <h3>Naming Patterns</h3>
-                    <div class="chart-container">
-                        <canvas id="patterns-chart"></canvas>
-                    </div>
-                </div>
-
-                <div class="report-section" id="elements-section">
-                    <h3>Element Types</h3>
-                    <div class="chart-container">
-                        <canvas id="elements-chart"></canvas>
-                    </div>
-                </div>
-
-                <div class="report-section" id="issues-section">
-                    <h3>Identified Issues</h3>
-                    <ul class="issues-list" id="issues-list"></ul>
-                </div>
-
-                <div class="report-section" id="recommendations-section">
-                    <h3>Recommendations</h3>
-                    <div id="recommendations-list"></div>
-                </div>
-
-                <div class="report-section" id="diff-section">
-                    <h3>Schema Comparison</h3>
-                    <p>Below is a visual representation of the changes between the original schema and the improved
-                        version:</p>
-                    <div class="diff-container" id="diff-view"></div>
                 </div>
             </div>
         </div>
 
-        <div id="ai-assistant" class="tabcontent">
-            <p>Use Google's Gemini AI to help with your nuclear research and data analysis.</p>
-            <form id="ai-form">
-                <textarea id="ai-prompt" name="prompt" placeholder="Ask a question or request assistance..."></textarea>
-                <br>
-                <button type="submit" class="btn">Get AI Response</button>
-            </form>
-            <div id="ai-results">
-                <h3 style="margin-top: 0;">AI Response:</h3>
-                <div id="ai-response-content"></div>
+        <!-- Progress indication for report generation -->
+        <div id="progress-container" class="progress-container" style="display: none;">
+            <h3>Generating Report</h3>
+            <div class="progress-wrapper">
+                <div id="progress-bar" class="progress-bar">0%</div>
+            </div>
+            <p id="progress-message">Analyzing your schema...</p>
+            <div class="timeout-info">
+                <p>Analysis will timeout after 60 seconds for very large schemas.</p>
+                <p>For large schemas, a sample-based analysis will be performed.</p>
             </div>
         </div>
+
+        <!-- Report container -->
+        <div id="report-container" class="report-container"></div>
     </div>
 
     <script>
-        // Tab functionality
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
-
-        // Validation form submission
-        document.getElementById('validation-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Show loading state
-            const resultsDiv = document.getElementById('results');
-            const resultsContent = document.getElementById('results-content');
-            resultsDiv.style.display = 'block';
-            resultsContent.innerHTML = '<p>Processing...</p>';
-
-            // Get the form data
-            const formData = new FormData(this);
-
-            // Send the data to the Python backend
-            fetch('/validate', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Display the results
-                    let resultHTML = '';
-
-                    // Status message
-                    resultHTML += `<div class="result-item">
-                    <strong>Status:</strong> <span class="${data.status}">${data.status.toUpperCase()}</span>
-                </div>`;
-
-                    // Details
-                    resultHTML += `<div class="result-item">
-                    <strong>Details:</strong>
-                    <ul>
-                        <li>Data Length: ${data.details.length} characters</li>
-                        <li>Format Check: ${data.details.format_check ? 'Passed' : 'Failed'}</li>
-                        <li>Content Check: ${data.details.content_check ? 'Passed' : 'Failed'}</li>
-                    </ul>
-                </div>`;
-
-                    // Messages
-                    if (data.messages && data.messages.length > 0) {
-                        resultHTML += `<div class="result-item">
-                        <strong>Messages:</strong>
-                        <ul>
-                            ${data.messages.map(msg => `<li>${msg}</li>`).join('')}
-                        </ul>
-                    </div>`;
-                    }
-
-                    resultsContent.innerHTML = resultHTML;
-                })
-                .catch(error => {
-                    resultsContent.innerHTML = '<p class="invalid">Error: Could not connect to the validation service.</p>';
-                    console.error('Error:', error);
-                });
-        });
-
-        // Schema validation form submission
-        document.getElementById('schema-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Show loading state
-            const schemaResultsDiv = document.getElementById('schema-results');
-            const schemaAnalysisContent = document.getElementById('schema-analysis-content');
-            schemaResultsDiv.style.display = 'block';
-            schemaAnalysisContent.innerHTML = '<p>Analyzing schema naming conventions...</p>';
-
-            // Get the schema input
-            const schemaInput = document.getElementById('schema-input').value;
-
-            // Send the schema to the backend
-            fetch('/validate-schema', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ schema: schemaInput })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Display the analysis results
-                    if (data.error) {
-                        schemaAnalysisContent.innerHTML = `<p class="invalid">${data.analysis}</p>`;
-                    } else {
-                        // Format the analysis with proper styling
-                        const formattedAnalysis = data.analysis.replace(/\n/g, '<br>');
-                        schemaAnalysisContent.innerHTML = formattedAnalysis;
-                    }
-                })
-                .catch(error => {
-                    schemaAnalysisContent.innerHTML = '<p class="invalid">Error: Could not connect to the schema validation service.</p>';
-                    console.error('Error:', error);
-                });
-        });
-
-        // AI form submission
-        document.getElementById('ai-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Show loading state
-            const aiResultsDiv = document.getElementById('ai-results');
-            const aiResponseContent = document.getElementById('ai-response-content');
-            aiResultsDiv.style.display = 'block';
-            aiResponseContent.innerHTML = '<p>Thinking...</p>';
-
-            // Get the prompt
-            const prompt = document.getElementById('ai-prompt').value;
-
-            // Send the prompt to the backend
-            fetch('/gemini', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ prompt: prompt })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Display the AI response - convert newlines to <br> for proper HTML display
-                    aiResponseContent.innerHTML = data.response.replace(/\n/g, '<br>');
-                })
-                .catch(error => {
-                    aiResponseContent.innerHTML = '<p class="invalid">Error: Could not connect to the AI service.</p>';
-                    console.error('Error:', error);
-                });
-        });
-
-        // File upload form submission
-        document.getElementById('file-upload-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Show loading state
-            const schemaResultsDiv = document.getElementById('schema-results');
-            const schemaAnalysisContent = document.getElementById('schema-analysis-content');
-            schemaResultsDiv.style.display = 'block';
-            schemaAnalysisContent.innerHTML = '<p>Uploading and analyzing file...</p>';
-
-            // Get the file from the input
-            const fileInput = document.getElementById('json-file');
-            const file = fileInput.files[0];
-
-            // Check if a file was selected
-            if (!file) {
-                schemaAnalysisContent.innerHTML = '<p class="invalid">Please select a JSON file to upload.</p>';
-                return;
-            }
-
-            // Create FormData object to send the file
-            const formData = new FormData();
-            formData.append('file', file);
-
-            // Send the file to the backend
-            fetch('/upload-json', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error) {
-                        schemaAnalysisContent.innerHTML = `<p class="invalid">${data.message}</p>`;
-                    } else {
-                        // File was uploaded successfully, now analyze the content
-                        schemaAnalysisContent.innerHTML = '<p>File uploaded. Analyzing schema...</p>';
-
-                        // Send the content for schema validation
-                        return fetch('/validate-schema', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({ schema: data.content })
-                        });
-                    }
-                })
-                .then(response => {
-                    if (response) return response.json();
-                })
-                .then(data => {
-                    if (data && data.analysis) {
-                        // Format the analysis with proper styling
-                        const formattedAnalysis = data.analysis.replace(/\n/g, '<br>');
-                        schemaAnalysisContent.innerHTML = formattedAnalysis;
-                    }
-                })
-                .catch(error => {
-                    schemaAnalysisContent.innerHTML = '<p class="invalid">Error: Could not process the file.</p>';
-                    console.error('Error:', error);
-                });
-        });
-
-        function switchInputMethod(evt, method) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("input-method");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("method-tab");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(method).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
-
         // Add drag and drop functionality
         const fileInput = document.getElementById('json-file');
         const dropZone = document.querySelector('.file-input-container');
@@ -880,21 +644,16 @@
                 const schema = JSON.parse(schemaInput);
                 originalSchema = schema;
 
-                // Show loading state with progress bar
-                document.getElementById('report-container').style.display = 'block';
-                document.getElementById('report-container').innerHTML = `
-                    <div class="report-header">
-                        <h3>Analyzing Schema</h3>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-bar" id="progress-bar">0%</div>
-                    </div>
-                    <p class="progress-message" id="progress-message">Starting analysis...</p>
-                    <div class="timeout-info">
-                        <strong>Note:</strong> For very large schemas, the analysis may take some time. The system will process as much as possible within the time constraints.
-                    </div>
-                    <div class="loader"></div>
-                `;
+                // Show progress container
+                document.getElementById('progress-container').style.display = 'block';
+                document.getElementById('report-container').style.display = 'none';
+
+                // Reset progress bar
+                const progressBar = document.getElementById('progress-bar');
+                const progressMessage = document.getElementById('progress-message');
+                progressBar.style.width = '0%';
+                progressBar.textContent = '0%';
+                progressMessage.textContent = 'Starting analysis...';
 
                 // Send to backend for report generation
                 startReportGeneration(schema);
@@ -905,7 +664,7 @@
         });
 
         // Setup report generation from file upload
-        document.getElementById('generate-report-file-btn').addEventListener('click', function () {
+        document.getElementById('upload-schema-btn').addEventListener('click', function () {
             const fileInput = document.getElementById('json-file');
             const file = fileInput.files[0];
 
@@ -914,21 +673,16 @@
                 return;
             }
 
-            // Show loading state with progress bar
-            document.getElementById('report-container').style.display = 'block';
-            document.getElementById('report-container').innerHTML = `
-                <div class="report-header">
-                    <h3>Analyzing Schema</h3>
-                </div>
-                <div class="progress-container">
-                    <div class="progress-bar" id="progress-bar">0%</div>
-                </div>
-                <p class="progress-message" id="progress-message">Starting analysis...</p>
-                <div class="timeout-info">
-                    <strong>Note:</strong> For very large schemas, the analysis may take some time. The system will process as much as possible within the time constraints.
-                </div>
-                <div class="loader"></div>
-            `;
+            // Show progress container
+            document.getElementById('progress-container').style.display = 'block';
+            document.getElementById('report-container').style.display = 'none';
+
+            // Reset progress bar
+            const progressBar = document.getElementById('progress-bar');
+            const progressMessage = document.getElementById('progress-message');
+            progressBar.style.width = '0%';
+            progressBar.textContent = '0%';
+            progressMessage.textContent = 'Reading file...';
 
             // Read the file content
             const reader = new FileReader();
@@ -937,11 +691,14 @@
                     const schema = JSON.parse(e.target.result);
                     originalSchema = schema;
 
+                    // Update progress message
+                    progressMessage.textContent = 'File loaded. Starting analysis...';
+
                     // Start report generation
                     startReportGeneration(schema, file.name);
                 } catch (e) {
                     alert('Invalid JSON file. Please check the file content.');
-                    document.getElementById('report-container').style.display = 'none';
+                    document.getElementById('progress-container').style.display = 'none';
                     console.error('Error parsing JSON file:', e);
                 }
             };
@@ -975,6 +732,8 @@
                             checkReportStatus(currentTaskId);
                         }, 1000); // Check every second
                     } else {
+                        document.getElementById('progress-container').style.display = 'none';
+                        document.getElementById('report-container').style.display = 'block';
                         document.getElementById('report-container').innerHTML = `
                         <div class="report-header">
                             <h3>Error Starting Report Generation</h3>
@@ -984,6 +743,8 @@
                     }
                 })
                 .catch(error => {
+                    document.getElementById('progress-container').style.display = 'none';
+                    document.getElementById('report-container').style.display = 'block';
                     document.getElementById('report-container').innerHTML = `
                     <div class="report-header">
                         <h3>Error</h3>
@@ -1015,11 +776,15 @@
                         clearInterval(progressInterval);
                         progressInterval = null;
 
+                        // Hide progress container
+                        document.getElementById('progress-container').style.display = 'none';
+
                         // Render the report
                         if (data.report) {
                             currentReport = data.report;
                             renderReport(data.report);
                         } else {
+                            document.getElementById('report-container').style.display = 'block';
                             document.getElementById('report-container').innerHTML = `
                                 <div class="report-header">
                                     <h3>Report Generation Complete</h3>
@@ -1034,6 +799,9 @@
                         clearInterval(progressInterval);
                         progressInterval = null;
 
+                        // Hide progress container
+                        document.getElementById('progress-container').style.display = 'none';
+                        document.getElementById('report-container').style.display = 'block';
                         document.getElementById('report-container').innerHTML = `
                             <div class="report-header">
                                 <h3>Error in Report Generation</h3>
@@ -1041,21 +809,11 @@
                             <p class="invalid">${data.message || 'An error occurred during report generation.'}</p>
                         `;
                     }
-                    // For very long running tasks, show estimated time remaining
-                    else if (data.progress > 0 && data.progress < 100) {
-                        // Update UI with progress information
-                    }
                 })
                 .catch(error => {
                     console.error('Error checking status:', error);
                     // Don't clear the interval - we'll try again on the next poll
                 });
-        }
-
-        // Function to generate report (legacy - kept for backward compatibility)
-        function generateReport(schema, filename = '') {
-            // This function is now a wrapper around the new asynchronous processing
-            startReportGeneration(schema, filename);
         }
 
         // Function to render the report 
