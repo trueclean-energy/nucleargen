@@ -15,6 +15,7 @@ Or use the provided shell script:
 """
 
 import os
+import json
 from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
 import google.generativeai as genai
@@ -31,7 +32,36 @@ if not api_key:
     raise ValueError("GOOGLE_API_KEY not found in environment variables")
 
 genai.configure(api_key=api_key)
-model = genai.GenerativeModel("gemini-2.0-pro-exp-02-05");
+model = genai.GenerativeModel("gemini-2.0-pro-exp-02-05")
+
+def validate_schema_naming(schema_json):
+    """
+    Analyze a JSON schema for naming convention issues
+    using Gemini AI to provide insights and suggestions.
+    """
+    prompt = f"""
+    You are a Nuclear PRA (Probabilistic Risk Assessment) expert reviewing schemas for naming convention consistency. 
+    Please analyze the following JSON schema and provide:
+    
+    1. An overall assessment of naming convention consistency
+    2. Any identified inconsistencies in naming patterns
+    3. Suggestions for standardizing naming conventions
+    4. Any other potential issues noticed with component references or naming
+    
+    Format your response in clear sections with bullet points where appropriate.
+    
+    JSON Schema to analyze:
+    ```json
+    {schema_json}
+    ```
+    """
+    
+    try:
+        response = model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        print(f"Error in schema validation: {str(e)}")
+        return f"Error analyzing schema: {str(e)}"
 
 @app.route('/')
 def index():
@@ -86,6 +116,48 @@ def gemini_api():
         # Handle any errors
         print(f"Error in Gemini API: {str(e)}")
         return jsonify({'error': str(e), 'response': f'An error occurred while processing your request: {str(e)}'})
+
+@app.route('/validate-schema', methods=['POST'])
+def validate_schema():
+    """Validate a JSON schema for naming convention consistency"""
+    try:
+        # Get the JSON data
+        data = request.json
+        schema_text = data.get('schema', '')
+        
+        if not schema_text:
+            return jsonify({
+                'error': 'No schema provided',
+                'analysis': 'Please provide a JSON schema to analyze.'
+            })
+        
+        # Parse the JSON to validate it's properly formatted
+        try:
+            # If it's already a JSON object, we'll just use it as is
+            if isinstance(schema_text, dict):
+                schema_json = schema_text
+            else:
+                # Otherwise parse the string
+                schema_json = json.loads(schema_text)
+        except json.JSONDecodeError:
+            return jsonify({
+                'error': 'Invalid JSON',
+                'analysis': 'The provided schema is not valid JSON. Please check the formatting.'
+            })
+        
+        # Analyze the schema with Gemini
+        analysis = validate_schema_naming(json.dumps(schema_json, indent=2))
+        
+        return jsonify({
+            'analysis': analysis
+        })
+        
+    except Exception as e:
+        print(f"Error in schema validation: {str(e)}")
+        return jsonify({
+            'error': str(e),
+            'analysis': f'An error occurred while analyzing the schema: {str(e)}'
+        })
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5001) 

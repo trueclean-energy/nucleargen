@@ -17,7 +17,7 @@
 
         .container {
             width: 90%;
-            max-width: 600px;
+            max-width: 800px;
             margin: 30px auto;
             padding: 20px;
             background-color: #fff;
@@ -128,13 +128,33 @@
             }
         }
 
-        #ai-results {
+        #ai-results,
+        #schema-results {
             text-align: left;
             padding: 15px;
             margin-top: 20px;
             border: 1px solid #ddd;
             border-radius: 5px;
             display: none;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .analysis-section {
+            margin-bottom: 20px;
+        }
+
+        .analysis-section h4 {
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        pre {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
         }
     </style>
 </head>
@@ -145,6 +165,7 @@
 
         <div class="tab">
             <button class="tablinks active" onclick="openTab(event, 'validation')">Data Validation</button>
+            <button class="tablinks" onclick="openTab(event, 'schema-validation')">Schema Validation</button>
             <button class="tablinks" onclick="openTab(event, 'ai-assistant')">AI Assistant</button>
         </div>
 
@@ -161,6 +182,20 @@
                 style="display: none; margin-top: 20px; text-align: left; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
                 <h3 style="margin-top: 0;">Validation Results:</h3>
                 <div id="results-content"></div>
+            </div>
+        </div>
+
+        <div id="schema-validation" class="tabcontent">
+            <p>Paste your JSON schema below to analyze naming conventions and identify inconsistencies.</p>
+            <form id="schema-form">
+                <textarea id="schema-input" name="schema"
+                    placeholder="Paste your JSON schema here (e.g. basic_events.json)..."></textarea>
+                <br>
+                <button type="submit" class="btn">Analyze Schema</button>
+            </form>
+            <div id="schema-results">
+                <h3 style="margin-top: 0;">Schema Analysis:</h3>
+                <div id="schema-analysis-content"></div>
             </div>
         </div>
 
@@ -246,6 +281,44 @@
                 })
                 .catch(error => {
                     resultsContent.innerHTML = '<p class="invalid">Error: Could not connect to the validation service.</p>';
+                    console.error('Error:', error);
+                });
+        });
+
+        // Schema validation form submission
+        document.getElementById('schema-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Show loading state
+            const schemaResultsDiv = document.getElementById('schema-results');
+            const schemaAnalysisContent = document.getElementById('schema-analysis-content');
+            schemaResultsDiv.style.display = 'block';
+            schemaAnalysisContent.innerHTML = '<p>Analyzing schema naming conventions...</p>';
+
+            // Get the schema input
+            const schemaInput = document.getElementById('schema-input').value;
+
+            // Send the schema to the backend
+            fetch('/validate-schema', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ schema: schemaInput })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Display the analysis results
+                    if (data.error) {
+                        schemaAnalysisContent.innerHTML = `<p class="invalid">${data.analysis}</p>`;
+                    } else {
+                        // Format the analysis with proper styling
+                        const formattedAnalysis = data.analysis.replace(/\n/g, '<br>');
+                        schemaAnalysisContent.innerHTML = formattedAnalysis;
+                    }
+                })
+                .catch(error => {
+                    schemaAnalysisContent.innerHTML = '<p class="invalid">Error: Could not connect to the schema validation service.</p>';
                     console.error('Error:', error);
                 });
         });
