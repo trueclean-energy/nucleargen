@@ -1,3 +1,11 @@
+
+
+
+
+
+
+---------------------------
+
 I understand you need to develop at least two AI agents for a hackathon challenge that involves building multimodal AI agents capable of advanced reasoning and autonomous decision-making. With only 3 hours to code, we need to focus on agents that can be developed quickly while still making an impact. Based on your notes and the context provided, here are descriptions for three complementary agents:
 
 ## 1. PRA Schema Conversion Agent
@@ -89,8 +97,6 @@ This Documentation Generator Agent complements the Schema Conversion and Visuali
 # PRA Visualization Agent
 
 ## User Stories
-1. "Generate an FC curve for sequence ET-LOFA-1"  
-   - Agent creates interactive FC curve visualization with frequency/consequence axes
    
 2. "Show me the event tree for loss of forced cooling"
    - Agent renders SVG diagram of the event tree with proper branching
@@ -100,9 +106,8 @@ This Documentation Generator Agent complements the Schema Conversion and Visuali
 
 ## Expected Demo Outputs
 - SVG diagrams of event trees with proper formatting and labels
-- Interactive FC curves with customizable risk acceptance regions
 - Fault tree visualizations with component relationships
-- Ability to modify visualizations through conversation
+- Ability to modify visualizations through conversation (Maybe)
 
 ## Success Criteria
 - Generates at least 2 different visualization types from PRA data
