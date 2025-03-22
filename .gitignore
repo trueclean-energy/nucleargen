@@ -48,4 +48,5 @@ Thumbs.db
 *.sqlite3
 
 # Uploaded files
-data-validation/uploads/ 
+data-validation/uploads/
+data-validation/reports/ 
