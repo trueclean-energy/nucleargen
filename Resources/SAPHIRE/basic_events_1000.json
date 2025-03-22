@@ -1,0 +1,709 @@
+{
+    "job_id": "1742667886",
+    "files": {
+      "HTGR_Sample_Basic_Events/HTGR_PRA.MARD": {
+        "type": "master_db",
+        "size": 517,
+        "path": "HTGR_Sample_Basic_Events/HTGR_PRA.MARD"
+      },
+      "HTGR_Sample_Basic_Events/HTGR_PRA_Subs/HTGR_PRA.BECATW": {
+        "type": "text",
+        "size": 122,
+        "path": "HTGR_Sample_Basic_Events/HTGR_PRA_Subs/HTGR_PRA.BECATW"
+      },
+      "HTGR_Sample_Basic_Events/HTGR_PRA_Subs/HTGR_PRA.BEMD": {
+        "type": "text",
+        "size": 289328,
+        "path": "HTGR_Sample_Basic_Events/HTGR_PRA_Subs/HTGR_PRA.BEMD"
+      },
+      "HTGR_Sample_Basic_Events/HTGR_PRA_Subs/HTGR_PRA.BECAT": {
+        "type": "text",
+        "size": 122,
+        "path": "HTGR_Sample_Basic_Events/HTGR_PRA_Subs/HTGR_PRA.BECAT"
+      },
+      "HTGR_Sample_Basic_Events/HTGR_PRA_Subs/HTGR_PRA.BEC": {
+        "type": "basic_event",
+        "size": 4935,
+        "path": "HTGR_Sample_Basic_Events/HTGR_PRA_Subs/HTGR_PRA.BEC"
+      },
+      "HTGR_Sample_Basic_Events/HTGR_PRA_Subs/HTGR_PRA.BED": {
+        "type": "basic_event",
+        "size": 186776,
+        "path": "HTGR_Sample_Basic_Events/HTGR_PRA_Subs/HTGR_PRA.BED"
+      },
+      "HTGR_Sample_Basic_Events/HTGR_PRA_Subs/HTGR_PRA.BERW": {
+        "type": "text",
+        "size": 415,
+        "path": "HTGR_Sample_Basic_Events/HTGR_PRA_Subs/HTGR_PRA.BERW"
+      },
+      "HTGR_Sample_Basic_Events/HTGR_PRA_Subs/HTGR_PRA.BECW": {
+        "type": "text",
+        "size": 5565,
+        "path": "HTGR_Sample_Basic_Events/HTGR_PRA_Subs/HTGR_PRA.BECW"
+      }
+    },
+    "metadata": {
+      "total_files": 8,
+      "errors": 0,
+      "warnings": 0
+    },
+    "saphire_data": {
+      "fault_trees": [],
+      "event_trees": [],
+      "basic_events": [
+        {
+          "type": "unknown",
+          "data": {},
+          "errors": [
+            "Unknown file type: .BEC"
+          ]
+        },
+        {
+          "type": "unknown",
+          "data": {},
+          "errors": [
+            "Unknown file type: .BED"
+          ]
+        },
+        {
+          "id": "A-G2-SCS-HTS",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "A-G2-SCS2-HTS2",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "A-G4-SCS",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "A-G4-SCS-4A",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "A-G4-SCS-4B",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "A-G4-SCS-4C",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "A-G4-SCS-4D",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "A-G5-HTS-TRAIN-1",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "A-G5-HTS-TRAIN-2",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "A1-G26-SCS",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "A1-G26-SCS-4A",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "A1-G26-SCS-4B",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "A1-G26-SCS-4C",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "A1-G26-SCS-4D",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "ACP-CRB-CL-X229",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "ACP-CRB-CL-X311",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "ACP-CRB-CL-X325",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "ACP-CRB-CL-X347",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "ACP-CRB-CO-X196-A",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "ACP-CRB-CO-X196-B",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "ACP-CRB-CO-X196-C",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "ACP-CRB-CO-X196-D",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "ACP-CRB-CO-X204-A",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "ACP-CRB-CO-X204-B",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "CDS-FRV-CC-X19-TRAIN1",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "CDS-FRV-CC-X19-TRAIN2",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "CDS-FRV-CC-X21-TRAIN1",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "CDS-FRV-CC-X21-TRAIN2",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "CDS-FRV-CC-X22-TRAIN1",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "CDS-FRV-CC-X22-TRAIN2",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "CDS-FRV-CC-X25-TRAIN1",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "CDS-FRV-CC-X25-TRAIN2",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "CDS-FRV-CC-X27-TRAIN1",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "CDS-FRV-CC-X27-TRAIN2",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "HTS",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "HTS-COOLING",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "HTS-FAILURE-ATWS-10",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "HTS-FAILURE-ATWS-20",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "HTS-FAILURE-ATWS1",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "HTS-FAILURE-CONTROL-ROD0",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "HTS-FAILURE-LK-SIZE1",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "HTS-NO-MODULES-1-EVENT",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "HTS-NO-MODULES-14-EVENT",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "HTS-NO-MODULES-2-EVENT",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "HTS-NO-MODULES-3-EVENT",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "HTS-NO-MODULES-4-EVENT",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "I-G27-TRAIN-2",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "I-G27-TRAIN1",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "I2-G17-SCS-A",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "I2-G17-SCS-B",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "I2-G28-TRAIN-2",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "I2-G28-TRAIN1",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "RCCS",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "RCCS-COOLING-EVENT",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "RCCS-COOLING-MULTIPLE-MODULES0",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "RCS-CRB-FO-X169A-CIRC1",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "RCS-CRB-FO-X169A-CIRC2",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "RCS-CRB-FO-X169A-CIRC3",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "RCS-CRB-FO-X169A-CIRC4",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "RCS-VCF-FO-X1",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "RCS-VCF-FO-X15",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "RCS-VCF-FO-X16",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "RCS-VCF-FO-X17",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "RCS-VCF-FO-X18",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "REACTOR-TRIP-RODS",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "REACTOR-TRIP-RSCE",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "RHR-FLT-LK-X32",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "RHR-FLT-LK-X63",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "RHR-FLT-LK-X64",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "SCS",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SCS-1COOLING-WC4-ALT",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SCS-1COOLING-WC4-ALT0",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SCS-4COOLING",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SCS-COOLING",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SCS-FAIL-HTS-FAIL",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SEISMIC-INTENSITY",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SG-AUTO-DUMP-100",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SG-DUMP-AUTO-ISOLATED0",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SG-DUMP-AUTO0",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SG-DUMP-SMALL-ALT",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SG-DUMP-SMALL-ALT0",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SG-PR",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SG-PR-BYPASS0",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SG-PR-FO0",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SG-PR-OC0",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SSF-VCF-UD-BORON",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "SWS-CKV-FO-X73",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "SWS-CKV-FO-X74",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "SWS-CKV-FO-X75",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "SWS-MDP-FO-X69",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "SWS-MDP-FO-X70",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "SWS-MDP-FO-X71",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "SWS-MOV-SO-X72",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "SWS-PSF-PG-X67",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "SWS-PSF-RP-X68",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "SWS-Q-G40",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "TBC-CKV-CC-X76",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "TBC-CKV-OO-X90",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "ZT-ACP-CRB-CL",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "ZT-ACP-CRB-CO",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "ZT-ACP-CRB-OP",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "ZT-ACP-INV-UD",
+          "name": "",
+          "probability": 5.0,
+          "description": ""
+        },
+        {
+          "id": "ZT-ACP-LOD-LP",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "<FALSE>",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "<PASS>",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        },
+        {
+          "id": "<TRUE>",
+          "name": "",
+          "probability": 1.0,
+          "description": ""
+        }
+      ],
+      "end_states": [],
+      "sequences": [],
+      "project": {}
+    }
+  }
