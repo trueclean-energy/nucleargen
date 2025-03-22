@@ -1,0 +1,23 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+venv/
+env/
+
+# IDE specific files
+.idea/
+.vscode/
+.DS_Store
+
+# Logs
+*.log
+
+# Local development
+*.csv
+*.db
+*.sqlite3 
