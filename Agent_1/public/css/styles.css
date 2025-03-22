@@ -15,10 +15,13 @@ body {
 }
 
 .sidebar {
-    width: 250px;
+    width: 300px;
     background-color: #f5f5f5;
     padding: 20px;
     border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .main-content {
@@ -28,31 +31,42 @@ body {
 }
 
 .chat-container {
-    flex: 2;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid #ddd;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 .chat-messages {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
+    max-height: calc(100vh - 200px);
 }
 
 .chat-input {
-    display: flex;
-    padding: 10px;
+    padding: 20px;
     border-top: 1px solid #ddd;
+    display: flex;
+    gap: 10px;
 }
 
-.chat-input textarea {
+textarea {
     flex: 1;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     resize: none;
-    height: 60px;
+    min-height: 40px;
+    max-height: 120px;
+}
+
+textarea:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
 }
 
 .chat-input button {
@@ -66,28 +80,248 @@ body {
 }
 
 .ui-preview {
-    flex: 1;
+    background-color: white;
     padding: 20px;
-    background-color: #f9f9f9;
-    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.schema-uploader {
-    margin-top: 20px;
+.ui-preview h3 {
+    margin: 0 0 15px 0;
+    color: #333;
+}
+
+#ui-container {
+    min-height: 200px;
+    border: 1px dashed #ddd;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+.schema-uploader,
+.data-uploader {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.schema-uploader h3,
+.data-uploader h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.status-section {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.status-section h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+#schema-status,
+#data-status {
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    font-size: 0.9em;
+    color: #666;
+}
+
+#schema-status.loaded,
+#data-status.loaded {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+input[type="file"] {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
 
 .message {
     margin-bottom: 15px;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 8px;
+    max-width: 80%;
 }
 
 .user-message {
-    background-color: #e6f7ff;
-    margin-left: 20px;
+    background-color: #007bff;
+    color: white;
+    margin-left: auto;
 }
 
 .assistant-message {
-    background-color: #f0f0f0;
-    margin-right: 20px;
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.system-message {
+    background-color: #fff3cd;
+    color: #856404;
+    text-align: center;
+    margin: 10px auto;
+    max-width: 90%;
+}
+
+/* Add to public/css/styles.css */
+
+/* Code blocks */
+.code-block {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0;
+    overflow-x: auto;
+    font-family: monospace;
+}
+
+/* Clear button */
+.clear-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 0 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Mock UI Components */
+.mock-component {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    background-color: white;
+}
+
+.component-header {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+}
+
+.component-body {
+    padding: 10px;
+}
+
+/* Mock Form */
+.mock-form {
+    padding: 15px;
+}
+
+.mock-field {
+    margin-bottom: 15px;
+}
+
+.mock-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.mock-input,
+.mock-select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.mock-button {
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    cursor: pointer;
+}
+
+/* Mock Table */
+.mock-table-container {
+    padding: 15px;
+    overflow-x: auto;
+}
+
+.mock-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.mock-table th,
+.mock-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.mock-table th {
+    background-color: #f5f5f5;
+}
+
+/* Tabs */
+.tab-container {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
+.tab-button {
+    padding: 10px 15px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.tab-button.active {
+    border-bottom: 2px solid #4285f4;
+    font-weight: bold;
+}
+
+.tab-content {
+    padding: 10px;
+}
+
+/* Mock Container */
+.mock-container {
+    padding: 15px;
+    border: 1px dashed #ddd;
+    margin: 10px;
+}
+
+.empty-container {
+    padding: 20px;
+    text-align: center;
+    color: #888;
 }
