@@ -5,6 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 // const path = require('path');
 import path from 'path';
+import fs from 'fs';
 
 import GeminiService from './src/utils/gemini-service.js';
 
@@ -19,13 +20,34 @@ const geminiService = new GeminiService();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Load the fixed schema file
+const SCHEMA_PATH = path.join(__dirname, 'schema', 'saphire_schema20march.json');
+let jsonSchema = null;
+
+try {
+    const schemaContent = fs.readFileSync(SCHEMA_PATH, 'utf8');
+    jsonSchema = JSON.parse(schemaContent);
+    console.log('Fixed schema loaded successfully');
+} catch (error) {
+    console.error('Error loading fixed schema:', error);
+    process.exit(1); // Exit if we can't load the schema
+}
+
+// Initialize Gemini service with the fixed schema
+try {
+    await geminiService.loadSchema(jsonSchema);
+    console.log('Schema initialized in Gemini service');
+} catch (error) {
+    console.error('Error initializing schema in Gemini service:', error);
+    process.exit(1);
+}
+
 // Middleware
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.static('public'));
 
 // Schema and data storage - in-memory for prototype
-let jsonSchema = null;
 let jsonData = null;
 let schemaChunks = [];
 const MAX_CHUNK_SIZE = 10000; // Adjust based on token limits
@@ -70,11 +92,11 @@ function chunkSchema(schema) {
 // API route for uploading schema
 app.post('/api/schema', async (req, res) => {
     try {
-        jsonSchema = req.body.schema;
+        // Use the pre-loaded schema instead of the request body
+        if (!jsonSchema) {
+            throw new Error('Fixed schema failed to load at startup');
+        }
         schemaChunks = chunkSchema(jsonSchema);
-
-        // Load schema into Gemini service
-        await geminiService.loadSchema(jsonSchema);
 
         // Generate a summary of the schema
         const schemaSummary = {
@@ -85,12 +107,12 @@ app.post('/api/schema', async (req, res) => {
 
         res.json({
             success: true,
-            message: 'Schema uploaded successfully',
+            message: 'Schema initialized successfully',
             summary: schemaSummary
         });
     } catch (error) {
-        console.error('Schema upload error:', error);
-        res.status(400).json({ success: false, error: error.message });
+        console.error('Schema initialization error:', error);
+        res.status(500).json({ success: false, error: error.message });
     }
 });
 

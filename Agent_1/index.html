@@ -12,11 +12,6 @@
     <div class="app-container">
         <div class="sidebar">
             <h2>JSON Schema Assistant</h2>
-            <div class="schema-uploader">
-                <h3>Upload Schema</h3>
-                <input type="file" id="schema-file" accept=".json">
-                <button id="upload-schema-btn">Upload Schema</button>
-            </div>
             <div class="data-uploader">
                 <h3>Upload Data</h3>
                 <input type="file" id="data-file" accept=".json">
@@ -24,7 +19,7 @@
             </div>
             <div class="status-section">
                 <h3>Status</h3>
-                <div id="schema-status">No schema loaded</div>
+                <div id="schema-status">Schema loaded and ready</div>
                 <div id="data-status">No data loaded</div>
             </div>
         </div>
@@ -36,11 +31,6 @@
                     <textarea id="user-input" placeholder="Ask about your JSON schema or data..."></textarea>
                     <button id="send-btn">Send</button>
                 </div>
-            </div>
-
-            <div class="ui-preview" id="ui-preview">
-                <h3>Generated UI Preview</h3>
-                <div id="ui-container"></div>
             </div>
         </div>
     </div>
