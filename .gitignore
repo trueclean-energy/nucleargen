@@ -45,4 +45,7 @@ Thumbs.db
 # Local development
 *.csv
 *.db
-*.sqlite3 
+*.sqlite3
+
+# Uploaded files
+data-validation/uploads/ 

@@ -17,6 +17,7 @@ Or use the provided shell script:
 import os
 import json
 from flask import Flask, request, jsonify, render_template
+from werkzeug.utils import secure_filename
 from dotenv import load_dotenv
 import google.generativeai as genai
 
@@ -25,6 +26,12 @@ load_dotenv()
 
 # Initialize the app
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'uploads'
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16 MB max upload size
+app.config['ALLOWED_EXTENSIONS'] = {'json'}
+
+# Ensure upload directory exists
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # Configure Gemini API
 api_key = os.getenv("GOOGLE_API_KEY")
@@ -33,6 +40,10 @@ if not api_key:
 
 genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-2.0-pro-exp-02-05")
+
+def allowed_file(filename):
+    """Check if the uploaded file has an allowed extension"""
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 def validate_schema_naming(schema_json):
     """
@@ -157,6 +168,61 @@ def validate_schema():
         return jsonify({
             'error': str(e),
             'analysis': f'An error occurred while analyzing the schema: {str(e)}'
+        })
+
+@app.route('/upload-json', methods=['POST'])
+def upload_json():
+    """Handle JSON file upload and validate it"""
+    try:
+        # Check if the post request has the file part
+        if 'file' not in request.files:
+            return jsonify({
+                'error': 'No file part',
+                'message': 'No file was uploaded.'
+            })
+            
+        file = request.files['file']
+        
+        # If user does not select file, browser might submit an empty file
+        if file.filename == '':
+            return jsonify({
+                'error': 'No file selected',
+                'message': 'No file was selected.'
+            })
+            
+        if file and allowed_file(file.filename):
+            # Securely save the file
+            filename = secure_filename(file.filename)
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(file_path)
+            
+            # Read the JSON file content
+            try:
+                with open(file_path, 'r') as f:
+                    json_data = json.load(f)
+                
+                # Return the JSON content for validation
+                return jsonify({
+                    'success': True,
+                    'filename': filename,
+                    'content': json_data
+                })
+            except json.JSONDecodeError:
+                return jsonify({
+                    'error': 'Invalid JSON',
+                    'message': 'The uploaded file is not valid JSON.'
+                })
+        else:
+            return jsonify({
+                'error': 'Invalid file type',
+                'message': 'Only JSON files are allowed.'
+            })
+            
+    except Exception as e:
+        print(f"Error in file upload: {str(e)}")
+        return jsonify({
+            'error': str(e),
+            'message': f'An error occurred while processing your file: {str(e)}'
         })
 
 if __name__ == '__main__':

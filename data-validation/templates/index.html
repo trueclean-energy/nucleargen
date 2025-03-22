@@ -156,6 +156,65 @@
             border-radius: 5px;
             overflow-x: auto;
         }
+
+        .input-methods {
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .method-tabs {
+            display: flex;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .method-tab {
+            background-color: #f1f1f1;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+        }
+
+        .method-tab.active {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .input-method {
+            padding: 0;
+        }
+
+        .file-input-container {
+            border: 2px dashed #ccc;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+            position: relative;
+        }
+
+        .file-input-container:hover {
+            border-color: #3498db;
+        }
+
+        .file-instructions {
+            margin-top: 10px;
+            color: #666;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -187,12 +246,34 @@
 
         <div id="schema-validation" class="tabcontent">
             <p>Paste your JSON schema below to analyze naming conventions and identify inconsistencies.</p>
-            <form id="schema-form">
-                <textarea id="schema-input" name="schema"
-                    placeholder="Paste your JSON schema here (e.g. basic_events.json)..."></textarea>
-                <br>
-                <button type="submit" class="btn">Analyze Schema</button>
-            </form>
+            <div class="input-methods">
+                <div class="method-tabs">
+                    <button class="method-tab active" onclick="switchInputMethod(event, 'text-input')">Text
+                        Input</button>
+                    <button class="method-tab" onclick="switchInputMethod(event, 'file-upload')">File Upload</button>
+                </div>
+
+                <div id="text-input" class="input-method" style="display: block;">
+                    <form id="schema-form">
+                        <textarea id="schema-input" name="schema"
+                            placeholder="Paste your JSON schema here (e.g. basic_events.json)..."></textarea>
+                        <br>
+                        <button type="submit" class="btn">Analyze Schema</button>
+                    </form>
+                </div>
+
+                <div id="file-upload" class="input-method" style="display: none;">
+                    <form id="file-upload-form" enctype="multipart/form-data">
+                        <div class="file-input-container">
+                            <input type="file" id="json-file" name="file" accept=".json">
+                            <p class="file-instructions">Drag & drop a JSON file or click to browse</p>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn">Upload & Analyze</button>
+                    </form>
+                </div>
+            </div>
+
             <div id="schema-results">
                 <h3 style="margin-top: 0;">Schema Analysis:</h3>
                 <div id="schema-analysis-content"></div>
@@ -353,6 +434,116 @@
                     aiResponseContent.innerHTML = '<p class="invalid">Error: Could not connect to the AI service.</p>';
                     console.error('Error:', error);
                 });
+        });
+
+        // File upload form submission
+        document.getElementById('file-upload-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Show loading state
+            const schemaResultsDiv = document.getElementById('schema-results');
+            const schemaAnalysisContent = document.getElementById('schema-analysis-content');
+            schemaResultsDiv.style.display = 'block';
+            schemaAnalysisContent.innerHTML = '<p>Uploading and analyzing file...</p>';
+
+            // Get the file from the input
+            const fileInput = document.getElementById('json-file');
+            const file = fileInput.files[0];
+
+            // Check if a file was selected
+            if (!file) {
+                schemaAnalysisContent.innerHTML = '<p class="invalid">Please select a JSON file to upload.</p>';
+                return;
+            }
+
+            // Create FormData object to send the file
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // Send the file to the backend
+            fetch('/upload-json', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        schemaAnalysisContent.innerHTML = `<p class="invalid">${data.message}</p>`;
+                    } else {
+                        // File was uploaded successfully, now analyze the content
+                        schemaAnalysisContent.innerHTML = '<p>File uploaded. Analyzing schema...</p>';
+
+                        // Send the content for schema validation
+                        return fetch('/validate-schema', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ schema: data.content })
+                        });
+                    }
+                })
+                .then(response => {
+                    if (response) return response.json();
+                })
+                .then(data => {
+                    if (data && data.analysis) {
+                        // Format the analysis with proper styling
+                        const formattedAnalysis = data.analysis.replace(/\n/g, '<br>');
+                        schemaAnalysisContent.innerHTML = formattedAnalysis;
+                    }
+                })
+                .catch(error => {
+                    schemaAnalysisContent.innerHTML = '<p class="invalid">Error: Could not process the file.</p>';
+                    console.error('Error:', error);
+                });
+        });
+
+        function switchInputMethod(evt, method) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("input-method");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("method-tab");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(method).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Add drag and drop functionality
+        const fileInput = document.getElementById('json-file');
+        const dropZone = document.querySelector('.file-input-container');
+
+        dropZone.addEventListener('dragover', function (e) {
+            e.preventDefault();
+            dropZone.style.borderColor = '#3498db';
+        });
+
+        dropZone.addEventListener('dragleave', function () {
+            dropZone.style.borderColor = '#ccc';
+        });
+
+        dropZone.addEventListener('drop', function (e) {
+            e.preventDefault();
+            dropZone.style.borderColor = '#ccc';
+
+            if (e.dataTransfer.files.length) {
+                fileInput.files = e.dataTransfer.files;
+                // Show filename
+                document.querySelector('.file-instructions').textContent = `Selected: ${e.dataTransfer.files[0].name}`;
+            }
+        });
+
+        // Show selected filename when file is chosen through the file input
+        fileInput.addEventListener('change', function () {
+            if (fileInput.files.length) {
+                document.querySelector('.file-instructions').textContent = `Selected: ${fileInput.files[0].name}`;
+            } else {
+                document.querySelector('.file-instructions').textContent = 'Drag & drop a JSON file or click to browse';
+            }
         });
     </script>
 </body>
