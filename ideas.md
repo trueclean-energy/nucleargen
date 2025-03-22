@@ -57,3 +57,109 @@ For the hackathon, I'd recommend focusing on the Schema Conversion Agent and Vis
 **Demo Flow:** User selects OpenPRA model → User specifies report type and audience → Agent generates structured document outline → Agent populates sections with relevant content and visualizations → User requests specific modifications → Agent delivers final formatted report.
 
 This Documentation Generator Agent complements the Schema Conversion and Visualization agents by providing the crucial narrative layer that explains what the model means, what insights it provides, and what actions should be considered. Together, these three agents create a powerful ecosystem for PRA model management - conversion, visualization, and communication - addressing the full lifecycle of PRA usage.
+
+
+
+# User Stories and Demo Script
+
+# PRA Schema Conversion Agent
+
+## User Stories
+1. "Import this SAPHIRE model and convert it to OpenPRA format"
+   - Agent processes ZIP file, shows conversion progress, and delivers OpenPRA JSON
+   
+2. "Which fields from my model might have logical inconsistencies?"
+   - Agent identifies contradictions like successful DHR after failed SCRAM
+   
+3. "Help me map these custom fields to the OpenPRA schema"
+   - Agent suggests mappings with confidence scores and explanations
+
+## Expected Demo Outputs
+- Real-time progress indicators during conversion
+- Color-coded validation results highlighting critical issues
+- Interactive field mapping interface with suggested mappings
+- OpenPRA-compliant JSON output file
+
+## Success Criteria
+- Successfully imports and converts one SAPHIRE model to OpenPRA format
+- Identifies at least 2 types of logical inconsistencies in the model
+- Provides clear explanations for mapping decisions
+- Generates valid OpenPRA JSON that passes schema validation
+
+# PRA Visualization Agent
+
+## User Stories
+1. "Generate an FC curve for sequence ET-LOFA-1"  
+   - Agent creates interactive FC curve visualization with frequency/consequence axes
+   
+2. "Show me the event tree for loss of forced cooling"
+   - Agent renders SVG diagram of the event tree with proper branching
+   
+3. "Highlight high-risk paths in this fault tree"
+   - Agent color-codes paths based on risk significance
+
+## Expected Demo Outputs
+- SVG diagrams of event trees with proper formatting and labels
+- Interactive FC curves with customizable risk acceptance regions
+- Fault tree visualizations with component relationships
+- Ability to modify visualizations through conversation
+
+## Success Criteria
+- Generates at least 2 different visualization types from PRA data
+- Responds to modification requests through natural language
+- Produces shareable SVG output files
+- Correctly interprets PRA model components in visualizations
+
+# PRA Documentation Generator Agent
+
+## User Stories
+1. "Create an executive summary of my model's key findings"
+   - Agent generates concise summary highlighting critical risk insights
+   
+2. "Document the assumptions behind sequence ET-LOFA-1"
+   - Agent extracts and explains relevant assumptions with references
+   
+3. "Generate a technical report focused on system dependencies"
+   - Agent produces structured document with relevant sections and data
+
+## Expected Demo Outputs
+- Formatted executive summary with key metrics and findings
+- Technical documentation with proper sections and references
+- Traceability matrices linking conclusions to model components
+- Integration of visualizations from Visualization Agent
+
+## Success Criteria
+- Generates properly structured technical document with multiple sections
+- Extracts key assumptions and limitations from the model
+- Includes at least one integrated visualization with context
+- Adapts language for technical audience appropriately
+
+# 3-Minute Demo Script Outline
+
+**00:00-00:20 - Introduction (Slide 1)**
+- Problem statement: "Complex PRA models need conversion, visualization, and documentation"
+- Multi-agent solution: Three specialized agents working together
+
+**00:20-01:00 - Schema Conversion Agent Demo (Slide 2)**
+- Show SAPHIRE model file
+- Demonstrate real-time conversion process
+- Highlight validation results and logical inconsistency detection
+- Show final OpenPRA JSON output
+
+**01:00-01:40 - Visualization Agent Demo (Slide 3)**
+- Start with natural language request: "Show me an FC curve for sequence X"
+- Display generated visualization 
+- Demonstrate modification through conversation: "Highlight high-risk paths"
+- Show updated visualization with changes
+
+**01:40-02:20 - Documentation Agent Demo (Slide 4)**
+- Request executive summary generation
+- Show generated document with integrated visualizations
+- Highlight how assumptions and limitations were automatically extracted
+- Demonstrate how content adapts to different audience needs
+
+**02:20-03:00 - Integration & Conclusion (Slide 5)**
+- Show all three agents working together in sequence
+- Highlight key innovations: logical consistency checks, natural language visualization
+- Future directions: risk insights agent, optimization suggestions
+- Call to action: "Streamlining safety analysis for advanced reactors"
