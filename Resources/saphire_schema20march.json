@@ -1,0 +1,1188 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SAPHIRE MARD Files Schema",
+  "description": "Schema for representing SAPHIRE MARD files data structure",
+  "type": "object",
+  "properties": {
+    "project": {
+      "description": "Project level information",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Project name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Project description (FAD)"
+        },
+        "attributes": {
+          "type": "object",
+          "description": "Project attributes (FAA)",
+          "properties": {
+            "missionTime": {
+              "type": "number",
+              "description": "Mission time in hours",
+              "minimum": 0
+            },
+            "newSum": {
+              "type": "string",
+              "description": "New sum format (e.g., '------E----')",
+              "pattern": "^[-E]+$"
+            },
+            "company": {
+              "type": "string",
+              "description": "Company name"
+            },
+            "location": {
+              "type": "string",
+              "description": "Location information"
+            },
+            "type": {
+              "type": "string",
+              "description": "Type information"
+            },
+            "design": {
+              "type": "string",
+              "description": "Design information"
+            },
+            "vendor": {
+              "type": "string",
+              "description": "Vendor information"
+            },
+            "architectEngineer": {
+              "type": "string",
+              "description": "Architect Engineer information"
+            },
+            "operationDate": {
+              "type": "string",
+              "description": "Operation date (format: YYYY/MM/DD)",
+              "pattern": "^\\d{4}/\\d{2}/\\d{2}$"
+            },
+            "qualificationDate": {
+              "type": "string",
+              "description": "Qualification date (format: YYYY/MM/DD)",
+              "pattern": "^\\d{4}/\\d{2}/\\d{2}$"
+            },
+            "alternateName": {
+              "type": "string",
+              "description": "Alternate project name"
+            },
+            "analystInfo": {
+              "type": "string",
+              "description": "Information about the analyst"
+            }
+          },
+          "required": ["missionTime"]
+        },
+        "text": {
+          "type": "string",
+          "description": "Extensive textual information or notes related to the project (FAT)"
+        },
+        "userDefined": {
+          "type": "object",
+          "description": "User defined project information, with format defined by the user (FAU)"
+        }
+      },
+      "required": ["name"]
+    },
+    "modelTypes": {
+      "type": "array",
+      "description": "Model types for the project (MTD) - allow for integrated model solving for different scenarios like random, seismic, or fire events",
+      "items": {
+        "type": "object",
+        "properties": {
+          "num": {
+            "type": "integer",
+            "description": "Model type number"
+          },
+          "name": {
+            "type": "string",
+            "description": "Model type name"
+          },
+          "suffix": {
+            "type": "string",
+            "description": "Model type suffix"
+          },
+          "color": {
+            "type": "integer",
+            "description": "Color code for the model type (e.g., 16155777)",
+            "minimum": 0,
+            "maximum": 16777215
+          },
+          "description": {
+            "type": "string",
+            "description": "Model type description"
+          }
+        },
+        "required": ["num", "name", "color"]
+      }
+    },
+    "phaseModel": {
+      "type": "object",
+      "description": "Phase model information for defining phases within an analysis (PHD)",
+      "properties": {
+        "phases": {
+          "type": "array",
+          "description": "Phases defined in the project",
+          "items": {
+            "type": "object",
+            "properties": {
+              "num": {
+                "type": "integer",
+                "description": "Phase number"
+              },
+              "name": {
+                "type": "string",
+                "description": "Phase name"
+              },
+              "suffix": {
+                "type": "string",
+                "description": "Phase suffix"
+              },
+              "order": {
+                "type": "integer",
+                "description": "Phase order",
+                "minimum": 1
+              },
+              "color": {
+                "type": "integer",
+                "description": "Color code for the phase (e.g., 16155777)",
+                "minimum": 0,
+                "maximum": 16777215
+              },
+              "description": {
+                "type": "string",
+                "description": "Phase description"
+              }
+            },
+            "required": ["num", "name", "order"]
+          }
+        }
+      }
+    },
+    "basicEvents": {
+      "type": "array",
+      "description": "Basic events in the project",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Basic event name"
+          },
+          "description": {
+            "type": "string",
+            "description": "Basic event description (BED) - names and textual descriptions of the basic events"
+          },
+          "alternateDescription": {
+            "type": "string",
+            "description": "Alternate description for the basic event (BEDA) - alternative ways of describing the event"
+          },
+          "attributes": {
+            "type": "object",
+            "description": "Basic event attributes (BEA) - additional information associated with the basic events",
+            "properties": {
+              "altName": {
+                "type": "string",
+                "description": "Alternate name"
+              },
+              "type": {
+                "type": "string",
+                "description": "Event type"
+              },
+              "system": {
+                "type": "string",
+                "description": "System identifier"
+              },
+              "failureMode": {
+                "type": "string",
+                "description": "Failure mode"
+              },
+              "location": {
+                "type": "string",
+                "description": "Location identifier"
+              },
+              "componentId": {
+                "type": "string",
+                "description": "Component identifier"
+              },
+              "train": {
+                "type": "string",
+                "description": "Train identifier"
+              },
+              "isTemplate": {
+                "type": "boolean",
+                "description": "Whether the event is a template"
+              },
+              "templateName": {
+                "type": "string",
+                "description": "Template name if used"
+              },
+              "templateUseFlags": {
+                "type": "object",
+                "description": "Template use definition flags",
+                "properties": {
+                  "componentId": { "type": "boolean", "description": "Component ID flag" },
+                  "system": { "type": "boolean", "description": "System flag" },
+                  "train": { "type": "boolean", "description": "Train flag" },
+                  "type": { "type": "boolean", "description": "Type flag" },
+                  "failureMode": { "type": "boolean", "description": "Failure mode flag" },
+                  "location": { "type": "boolean", "description": "Location flag" },
+                  "eventType": { "type": "boolean", "description": "Event type flag" },
+                  "description": { "type": "boolean", "description": "Description flag" },
+                  "models": { "type": "boolean", "description": "Models flag" },
+                  "phases": { "type": "boolean", "description": "Phases flag" },
+                  "notes": { "type": "boolean", "description": "Notes flag" },
+                  "references": { "type": "boolean", "description": "References flag" },
+                  "category1": { "type": "boolean", "description": "Category 1 flag" },
+                  "category2": { "type": "boolean", "description": "Category 2 flag" },
+                  "category3": { "type": "boolean", "description": "Category 3 flag" },
+                  "category4": { "type": "boolean", "description": "Category 4 flag" },
+                  "category5": { "type": "boolean", "description": "Category 5 flag" },
+                  "category6": { "type": "boolean", "description": "Category 6 flag" },
+                  "category7": { "type": "boolean", "description": "Category 7 flag" },
+                  "category8": { "type": "boolean", "description": "Category 8 flag" },
+                  "category9": { "type": "boolean", "description": "Category 9 flag" },
+                  "shapeType": { "type": "boolean", "description": "Shape type flag" }
+                }
+              }
+            }
+          },
+          "failureInfo": {
+            "type": "object",
+            "description": "Basic event failure information (BEI) - probability or frequency of failure for each basic event",
+            "properties": {
+              "calculationType": {
+                "type": "integer",
+                "description": "Failure data type (FdT) - different calculation types can be associated with failure rates"
+              },
+              "probability": {
+                "type": "number",
+                "description": "Failure probability",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "lambda": {
+                "type": "number",
+                "description": "Failure rate (per time)",
+                "minimum": 0
+              },
+              "tau": {
+                "type": "number",
+                "description": "Time period",
+                "minimum": 0
+              },
+              "missionTime": {
+                "type": "number",
+                "description": "Mission time",
+                "minimum": 0
+              },
+              "init": {
+                "type": "string",
+                "description": "Initiating event flag",
+                "enum": ["I", ""]
+              },
+              "calcProb": {
+                "type": "number",
+                "description": "Calculated probability",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "analysisType": {
+                "type": "string",
+                "description": "Analysis type",
+                "enum": ["RANDOM", "SEISMIC", "FIRE", "OTHER"]
+              },
+              "phaseType": {
+                "type": "string",
+                "description": "Phase type",
+                "enum": ["CD", "OTHER"]
+              }
+            }
+          },
+          "modelType": {
+            "type": "object",
+            "description": "Basic event model type (BEMT) - indicates the model type associated with a basic event",
+            "properties": {
+              "modelType": {
+                "type": "string",
+                "description": "Model type name"
+              },
+              "phaseType": {
+                "type": "string",
+                "description": "Phase type"
+              },
+              "templateName": {
+                "type": "string",
+                "description": "Template name if used"
+              },
+              "templateUseFlags": {
+                "type": "object",
+                "description": "Template flags usage for model specific attributes (for .BEMT files)",
+                "properties": {
+                  "failureModel": { "type": "boolean", "description": "Failure Model flag" },
+                  "probability": { "type": "boolean", "description": "Probability flag" },
+                  "lambda": { "type": "boolean", "description": "Lambda flag" },
+                  "tau": { "type": "boolean", "description": "Tau flag" },
+                  "missionTime": { "type": "boolean", "description": "Mission Time flag" },
+                  "probUncertDistType": { "type": "boolean", "description": "Probability uncertainty distribution type flag" },
+                  "probUncertValue1": { "type": "boolean", "description": "Probability uncertainty value 1 flag" },
+                  "probUncertValue2": { "type": "boolean", "description": "Probability uncertainty value 2 flag" },
+                  "lambdaUncertDistType": { "type": "boolean", "description": "Lambda uncertainty distribution type flag" },
+                  "lambdaUncertValue1": { "type": "boolean", "description": "Lambda uncertainty value 1 flag" },
+                  "lambdaUncertValue2": { "type": "boolean", "description": "Lambda uncertainty value 2 flag" },
+                  "tauUncertDistType": { "type": "boolean", "description": "Tau uncertainty distribution type flag" },
+                  "tauUncertValue1": { "type": "boolean", "description": "Tau uncertainty value 1 flag" },
+                  "tauUncertValue2": { "type": "boolean", "description": "Tau uncertainty value 2 flag" },
+                  "mtUncertDistType": { "type": "boolean", "description": "Mission time uncertainty distribution type flag" },
+                  "mtUncertValue1": { "type": "boolean", "description": "Mission time uncertainty value 1 flag" },
+                  "mtUncertValue2": { "type": "boolean", "description": "Mission time uncertainty value 2 flag" },
+                  "correlationClass": { "type": "boolean", "description": "Correlation Class flag" },
+                  "processFlag": { "type": "boolean", "description": "Process Flag flag" },
+                  "frequencyUnits": { "type": "boolean", "description": "Frequency Units flag" },
+                  "transformLevel": { "type": "boolean", "description": "Transform Level flag" },
+                  "transformType": { "type": "boolean", "description": "Transform Type flag" },
+                  "transformEvents": { "type": "boolean", "description": "Transform Events flag" },
+                  "modelTypeDescription": { "type": "boolean", "description": "Model Type Description flag" }
+                }
+              }
+            }
+          },
+          "modelTypeDescription": {
+            "type": "string",
+            "description": "Description for Basic Event Model Type (BEMD)"
+          },
+          "modelTypeAttribute": {
+            "type": "object",
+            "description": "Attributes of Basic Event Model Types (BEMDA)",
+            "properties": {
+              "attributes": {
+                "type": "object",
+                "description": "Associated attribute information"
+              }
+            }
+          },
+          "transformation": {
+            "type": "object",
+            "description": "Basic event transformation (BET) - define transformations of basic events",
+            "properties": {
+              "level": {
+                "type": "integer",
+                "description": "Transformation level"
+              },
+              "type": {
+                "type": "string",
+                "description": "Transformation type (AND, OR, ZOR, etc.)"
+              },
+              "events": {
+                "type": "array",
+                "description": "Contributing events",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "compound": {
+            "type": "object",
+            "description": "Basic event compound information (BEC) - compound events use external calculations via DLLs",
+            "properties": {
+              "level": {
+                "type": "integer",
+                "description": "Compound level"
+              },
+              "type": {
+                "type": "string",
+                "description": "Compound type (AND, OR, ZOR, or blank)"
+              },
+              "pluginLibrary": {
+                "type": "string",
+                "description": "Name of the plug-in library"
+              },
+              "procedure": {
+                "type": "string",
+                "description": "Procedure within the library used for calculation"
+              }
+            }
+          },
+          "compoundW": {
+            "type": "object",
+            "description": "Basic Event Compound Wide information (BECW) - one line per event format for compound calculations",
+            "properties": {
+              "typeName": {
+                "type": "string",
+                "description": "Type name for the compound"
+              },
+              "com": {
+                "type": "string",
+                "description": "COM value"
+              },
+              "dllName": {
+                "type": "string",
+                "description": "DLL name for the calculation"
+              },
+              "procName": {
+                "type": "string",
+                "description": "Procedure name within the DLL"
+              },
+              "numInputs": {
+                "type": "integer",
+                "description": "Number of inputs for the compound calculation",
+                "minimum": 0
+              },
+              "inputs": {
+                "type": "array",
+                "description": "Input values for the compound calculation",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "category": {
+            "type": "object",
+            "description": "Basic event category (BECAT) - assigns categories to basic events",
+            "properties": {
+              "categoryName": {
+                "type": "string",
+                "description": "Category name"
+              },
+              "level": {
+                "type": "integer",
+                "description": "Category level"
+              },
+              "label": {
+                "type": "string",
+                "description": "Category label"
+              }
+            }
+          },
+          "categoryW": {
+            "type": "object",
+            "description": "Basic Event Category Wide format (BECATW) - one line per event format for category assignments",
+            "properties": {
+              "categoryName": {
+                "type": "string",
+                "description": "Category name"
+              },
+              "categoryId": {
+                "type": "string",
+                "description": "Category identifier"
+              },
+              "categoryItemName": {
+                "type": "string",
+                "description": "Category item name"
+              }
+            }
+          },
+          "grade": {
+            "type": "string",
+            "enum": ["REGULAR", "SYSTEM_GENERATED", "VIRTUAL"],
+            "description": "Event grade"
+          },
+          "hra": {
+            "type": "object",
+            "description": "Human Reliability Analysis data"
+          },
+          "ccf": {
+            "type": "object",
+            "description": "Common Cause Failure data",
+            "properties": {
+              "type": { "type": "string" },
+              "model": { "type": "string" },
+              "staggered": { "type": "boolean" },
+              "factors": { "type": "array", "items": { "type": "number" } }
+            }
+          },
+          "ccfW": {
+            "type": "object",
+            "description": "Common Cause Failure Wide format (BERW) - one line per event format for CCF data",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "CCF type"
+              },
+              "model": {
+                "type": "string",
+                "description": "CCF model name"
+              },
+              "staggered": {
+                "type": "boolean",
+                "description": "Whether the CCF is staggered"
+              },
+              "separator": {
+                "type": "string",
+                "description": "Separator character"
+              },
+              "detailLevel": {
+                "type": "string",
+                "description": "Detail level for CCF"
+              },
+              "failCriteria": {
+                "type": "string",
+                "description": "Failure criteria"
+              },
+              "independentCount": {
+                "type": "integer",
+                "description": "Number of independent events",
+                "minimum": 0
+              },
+              "independentIDs": {
+                "type": "array",
+                "description": "IDs of independent events",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "independentNames": {
+                "type": "array",
+                "description": "Names of independent events",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "factorCount": {
+                "type": "integer",
+                "description": "Number of factors",
+                "minimum": 0
+              },
+              "factors": {
+                "type": "array",
+                "description": "CCF factors",
+                "items": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            }
+          },
+          "ccfN": {
+            "type": "object",
+            "description": "Basic Event Rename information (BERN) - used to rename basic events",
+            "properties": {
+              "newName": {
+                "type": "string",
+                "description": "New name for the basic event"
+              },
+              "project": {
+                "type": "string",
+                "description": "Project name associated with the renaming"
+              }
+            }
+          },
+          "failureRate": {
+            "type": "object",
+            "description": "Failure rate and probability information",
+            "properties": {
+              "rate": { "type": "number" },
+              "calculationType": { "type": "string" },
+              "uncertainty": { "type": "object" }
+            }
+          },
+          "transformations": {
+            "type": "array",
+            "description": "Event transformations",
+            "items": {
+              "type": "object",
+              "properties": {
+                "level": { "type": "integer" },
+                "type": { "type": "string", "enum": ["AND", "OR", "ZOR"] },
+                "contributingEvents": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          },
+          "compound": {
+            "type": "object",
+            "description": "Compound event information",
+            "properties": {
+              "level": { "type": "integer" },
+              "type": { "type": "string", "enum": ["AND", "OR", "ZOR"] },
+              "pluginLibrary": { "type": "string" },
+              "procedure": { "type": "string" }
+            }
+          },
+          "grade": {
+            "type": "object",
+            "description": "Basic event grade (BEG) - specifies the grade or type of a basic event",
+            "properties": {
+              "grade": {
+                "type": "string",
+                "description": "One-character grade (blank for regular, S for system-generated, V for virtual, etc.)",
+                "enum": ["", "S", "V"]
+              }
+            }
+          },
+          "hra": {
+            "type": "object",
+            "description": "Human Reliability Analysis information (BEH) - detailed information for human reliability analysis",
+            "properties": {
+              "modelType": {
+                "type": "string",
+                "description": "HRA model type",
+                "enum": ["RANDOM", "SEISMIC", "FIRE", "OTHER"]
+              },
+              "phase": {
+                "type": "string",
+                "description": "Analysis phase"
+              },
+              "hasShapingFactors": {
+                "type": "boolean",
+                "description": "Whether the event has shaping factors (Y/N)"
+              },
+              "shapingFactors": {
+                "type": "array",
+                "description": "Performance shaping factors",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Shaping factor name"
+                    },
+                    "distributionType": {
+                      "type": "string",
+                      "description": "Distribution type for the shaping factor"
+                    },
+                    "probabilityOrPercent": {
+                      "type": "number",
+                      "description": "Probability or percentage value",
+                      "minimum": 0
+                    },
+                    "multiplier": {
+                      "type": "number",
+                      "description": "Multiplier for the shaping factor",
+                      "minimum": 0
+                    },
+                    "notes": {
+                      "type": "string",
+                      "description": "Notes for the shaping factor"
+                    }
+                  },
+                  "required": ["name"]
+                }
+              }
+            }
+          },
+          "ccf": {
+            "type": "object",
+            "description": "Common Cause Failure data (BER) - CCF data within Risk Assessment of Severe Accident Phenomena",
+            "properties": {
+              "group": {
+                "type": "string",
+                "description": "CCF group identifier"
+              },
+              "model": {
+                "type": "string",
+                "description": "CCF model type"
+              },
+              "probability": {
+                "type": "number",
+                "description": "CCF probability",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "type": { "type": "string" },
+              "staggered": { "type": "boolean" },
+              "factors": { "type": "array", "items": { "type": "number" } }
+            }
+          }
+        },
+        "required": ["name"]
+      }
+    },
+    "gates": {
+      "type": "array",
+      "description": "Logic gates used in fault trees",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Gate name"
+          },
+          "description": {
+            "type": "string",
+            "description": "Gate description (GTD) - descriptions and attributes of the logic gates"
+          },
+          "attributes": {
+            "type": "object",
+            "description": "Gate attributes (GTA) - lists names, types, and alternate names for gates",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Gate type (OR, AND, etc.)",
+                "enum": ["OR", "AND", "NOT", "NOR", "NAND", "XOR"]
+              },
+              "alternateName": {
+                "type": "string",
+                "description": "Alternate gate name"
+              }
+            }
+          }
+        },
+        "required": ["name", "attributes"]
+      }
+    },
+    "faultTrees": {
+      "type": "array",
+      "description": "Fault trees in the project",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { 
+            "type": "string",
+            "description": "Fault tree description (FTD) - names and descriptions of fault trees"
+          },
+          "subTree": {
+            "type": "boolean",
+            "description": "Whether this is a sub-tree"
+          },
+          "alternateName": {
+            "type": "string",
+            "description": "Alternate fault tree name"
+          },
+          "attributes": {
+            "type": "object",
+            "description": "Fault tree attributes (FTA) - attributes or properties associated with the fault trees"
+          },
+          "text": {
+            "type": "string",
+            "description": "Textual information (FTT) - descriptive textual information related to the fault trees"
+          },
+          "structure": {
+            "type": "object",
+            "description": "Tree structure and hierarchy"
+          },
+          "gates": {
+            "type": "array",
+            "description": "Gates in the fault tree",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "type": { 
+                  "type": "string",
+                  "enum": ["AND", "OR", "NOT", "NOR", "NAND", "XOR"],
+                  "description": "Gate type"
+                },
+                "inputs": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          },
+          "postProcessingRules": {
+            "type": "array",
+            "description": "Post-processing rules for cut sets",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["name", "structure"]
+      }
+    },
+    "eventTrees": {
+      "type": "array",
+      "description": "Event trees in the project",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": { 
+            "type": "string",
+            "description": "Event tree description (ETD) - names and descriptions of event trees"
+          },
+          "attributes": {
+            "type": "object",
+            "description": "Event tree attributes (ETA) - specifies correspondence to initiating events",
+            "properties": {
+              "initiatingEvent": {
+                "type": "string",
+                "description": "Initiating event name"
+              },
+              "alternateName": {
+                "type": "string",
+                "description": "Alternate event tree name"
+              }
+            }
+          },
+          "text": {
+            "type": "string",
+            "description": "Textual information (ETT) - descriptive text associated with event trees"
+          },
+          "structure": {
+            "type": "object",
+            "description": "Tree structure and branching"
+          },
+          "events": {
+            "type": "array",
+            "description": "Events in the event tree",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "probability": { "type": "number" }
+              }
+            }
+          },
+          "rules": {
+            "type": "array",
+            "description": "Tree rules",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": { 
+                  "type": "string",
+                  "enum": ["LINKING", "RECOVERY", "PARTITION"],
+                  "description": "Rule type"
+                },
+                "condition": { "type": "string" },
+                "action": { "type": "string" }
+              }
+            }
+          }
+        },
+        "required": ["name", "structure"]
+      }
+    },
+    "eventTreeGroups": {
+      "type": "array",
+      "description": "Event tree groups (EGD/EGI) - grouping of event trees within a project",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Group name"
+          },
+          "description": {
+            "type": "string",
+            "description": "Group description"
+          },
+          "eventTrees": {
+            "type": "array",
+            "description": "Event trees in the group (from EGI file)",
+            "items": {
+              "type": "string"
+            }
+          },
+          "attributes": {
+            "type": "object",
+            "description": "Group attributes",
+            "properties": {
+              "initiatingEvent": {
+                "type": "string",
+                "description": "Common initiating event for the group"
+              },
+              "phaseId": {
+                "type": "integer",
+                "description": "Associated phase identifier"
+              },
+              "modelType": {
+                "type": "string",
+                "description": "Associated model type"
+              }
+            }
+          }
+        },
+        "required": ["name", "eventTrees"]
+      }
+    },
+    "sequences": {
+      "type": "array",
+      "description": "Accident sequences defined in event trees",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "eventTree": {
+            "type": "string",
+            "description": "Parent event tree name"
+          },
+          "description": {
+            "type": "string",
+            "description": "Sequence description (SQD) - names and descriptions of accident sequences"
+          },
+          "attributes": {
+            "type": "object",
+            "description": "Sequence attributes (SQA) - specifies relationships between sequences and FLAG SETS",
+            "properties": {
+              "endState": {
+                "type": "string",
+                "description": "End state name"
+              },
+              "flagSets": {
+                "type": "array",
+                "description": "Associated flag sets for this sequence",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Flag set name"
+                    },
+                    "flags": {
+                      "type": "array",
+                      "description": "List of flags in the set",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "eventName": {
+                            "type": "string",
+                            "description": "Basic event name"
+                          },
+                          "value": {
+                            "type": "string",
+                            "description": "Flag value"
+                          }
+                        },
+                        "required": ["eventName", "value"]
+                      }
+                    }
+                  },
+                  "required": ["name", "flags"]
+                }
+              },
+              "minCut": {
+                "type": "string",
+                "description": "Minimal cut set information"
+              },
+              "mission": {
+                "type": "number",
+                "description": "Mission time",
+                "minimum": 0
+              },
+              "proCut": {
+                "type": "string",
+                "description": "Cut set probability"
+              },
+              "sample": {
+                "type": "string",
+                "description": "Sampling information"
+              },
+              "seed": {
+                "type": "string",
+                "description": "Random seed"
+              },
+              "size": {
+                "type": "string",
+                "description": "Size information"
+              },
+              "cuts": {
+                "type": "string",
+                "description": "Number of cuts"
+              },
+              "events": {
+                "type": "string",
+                "description": "Events information"
+              },
+              "quantificationMethod": {
+                "type": "string",
+                "description": "Quantification method"
+              },
+              "alternateName": {
+                "type": "string",
+                "description": "Alternate sequence name"
+              }
+            }
+          },
+          "cutSets": {
+            "type": "array",
+            "description": "Minimal cut sets for the sequence (SQC) - basic event combinations that lead to the sequence outcome",
+            "items": {
+              "type": "array",
+              "description": "A minimal cut set - a combination of basic events",
+              "items": {
+                "type": "string",
+                "description": "Basic event name"
+              }
+            }
+          },
+          "postProcessingRules": {
+            "type": "array",
+            "description": "Post-processing rules (SQY) - rules applied after sequence cut sets are generated",
+            "items": { "type": "string" }
+          },
+          "partitionRules": {
+            "type": "array",
+            "description": "Partition rules (SQP) - rules for partitioning or grouping accident sequences",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["name", "eventTree"]
+      }
+    },
+    "endStates": {
+      "type": "array",
+      "description": "End states in the project",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "description": {
+            "type": "string",
+            "description": "End state description (ESD) - names and descriptions of end states"
+          },
+          "text": {
+            "type": "string",
+            "description": "Textual information (EST) - descriptive information about end states"
+          },
+          "cutSets": {
+            "type": "array",
+            "description": "Minimal cut sets for the end state (ESC) - cut sets that lead to specific end states",
+            "items": {
+              "type": "string",
+              "description": "Cut set expression"
+            }
+          },
+          "information": {
+            "type": "object",
+            "description": "End state information (ESI) - quantification method and passes for end states",
+            "properties": {
+              "quantificationMethod": {
+                "type": "string",
+                "description": "Default quantification method"
+              },
+              "passes": {
+                "type": "integer",
+                "description": "Number of passes",
+                "minimum": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "histograms": {
+      "type": "array",
+      "description": "Histograms used for uncertainty analysis (HID)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Histogram name"
+          },
+          "description": {
+            "type": "string",
+            "description": "Histogram description"
+          },
+          "bins": {
+            "type": "array",
+            "description": "Histogram bins",
+            "items": {
+              "type": "object",
+              "properties": {
+                "lowerBound": {
+                  "type": "number",
+                  "description": "Lower bound of the bin"
+                },
+                "upperBound": {
+                  "type": "number",
+                  "description": "Upper bound of the bin"
+                },
+                "count": {
+                  "type": "integer",
+                  "description": "Count in the bin",
+                  "minimum": 0
+                }
+              },
+              "required": ["lowerBound", "upperBound", "count"]
+            }
+          }
+        },
+        "required": ["name", "bins"]
+      }
+    },
+    "mardReference": {
+      "type": "object",
+      "description": "MARD file reference (used in SAPHIRE 8) - facilitates loading and extraction of groups of PRA data",
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "MARD file version"
+        },
+        "fileReferences": {
+          "type": "array",
+          "description": "References to other necessary files",
+          "items": {
+            "type": "string",
+            "description": "File reference"
+          }
+        }
+      }
+    },
+    "specialEvents": {
+      "type": "object",
+      "description": "Special events used in the project (TRUE, FALSE, PASS, INIT)",
+      "properties": {
+        "trueEvent": {
+          "type": "object",
+          "description": "TRUE event - always evaluates to true",
+          "properties": {
+            "description": {
+              "type": "string",
+              "description": "Description for the TRUE event"
+            },
+            "probability": {
+              "type": "number",
+              "description": "Probability value (always 1.0)",
+              "enum": [1.0]
+            }
+          }
+        },
+        "falseEvent": {
+          "type": "object",
+          "description": "FALSE event - always evaluates to false",
+          "properties": {
+            "description": {
+              "type": "string",
+              "description": "Description for the FALSE event"
+            },
+            "probability": {
+              "type": "number",
+              "description": "Probability value (always 0.0)",
+              "enum": [0.0]
+            }
+          }
+        },
+        "passEvent": {
+          "type": "object",
+          "description": "PASS event - used for passing values through logic",
+          "properties": {
+            "description": {
+              "type": "string",
+              "description": "Description for the PASS event"
+            },
+            "probability": {
+              "type": "number",
+              "description": "Probability value (usually 1.0)",
+              "enum": [1.0]
+            }
+          }
+        },
+        "initEvent": {
+          "type": "object",
+          "description": "INIT event - used as an initiating event placeholder",
+          "properties": {
+            "description": {
+              "type": "string",
+              "description": "Description for the INIT event"
+            },
+            "probability": {
+              "type": "number",
+              "description": "Probability value (usually 1.0)",
+              "enum": [1.0]
+            },
+            "isInitiating": {
+              "type": "boolean", 
+              "description": "Flag indicating this is an initiating event",
+              "enum": [true]
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["project", "basicEvents", "gates", "faultTrees", "eventTrees", "sequences", "endStates"]
+}
