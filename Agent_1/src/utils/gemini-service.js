@@ -1,7 +1,9 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import fetch from 'node-fetch';
 
-// Initialize Gemini API
-const genAI = new GoogleGenerativeAI("AIzaSyA6CAdYzTjFaRMRCxY57NqcgPhD0eSyLek");
+// Together.ai API configuration
+const TOGETHER_API_KEY = process.env.TOGETHER_API_KEY || "tgp_v1_o5hrdZH4ynalgoF9oxpJXB_ojCfPA__bnHMYmkLMuUc";
+const TOGETHER_API_URL = 'https://api.together.xyz/v1/chat/completions';
+const MODEL_NAME = 'meta-llama/Llama-3.3-70B-Instruct-Turbo';
 
 // Specialized prompts for different tasks
 const PROMPTS = {
@@ -213,18 +215,55 @@ const PROMPTS = {
 class GeminiService {
     constructor() {
         this.chatHistory = [];
-        this.model = genAI.getGenerativeModel({ model: "gemini-2.0-pro-exp-02-05" });
-        this.chat = this.model.startChat({
-            history: this.chatHistory,
-            generationConfig: {
-                temperature: 0.7,
-                topK: 40,
-                topP: 0.95,
-                maxOutputTokens: 1024,
-            },
-        });
         this.currentSchema = null;
         this.currentData = null;
+    }
+
+    // Helper method to make API calls to Together.ai
+    async callTogetherAPI(prompt) {
+        try {
+            console.log('Sending request to Together.ai API...');
+            const response = await fetch(TOGETHER_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${TOGETHER_API_KEY}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    model: MODEL_NAME,
+                    messages: [
+                        {
+                            role: "user",
+                            content: prompt
+                        }
+                    ],
+                    temperature: 0.7,
+                    top_k: 40,
+                    top_p: 0.95,
+                    max_tokens: 1024,
+                    repetition_penalty: 1.1
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(`API call failed: ${response.statusText}. ${JSON.stringify(errorData)}`);
+            }
+
+            const result = await response.json();
+            console.log('Received response from Together.ai API');
+
+            // Extract the response text from the chat completion format
+            const responseText = result.choices?.[0]?.message?.content;
+            if (!responseText) {
+                throw new Error('Invalid response format from API');
+            }
+
+            return responseText;
+        } catch (error) {
+            console.error('Together.ai API error:', error);
+            throw error;
+        }
     }
 
     // Add schema loading method
@@ -304,15 +343,7 @@ class GeminiService {
 
         User Question: ${question}`;
 
-        console.log('Sending request to Gemini API...');
-        const result = await this.chat.sendMessage(prompt);
-        console.log('Received response from Gemini API');
-
-        const responseText = result.response.text();
-        console.log('Response text length:', responseText.length);
-
-        await this.addToContext(prompt);
-        return responseText;
+        return await this.callTogetherAPI(prompt);
     }
 
     // Add schema conversation method
@@ -326,15 +357,7 @@ class GeminiService {
             .replace('{schema}', JSON.stringify(this.currentSchema, null, 2))
             .replace('{question}', question);
 
-        console.log('Sending request to Gemini API...');
-        const result = await this.chat.sendMessage(prompt);
-        console.log('Received response from Gemini API');
-
-        const responseText = result.response.text();
-        console.log('Response text length:', responseText.length);
-
-        await this.addToContext(prompt);
-        return responseText;
+        return await this.callTogetherAPI(prompt);
     }
 
     // Add combined analysis method
@@ -354,20 +377,11 @@ class GeminiService {
 
     async addToContext(message) {
         console.log('Adding message to context...');
-        this.chatHistory.push({ role: "user", parts: [{ text: message }] });
-        this.chat = this.model.startChat({
-            history: this.chatHistory,
-            generationConfig: this.chat.generationConfig,
-        });
-        console.log('Context updated, history length:', this.chatHistory.length);
+        this.chatHistory.push({ role: "user", text: message });
     }
 
     clearContext() {
         this.chatHistory = [];
-        this.chat = this.model.startChat({
-            history: this.chatHistory,
-            generationConfig: this.chat.generationConfig,
-        });
         this.currentSchema = null;
         this.currentData = null;
     }
@@ -375,34 +389,23 @@ class GeminiService {
     // Specialized task methods
     async exploreSchema(schema) {
         const prompt = PROMPTS.SCHEMA_EXPLORATION.replace('{schema}', schema);
-        const result = await this.chat.sendMessage(prompt);
-        await this.addToContext(prompt);
-        return result.response.text();
+        return await this.callTogetherAPI(prompt);
     }
 
     async generateUI(requirements) {
         const prompt = PROMPTS.UI_GENERATION.replace('{requirements}', requirements);
-        const result = await this.chat.sendMessage(prompt);
-        await this.addToContext(prompt);
-        return result.response.text();
+        return await this.callTogetherAPI(prompt);
     }
 
     async answerQuestion(question) {
         const prompt = PROMPTS.QUESTION_ANSWERING.replace('{question}', question);
-        const result = await this.chat.sendMessage(prompt);
-        await this.addToContext(prompt);
-
-        console.log(result.response.text());
-        return result.response.text();
+        return await this.callTogetherAPI(prompt);
     }
 
     // General conversation method
     async sendMessage(message) {
-        const result = await this.chat.sendMessage(message);
-        await this.addToContext(message);
-        console.log(result.response.text());
-
-        return result.response.text();
+        const prompt = `Previous conversation:\n${this.chatHistory.map(msg => `${msg.role}: ${msg.text}`).join('\n')}\n\nUser: ${message}`;
+        return await this.callTogetherAPI(prompt);
     }
 }
 
