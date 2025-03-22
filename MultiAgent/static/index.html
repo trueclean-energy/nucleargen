@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SAPHIRE Schema Analysis</title>
+  <title>Nuclear PRA Agent Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f5f7fa;
+      background-color: #f8f9fa;
     }
     
     .header {
@@ -17,207 +18,658 @@
       color: white;
       padding: 1rem;
       text-align: center;
+      margin-bottom: 1.5rem;
     }
     
     .container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 1rem;
+      padding: 0 1rem 2rem;
     }
     
-    .user-input {
-      background-color: white;
-      padding: 1rem;
+    .section-title {
+      margin: 1.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #dee2e6;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    
+    /* Agent Visualization */
+    .agent-container {
+      position: relative;
+      height: 400px;
+      background-color: #f1f3f5;
       border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      margin-bottom: 1rem;
+      overflow: hidden;
+      margin-bottom: 2rem;
     }
     
-    input[type="text"] {
-      width: calc(100% - 80px);
-      padding: 0.5rem;
-      border: 1px solid #ced4da;
-      border-radius: 4px;
-    }
-    
-    button {
-      padding: 0.5rem 1rem;
-      background-color: #0d6efd;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-left: 8px;
-    }
-    
-    button:hover {
-      background-color: #0b5ed7;
-    }
-    
-    .demo-buttons {
+    .agent-node {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background-color: #fff;
+      border: 4px solid #ccc;
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      z-index: 3;
     }
     
-    .agents-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1rem;
+    .agent-node:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     }
     
-    @media (max-width: 992px) {
-      .agents-container {
-        grid-template-columns: 1fr;
+    .agent-node.agent1 {
+      top: 110px;
+      left: 12%;
+      border-color: #0d6efd;
+    }
+    
+    .agent-node.agent1:hover {
+      background-color: rgba(13, 110, 253, 0.05);
+    }
+    
+    .agent-node.agent2 {
+      top: 110px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-color: #198754;
+    }
+    
+    .agent-node.agent2:hover {
+      background-color: rgba(25, 135, 84, 0.05);
+      transform: translateX(-50%) scale(1.05);
+    }
+    
+    .agent-node.agent3 {
+      top: 110px;
+      right: 12%;
+      border-color: #dc3545;
+    }
+    
+    .agent-node.agent3:hover {
+      background-color: rgba(220, 53, 69, 0.05);
+    }
+    
+    .agent-node.active {
+      box-shadow: 0 0 20px rgba(25, 135, 84, 0.6);
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(25, 135, 84, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(25, 135, 84, 0);
       }
     }
     
-    .agent-panel {
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      overflow: hidden;
+    .agent-node.inactive {
+      opacity: 0.7;
     }
     
-    .agent-header {
-      padding: 0.75rem;
-      font-weight: bold;
+    .agent-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
+    }
+    
+    .hub-node {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-color: #343a40;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       color: white;
+      z-index: 5;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      font-size: 1.1rem;
     }
     
-    #tushin-header {
+    .message-arrow {
+      position: absolute;
+      height: 4px;
+      background-color: #adb5bd;
+      z-index: 1;
+      transform-origin: left;
+    }
+    
+    .message-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
       background-color: #0d6efd;
+      z-index: 2;
+      animation: moveDot 3s linear infinite;
+      box-shadow: 0 0 12px rgba(13, 110, 253, 0.7);
     }
     
-    #noah-header {
-      background-color: #198754;
+    @keyframes moveDot {
+      0% { left: 0%; }
+      100% { left: 100%; }
     }
     
-    #bobber-header {
-      background-color: #dc3545;
-    }
-    
-    .agent-content {
-      padding: 1rem;
-      height: 500px;
-      overflow-y: auto;
-    }
-    
-    .agent-response {
-      border-left: 3px solid #0d6efd;
-      padding-left: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    
-    .validation-report .stats {
-      background-color: #f8f9fa;
-      padding: 0.5rem;
-      border-radius: 4px;
-      margin-bottom: 1rem;
-    }
-    
-    .critical {
-      color: #dc3545;
-      font-weight: bold;
-    }
-    
-    .high {
-      color: #fd7e14;
-      font-weight: bold;
-    }
-    
-    .medium {
-      color: #6c757d;
-      font-weight: bold;
-    }
-    
-    .visualization {
+    .agent-node div {
       text-align: center;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 5px;
     }
     
-    .visualization .description {
-      text-align: left;
-      margin: 1rem 0;
+    .status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 5px;
     }
     
-    .controls {
-      margin-top: 1rem;
+    .status-active {
+      background-color: #198754;
+      box-shadow: 0 0 8px #198754;
     }
     
-    .log-panel {
-      background-color: #212529;
-      color: #f8f9fa;
-      padding: 0.5rem;
-      border-radius: 4px;
-      margin-top: 1rem;
-      font-family: monospace;
-      max-height: 120px;
+    .status-inactive {
+      background-color: #dc3545;
+      box-shadow: 0 0 8px #dc3545;
+    }
+    
+    .status-unknown {
+      background-color: #6c757d;
+      box-shadow: 0 0 8px #6c757d;
+    }
+    
+    .agent-node .status {
+      margin-top: 5px;
+      font-size: 0.9rem;
+    }
+    
+    /* Agent buttons */
+    .agent-buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 2rem;
+    }
+    
+    /* Test Panel */
+    .test-panel {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    /* Message Log */
+    .message-log {
+      height: 300px;
       overflow-y: auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      padding: 1rem;
     }
     
-    .log-entry {
-      margin: 0.25rem 0;
+    .message-log-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .message-entry {
+      padding: 0.5rem;
+      border-bottom: 1px solid #dee2e6;
+      font-size: 0.9rem;
+    }
+    
+    .message-entry:hover {
+      background-color: #f8f9fa;
+    }
+    
+    .message-time {
+      color: #6c757d;
       font-size: 0.8rem;
     }
     
-    .log-time {
-      color: #6c757d;
-      margin-right: 0.5rem;
+    .schema { color: #0d6efd; }
+    .validation { color: #198754; }
+    .visualization { color: #dc3545; }
+    
+    /* Responsive adjustments */
+    @media (max-width: 767px) {
+      .agent-container {
+        height: 650px;
+      }
+      
+      .agent-node {
+        width: 140px;
+        height: 140px;
+      }
+      
+      .agent-icon {
+        font-size: 2rem;
+      }
+      
+      .hub-node {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .agent-node.agent1 {
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      .agent-node.agent2 {
+        top: 280px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      .agent-node.agent3 {
+        top: 460px;
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
+      }
+      
+      .agent-buttons {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+      }
     }
   </style>
 </head>
 <body>
   <div class="header">
-    <h1>SAPHIRE Schema Analysis</h1>
-    <p>Multi-Agent System for PRA Model Analysis</p>
+    <h1>Nuclear PRA Multi-Agent System</h1>
+    <p>Agent Communication Hub</p>
   </div>
   
   <div class="container">
-    <div class="user-input">
-      <form id="question-form">
-        <input type="text" id="question-input" placeholder="Ask about SAPHIRE schema, validation or request visualization..." />
-        <button type="submit">Send</button>
+    <!-- Agent Visualization -->
+    <h2 class="section-title">Agent Communication Visualization</h2>
+    <div class="agent-container" id="agent-container">
+      <!-- Agent Nodes -->
+      <div class="agent-node agent1" onclick="openAgentUI('agent1')">
+        <div class="agent-icon">💾</div>
+        <div>Schema Assistant</div>
+        <div class="status"><span class="status-indicator status-unknown" id="status-agent1"></span><span id="status-text-agent1">Unknown</span></div>
+      </div>
+      <div class="agent-node agent2" onclick="openAgentUI('agent2')">
+        <div class="agent-icon">🔍</div>
+        <div>Data Validator</div>
+        <div class="status"><span class="status-indicator status-unknown" id="status-agent2"></span><span id="status-text-agent2">Unknown</span></div>
+      </div>
+      <div class="agent-node agent3" onclick="openAgentUI('agent3')">
+        <div class="agent-icon">📊</div>
+        <div>Visualization</div>
+        <div class="status"><span class="status-indicator status-unknown" id="status-agent3"></span><span id="status-text-agent3">Unknown</span></div>
+      </div>
+      
+      <!-- Hub Node -->
+      <div class="hub-node">
+        <div style="text-align: center;">
+          <div style="font-size: 1.2rem; font-weight: bold; margin-bottom: 5px;">Message Hub</div>
+          <div style="font-size: 0.75rem; opacity: 0.8;">Coordinating Agent Communication</div>
+        </div>
+      </div>
+      
+      <!-- Arrows for message paths (will be created dynamically in JS) -->
+      <div id="message-paths"></div>
+    </div>
+    
+    <!-- Agent Interface Buttons -->
+    <h2 class="section-title">Agent Interfaces</h2>
+    <div class="agent-buttons">
+      <button class="btn btn-primary" onclick="openAgentUI('agent1')">
+        <i class="bi bi-database"></i> Open Schema Assistant
+      </button>
+      <button class="btn btn-success" onclick="openAgentUI('agent2')">
+        <i class="bi bi-check-circle"></i> Open Data Validator
+      </button>
+      <button class="btn btn-danger" onclick="openAgentUI('agent3')">
+        <i class="bi bi-graph-up"></i> Open Visualization Agent
+      </button>
+    </div>
+    
+    <!-- Test Message Panel -->
+    <h2 class="section-title">Test Message Panel</h2>
+    <div class="test-panel">
+      <form id="message-form">
+        <div class="mb-3">
+          <label for="message-type" class="form-label">Message Type</label>
+          <select class="form-select" id="message-type">
+            <option value="schema.question">Schema Question</option>
+            <option value="validation.request">Validation Request</option>
+            <option value="visualization.request">Visualization Request</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="message-content" class="form-label">Message Content</label>
+          <textarea class="form-control" id="message-content" rows="3" placeholder="Enter your message content"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Test Message</button>
       </form>
     </div>
     
-    <div class="demo-buttons">
-      <button onclick="askQuestion('Tell me about the basic event structure in SAPHIRE schema')">Basic Events</button>
-      <button onclick="askQuestion('What are fault trees in SAPHIRE?')">Fault Trees</button>
-      <button onclick="askQuestion('Can you validate my model for naming conventions?')">Validate Model</button>
-      <button onclick="askQuestion('Show me the event tree for loss of forced cooling')">Event Tree</button>
-      <button onclick="askQuestion('Show me a fault tree example')">Fault Tree</button>
+    <!-- Message Log -->
+    <div class="message-log-header">
+      <h2 class="section-title" style="margin: 0; border: none;">Message Log</h2>
+      <button class="btn btn-sm btn-outline-secondary" onclick="clearLog()">Clear Log</button>
     </div>
-    
-    <div class="agents-container">
-      <div class="agent-panel">
-        <div id="tushin-header" class="agent-header">
-          Schema Conversation (Tushin)
-        </div>
-        <div id="tushin-output" class="agent-content"></div>
-      </div>
-      
-      <div class="agent-panel">
-        <div id="noah-header" class="agent-header">
-          Schema Validation (Noah)
-        </div>
-        <div id="noah-output" class="agent-content"></div>
-      </div>
-      
-      <div class="agent-panel">
-        <div id="bobber-header" class="agent-header">
-          Schema Visualization (Bobber)
-        </div>
-        <div id="bobber-output" class="agent-content"></div>
-      </div>
-    </div>
-    
-    <div class="log-panel">
-      <h4>Agent Communication Log</h4>
-      <div id="message-log"></div>
+    <div id="message-log" class="message-log">
+      <!-- Message log entries will be added here dynamically -->
     </div>
   </div>
 
-  <script src="/static/js/agent-ui.js"></script>
+  <script>
+    // WebSocket connection
+    let ws = null;
+    const messageLog = [];
+    const agentUrls = {
+      'agent1': 'http://localhost:3000',
+      'agent2': 'http://localhost:5000',
+      'agent3': '#'
+    };
+
+    // Connect to WebSocket
+    function connectWebSocket() {
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      ws = new WebSocket(`${protocol}//${window.location.host}/ws`);
+      
+      ws.onmessage = function(event) {
+        const message = JSON.parse(event.data);
+        handleMessage(message);
+      };
+      
+      ws.onopen = function() {
+        console.log('WebSocket connection established');
+        updateAgentStatus('hub', 'active');
+      };
+      
+      ws.onclose = function() {
+        console.log('WebSocket connection closed');
+        updateAgentStatus('hub', 'inactive');
+        setTimeout(connectWebSocket, 1000); // Reconnect after 1 second
+      };
+
+      ws.onerror = function(error) {
+        console.error('WebSocket error:', error);
+        updateAgentStatus('hub', 'inactive');
+      };
+    }
+
+    // Initialize the agent visualization
+    function initializeVisualization() {
+      // Clear any existing paths
+      const messagePaths = document.getElementById('message-paths');
+      messagePaths.innerHTML = '';
+      
+      // Create message paths based on viewport width
+      if (window.innerWidth > 767) {
+        // Desktop/tablet layout (horizontal)
+        createMessagePath('hub-to-agent1', '47%', '51%', '22%', '51%');
+        createMessagePath('agent1-to-hub', '22%', '49%', '47%', '49%');
+        
+        createMessagePath('hub-to-agent2', '53%', '40%', '53%', '28%');
+        createMessagePath('agent2-to-hub', '47%', '28%', '47%', '40%');
+        
+        createMessagePath('hub-to-agent3', '53%', '49%', '78%', '49%');
+        createMessagePath('agent3-to-hub', '78%', '51%', '53%', '51%');
+      } else {
+        // Mobile layout (vertical)
+        createMessagePath('hub-to-agent1', '50%', '33%', '50%', '18%');
+        createMessagePath('agent1-to-hub', '50%', '18%', '50%', '33%');
+        
+        createMessagePath('hub-to-agent2', '55%', '40%', '55%', '32%');
+        createMessagePath('agent2-to-hub', '45%', '32%', '45%', '40%');
+        
+        createMessagePath('hub-to-agent3', '50%', '47%', '50%', '62%');
+        createMessagePath('agent3-to-hub', '50%', '62%', '50%', '47%');
+      }
+      
+      // Fetch agent status
+      fetchAgentStatus();
+    }
+
+    // Create a message path
+    function createMessagePath(id, startX, startY, endX, endY) {
+      const messagePaths = document.getElementById('message-paths');
+      
+      const dx = parseFloat(endX) - parseFloat(startX);
+      const dy = parseFloat(endY) - parseFloat(startY);
+      const length = Math.sqrt(dx * dx + dy * dy);
+      const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+      
+      const arrow = document.createElement('div');
+      arrow.id = id;
+      arrow.className = 'message-arrow';
+      arrow.style.width = `${length}%`;
+      arrow.style.left = `${startX}`;
+      arrow.style.top = `${startY}`;
+      arrow.style.transform = `rotate(${angle}deg)`;
+      
+      messagePaths.appendChild(arrow);
+    }
+
+    // Create and animate a message dot
+    function animateMessage(pathId, color) {
+      const path = document.getElementById(pathId);
+      if (!path) return;
+      
+      const dot = document.createElement('div');
+      dot.className = 'message-dot';
+      dot.style.backgroundColor = color;
+      
+      path.appendChild(dot);
+      
+      // Remove the dot after animation completes
+      setTimeout(() => {
+        if (path.contains(dot)) {
+          path.removeChild(dot);
+        }
+      }, 3000);
+    }
+
+    // Handle incoming messages
+    function handleMessage(message) {
+      const { type, content, source, target, timestamp } = message;
+      
+      // Log the message
+      logMessage(message);
+      
+      // Update agent status
+      if (source && source !== 'user' && source !== 'hub') {
+        updateAgentStatus(source, 'active');
+      }
+      
+      // Animate the message flow
+      animateMessageFlow(source, target, type);
+    }
+
+    // Animate message flow between agents
+    function animateMessageFlow(source, target, type) {
+      let color;
+      let pathId;
+      
+      switch (type) {
+        case 'schema.question':
+        case 'schema.response':
+          color = '#0d6efd'; // Blue for schema
+          break;
+        case 'validation.request':
+        case 'validation.response':
+          color = '#198754'; // Green for validation
+          break;
+        case 'visualization.request':
+        case 'visualization.response':
+          color = '#dc3545'; // Red for visualization
+          break;
+        default:
+          color = '#adb5bd'; // Gray for other
+      }
+      
+      if (source === 'user') source = 'hub';
+      if (target === 'all') target = 'hub';
+      
+      if (source && target) {
+        pathId = `${source}-to-${target}`;
+        const pathElement = document.getElementById(pathId);
+        
+        // Only animate if the path exists
+        if (pathElement) {
+          animateMessage(pathId, color);
+        }
+      }
+    }
+
+    // Log a message to the UI
+    function logMessage(message) {
+      const { type, content, source, target, timestamp } = message;
+      const logDiv = document.getElementById('message-log');
+      const entry = document.createElement('div');
+      entry.className = 'message-entry';
+      
+      let typeClass = '';
+      if (type.includes('schema')) typeClass = 'schema';
+      else if (type.includes('validation')) typeClass = 'validation';
+      else if (type.includes('visualization')) typeClass = 'visualization';
+      
+      const time = new Date(timestamp).toLocaleTimeString();
+      
+      entry.innerHTML = `
+        <span class="message-time">${time}</span>
+        <span class="${typeClass}"><strong>${type}</strong></span>
+        <span> | From: ${source || 'unknown'} To: ${target || 'all'}</span>
+        <div>${typeof content === 'string' ? content.substring(0, 100) + (content.length > 100 ? '...' : '') : JSON.stringify(content).substring(0, 100) + '...'}</div>
+      `;
+      
+      logDiv.insertBefore(entry, logDiv.firstChild);
+      
+      // Keep only the last 50 messages
+      while (logDiv.children.length > 50) {
+        logDiv.removeChild(logDiv.lastChild);
+      }
+    }
+
+    // Send message to server
+    function sendMessage(type, content) {
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        const message = {
+          type,
+          content,
+          timestamp: new Date().toISOString(),
+          source: 'user'
+        };
+        
+        // If message type determines target, add it
+        if (type === 'schema.question') message.target = 'agent1';
+        else if (type === 'validation.request') message.target = 'agent2';
+        else if (type === 'visualization.request') message.target = 'agent3';
+        
+        ws.send(JSON.stringify(message));
+        
+        // Log outgoing message
+        logMessage(message);
+        
+        // Animate message flow
+        animateMessageFlow('user', message.target, type);
+      }
+    }
+
+    // Clear the message log
+    function clearLog() {
+      document.getElementById('message-log').innerHTML = '';
+    }
+
+    // Fetch agent status
+    function fetchAgentStatus() {
+      fetch('/api/agents')
+        .then(response => response.json())
+        .then(data => {
+          data.agents.forEach(agent => {
+            updateAgentStatus(agent.id, agent.status);
+          });
+        })
+        .catch(error => console.error('Error fetching agent status:', error));
+    }
+
+    // Update agent status visual indicator
+    function updateAgentStatus(agentId, status) {
+      if (agentId === 'hub') return;
+      
+      const statusIndicator = document.getElementById(`status-${agentId}`);
+      const statusText = document.getElementById(`status-text-${agentId}`);
+      
+      if (statusIndicator && statusText) {
+        statusIndicator.className = `status-indicator status-${status}`;
+        statusText.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+        
+        const agentNode = document.querySelector(`.agent-node.${agentId}`);
+        if (agentNode) {
+          agentNode.classList.remove('active', 'inactive');
+          agentNode.classList.add(status === 'active' ? 'active' : 'inactive');
+        }
+      }
+    }
+
+    // Open agent UI in a new tab
+    function openAgentUI(agentId) {
+      const url = agentUrls[agentId];
+      if (url && url !== '#') {
+        window.open(url, '_blank');
+      } else {
+        alert('This agent UI is not currently available');
+      }
+    }
+
+    // Handle form submission
+    document.getElementById('message-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const messageType = document.getElementById('message-type').value;
+      const content = document.getElementById('message-content').value.trim();
+      
+      if (content) {
+        sendMessage(messageType, content);
+        document.getElementById('message-content').value = '';
+      }
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      connectWebSocket();
+      initializeVisualization();
+      
+      // Poll for agent status every 10 seconds
+      setInterval(fetchAgentStatus, 10000);
+    });
+
+    // Add resize event listener to update visualization on window resize
+    window.addEventListener('resize', function() {
+      initializeVisualization();
+    });
+  </script>
 </body>
 </html>
