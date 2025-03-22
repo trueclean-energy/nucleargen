@@ -1,0 +1,6950 @@
+{
+  "job_id": "1742671096",
+  "files": {
+    "HTGR_Fault/.MARD": {
+      "type": "master_db",
+      "size": 204,
+      "path": "HTGR_Fault/.MARD"
+    },
+    "HTGR_Fault/_Subs/.FTL": {
+      "type": "fault_tree",
+      "size": 56406,
+      "path": "HTGR_Fault/_Subs/.FTL"
+    },
+    "HTGR_Fault/_Subs/.FTY": {
+      "type": "fault_tree",
+      "size": 6177,
+      "path": "HTGR_Fault/_Subs/.FTY"
+    },
+    "HTGR_Fault/_Subs/.FTC": {
+      "type": "fault_tree",
+      "size": 15533713,
+      "path": "HTGR_Fault/_Subs/.FTC"
+    },
+    "HTGR_Fault/_Subs/.FTD": {
+      "type": "fault_tree",
+      "size": 34146,
+      "path": "HTGR_Fault/_Subs/.FTD"
+    },
+    "HTGR_Fault/_Subs/.EGI": {
+      "type": "master_db",
+      "size": 265,
+      "path": "HTGR_Fault/_Subs/.EGI"
+    },
+    "HTGR_Fault/_Subs/.PHD": {
+      "type": "project",
+      "size": 442,
+      "path": "HTGR_Fault/_Subs/.PHD"
+    },
+    "HTGR_Fault/_Subs/.GTA": {
+      "type": "text",
+      "size": 22967,
+      "path": "HTGR_Fault/_Subs/.GTA"
+    },
+    "HTGR_Fault/_Subs/.FAD": {
+      "type": "project",
+      "size": 53,
+      "path": "HTGR_Fault/_Subs/.FAD"
+    },
+    "HTGR_Fault/_Subs/.HID": {
+      "type": "project",
+      "size": 11,
+      "path": "HTGR_Fault/_Subs/.HID"
+    },
+    "HTGR_Fault/_Subs/.FTT": {
+      "type": "fault_tree",
+      "size": 6094,
+      "path": "HTGR_Fault/_Subs/.FTT"
+    },
+    "HTGR_Fault/_Subs/.FTA": {
+      "type": "fault_tree",
+      "size": 62612,
+      "path": "HTGR_Fault/_Subs/.FTA"
+    },
+    "HTGR_Fault/_Subs/.EGD": {
+      "type": "master_db",
+      "size": 281,
+      "path": "HTGR_Fault/_Subs/.EGD"
+    },
+    "HTGR_Fault/_Subs/.FAU": {
+      "type": "project",
+      "size": 244,
+      "path": "HTGR_Fault/_Subs/.FAU"
+    },
+    "HTGR_Fault/_Subs/.MTD": {
+      "type": "project",
+      "size": 438,
+      "path": "HTGR_Fault/_Subs/.MTD"
+    },
+    "HTGR_Fault/_Subs/.FAA": {
+      "type": "project",
+      "size": 470,
+      "path": "HTGR_Fault/_Subs/.FAA"
+    },
+    "HTGR_Fault/_Subs/.GTD": {
+      "type": "text",
+      "size": 33976,
+      "path": "HTGR_Fault/_Subs/.GTD"
+    },
+    "HTGR_Fault/_Subs/.FAT": {
+      "type": "project",
+      "size": 20,
+      "path": "HTGR_Fault/_Subs/.FAT"
+    }
+  },
+  "metadata": {
+    "total_files": 18,
+    "errors": 0,
+    "warnings": 0
+  },
+  "saphire_data": {
+    "fault_trees": [
+      {
+        "id": "A-G2-SCS-HTS",
+        "name": "A-G2-SCS-HTS",
+        "gates": [
+          {
+            "id": "A-G2-SCS-HTS",
+            "type": "OR",
+            "inputs": [
+              "G3-SCS-HTS",
+              "G4-SCS-HTS",
+              "G5-SCS-HTS",
+              "G6-SCS-HTS"
+            ]
+          },
+          {
+            "id": "G3-SCS-HTS",
+            "type": "AND",
+            "inputs": [
+              "RCS-VCF-FO-X1",
+              "SDC-VCF-FS-X5"
+            ]
+          },
+          {
+            "id": "G4-SCS-HTS",
+            "type": "AND",
+            "inputs": [
+              "G7-SCS-HTS",
+              "RCS-VCF-FO-X2"
+            ]
+          },
+          {
+            "id": "G7-SCS-HTS",
+            "type": "OR",
+            "inputs": [
+              "SDC-VCF-FS-X6",
+              "SDC-VCF-FS-X7"
+            ]
+          },
+          {
+            "id": "G5-SCS-HTS",
+            "type": "AND",
+            "inputs": [
+              "G8-SCS-HTS20",
+              "RCS-VCF-FO-X3"
+            ]
+          },
+          {
+            "id": "G8-SCS-HTS20",
+            "type": "OR",
+            "inputs": [
+              "SDC-VCF-FS-X8",
+              "SDC-VCF-FS-X9",
+              "SDC-VCF-FS-X10"
+            ]
+          },
+          {
+            "id": "G6-SCS-HTS",
+            "type": "AND",
+            "inputs": [
+              "G9-SCS-HTS30",
+              "RCS-VCF-FO-X4"
+            ]
+          },
+          {
+            "id": "G9-SCS-HTS30",
+            "type": "OR",
+            "inputs": [
+              "SDC-VCF-FS-X11",
+              "SDC-VCF-FS-X12",
+              "SDC-VCF-FS-X13",
+              "SDC-VCF-FS-X14"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SDC-VCF-FS-X10",
+          "SDC-VCF-FS-X6",
+          "RCS-VCF-FO-X3",
+          "SDC-VCF-FS-X7",
+          "SDC-VCF-FS-X9",
+          "SDC-VCF-FS-X11",
+          "SDC-VCF-FS-X14",
+          "SDC-VCF-FS-X12",
+          "SDC-VCF-FS-X13",
+          "SDC-VCF-FS-X8",
+          "RCS-VCF-FO-X4",
+          "RCS-VCF-FO-X2",
+          "SDC-VCF-FS-X5",
+          "RCS-VCF-FO-X1"
+        ]
+      },
+      {
+        "id": "A-G2-SCS2-HTS2",
+        "name": "A-G2-SCS2-HTS2",
+        "gates": [
+          {
+            "id": "A-G2-SCS2-HTS2",
+            "type": "AND",
+            "inputs": [
+              "A-G2-SCS2-HTS20",
+              "RCS-VCF-FO-X1"
+            ]
+          },
+          {
+            "id": "A-G2-SCS2-HTS20",
+            "type": "OR",
+            "inputs": [
+              "SDC-VCF-FS-X11",
+              "SDC-VCF-FS-X12",
+              "SDC-VCF-FS-X13",
+              "SDC-VCF-FS-X14"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SDC-VCF-FS-X11",
+          "A-G2-SCS2-HTS20",
+          "SDC-VCF-FS-X12",
+          "SDC-VCF-FS-X13",
+          "SDC-VCF-FS-X14",
+          "RCS-VCF-FO-X1"
+        ]
+      },
+      {
+        "id": "A-G4-SCS",
+        "name": "A-G4-SCS",
+        "gates": [
+          {
+            "id": "A1-G26-SCS",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "A-G4-SCS",
+            "type": "OR",
+            "inputs": [
+              "SDC-MCC-FC-X2A",
+              "SDC-MDP-FO-X2",
+              "SDC-MOV-CL-X3",
+              "SDC-MOV-OP-X3A",
+              "SDC-MDP-FO-X4",
+              "A1-G26-SCS"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SDC-MOV-CL-X3",
+          "SDC-MDP-FO-X2",
+          "SDC-MCC-FC-X2A",
+          "SDC-MDP-FO-X4",
+          "A1-G26-SCS",
+          "SDC-MOV-OP-X3A"
+        ]
+      },
+      {
+        "id": "A-G4-SCS-4A",
+        "name": "A-G4-SCS-4A",
+        "gates": [
+          {
+            "id": "A-G4-SCS-4A",
+            "type": "OR",
+            "inputs": [
+              "A1-G26-SCS-4A",
+              "SDC-MCC-FC-X2A-4A",
+              "SDC-MDP-FO-X2-4A",
+              "SDC-MOV-CL-X3-4A",
+              "SDC-MOV-OP-X3A-4A",
+              "SDC-MDP-FO-X4-4A"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4A",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "SDC-MDP-FO-X2-4A",
+          "SDC-MDP-FO-X4-4A",
+          "A1-G26-SCS-4A",
+          "SDC-MOV-OP-X3A-4A",
+          "SDC-MOV-CL-X3-4A",
+          "SDC-MCC-FC-X2A-4A"
+        ]
+      },
+      {
+        "id": "A-G4-SCS-4B",
+        "name": "A-G4-SCS-4B",
+        "gates": [
+          {
+            "id": "A-G4-SCS-4B",
+            "type": "OR",
+            "inputs": [
+              "A1-G26-SCS-4B",
+              "SDC-MCC-FC-X2A-4B",
+              "SDC-MDP-FO-X2-4B",
+              "SDC-MOV-CL-X3-4B",
+              "SDC-MOV-OP-X3A-4B",
+              "SDC-MDP-FO-X4-4B"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4B",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "SDC-MOV-CL-X3-4B",
+          "SDC-MDP-FO-X2-4B",
+          "A1-G26-SCS-4B",
+          "SDC-MCC-FC-X2A-4B",
+          "SDC-MOV-OP-X3A-4B",
+          "SDC-MDP-FO-X4-4B"
+        ]
+      },
+      {
+        "id": "A-G4-SCS-4C",
+        "name": "A-G4-SCS-4C",
+        "gates": [
+          {
+            "id": "A-G4-SCS-4C",
+            "type": "OR",
+            "inputs": [
+              "A1-G26-SCS-4C",
+              "SDC-MCC-FC-X2A-4C",
+              "SDC-MDP-FO-X2-4C",
+              "SDC-MOV-CL-X3-4C",
+              "SDC-MDP-FO-X4-4C",
+              "SDC-MOV-OP-X3A-4C"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4C",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "SDC-MDP-FO-X4-4C",
+          "SDC-MOV-CL-X3-4C",
+          "SDC-MCC-FC-X2A-4C",
+          "SDC-MOV-OP-X3A-4C",
+          "SDC-MDP-FO-X2-4C",
+          "A1-G26-SCS-4C"
+        ]
+      },
+      {
+        "id": "A-G4-SCS-4D",
+        "name": "A-G4-SCS-4D",
+        "gates": [
+          {
+            "id": "A-G4-SCS-4D",
+            "type": "OR",
+            "inputs": [
+              "A1-G26-SCS-4D",
+              "SDC-MCC-FC-X2A-4D",
+              "SDC-MDP-FO-X2-4D",
+              "SDC-MOV-CL-X3-4D",
+              "SDC-MOV-OP-X3A-4D",
+              "SDC-MDP-FO-X4-4D"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4D",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "A1-G26-SCS-4D",
+          "SDC-MCC-FC-X2A-4D",
+          "SDC-MDP-FO-X4-4D",
+          "SDC-MOV-OP-X3A-4D",
+          "SDC-MOV-CL-X3-4D",
+          "SDC-MDP-FO-X2-4D"
+        ]
+      },
+      {
+        "id": "A-G5-HTS-TRAIN-1",
+        "name": "A-G5-HTS-TRAIN-1",
+        "gates": [
+          {
+            "id": "A-G5-HTS-TRAIN-1",
+            "type": "OR",
+            "inputs": [
+              "J-G158-TRAIN-1",
+              "N-G25-DEMINERALIZER-TRAIN1",
+              "I-G27-TRAIN1",
+              "A-G5-HTS-TRAIN-15",
+              "A-G5-HTS-TRAIN-16"
+            ]
+          },
+          {
+            "id": "A-G5-HTS-TRAIN-15",
+            "type": "OR",
+            "inputs": [
+              "PCS-PTF-RP-ECSTRAINX3-TRAIN1",
+              "PCS-PTF-LK-ECSTRAINX3A-TRAIN1",
+              "PCS-PTF-LK-ECSTRAINX3A-TRAIN1-2"
+            ]
+          },
+          {
+            "id": "A-G5-HTS-TRAIN-16",
+            "type": "AND",
+            "inputs": [
+              "A-G5-HTS-TRAIN-142",
+              "A-G5-HTS-TRAIN-143"
+            ]
+          },
+          {
+            "id": "J-G158-TRAIN-1",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "N-G25-DEMINERALIZER-TRAIN1",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "I-G27-TRAIN1",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "A-G5-HTS-TRAIN-142",
+            "type": "OR",
+            "inputs": [
+              "PCS-TGN-FA-TRIPX8-TRAIN1",
+              "PCS-TGN-FA-TRIPX8-BETA"
+            ]
+          },
+          {
+            "id": "A-G5-HTS-TRAIN-143",
+            "type": "OR",
+            "inputs": [
+              "PCS-TGN-FO-BYPASSX9-TRAIN1",
+              "PCS-TGN-FO-BYPASSX9-BETA"
+            ]
+          }
+        ],
+        "basic_events": [
+          "A-G5-HTS-TRAIN-143",
+          "N-G25-DEMINERALIZER-TRAIN1",
+          "PCS-TGN-FO-BYPASSX9-BETA",
+          "PCS-PTF-LK-ECSTRAINX3A-TRAIN1-2",
+          "A-G5-HTS-TRAIN-142",
+          "I-G27-TRAIN1",
+          "PCS-TGN-FA-TRIPX8-BETA",
+          "A-G5-HTS-TRAIN-15",
+          "PCS-PTF-LK-ECSTRAINX3A-TRAIN1",
+          "A-G5-HTS-TRAIN-16",
+          "J-G158-TRAIN-1",
+          "PCS-TGN-FA-TRIPX8-TRAIN1",
+          "PCS-TGN-FO-BYPASSX9-TRAIN1",
+          "PCS-PTF-RP-ECSTRAINX3-TRAIN1"
+        ]
+      },
+      {
+        "id": "A-G5-HTS-TRAIN-2",
+        "name": "A-G5-HTS-TRAIN-2",
+        "gates": [
+          {
+            "id": "J-G158-TRAIN-2",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "I-G27-TRAIN-2",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "A-G5-HTS-TRAIN-2",
+            "type": "OR",
+            "inputs": [
+              "J-G158-TRAIN-2",
+              "N-G25-DEMINERALIZER-TRAIN-2",
+              "I-G27-TRAIN-2",
+              "G4-HTS",
+              "G6-HTS"
+            ]
+          },
+          {
+            "id": "G4-HTS",
+            "type": "OR",
+            "inputs": [
+              "PCS-PTF-RP-ECSTRAINX3-TRAIN2",
+              "PCS-PTF-LK-ECSTRAINX3A-TRAIN2",
+              "PCS-PTF-LK-ECSTRAINX3A-TRAIN2-2"
+            ]
+          },
+          {
+            "id": "G6-HTS",
+            "type": "AND",
+            "inputs": [
+              "A-G5-HTS-TRAIN-242",
+              "A-G5-HTS-TRAIN-243"
+            ]
+          },
+          {
+            "id": "N-G25-DEMINERALIZER-TRAIN-2",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "A-G5-HTS-TRAIN-242",
+            "type": "OR",
+            "inputs": [
+              "PCS-TGN-FA-TRIPX8-TRAIN2",
+              "PCS-TGN-FA-TRIPX8-BETA"
+            ]
+          },
+          {
+            "id": "A-G5-HTS-TRAIN-243",
+            "type": "OR",
+            "inputs": [
+              "PCS-TGN-FO-BYPASSX9-TRAIN2",
+              "PCS-TGN-FO-BYPASSX9-BETA"
+            ]
+          }
+        ],
+        "basic_events": [
+          "I-G27-TRAIN-2",
+          "PCS-PTF-LK-ECSTRAINX3A-TRAIN2",
+          "J-G158-TRAIN-2",
+          "PCS-PTF-RP-ECSTRAINX3-TRAIN2",
+          "PCS-TGN-FO-BYPASSX9-BETA",
+          "PCS-TGN-FA-TRIPX8-BETA",
+          "A-G5-HTS-TRAIN-242",
+          "PCS-TGN-FO-BYPASSX9-TRAIN2",
+          "A-G5-HTS-TRAIN-243",
+          "PCS-TGN-FA-TRIPX8-TRAIN2",
+          "N-G25-DEMINERALIZER-TRAIN-2",
+          "PCS-PTF-LK-ECSTRAINX3A-TRAIN2-2"
+        ]
+      },
+      {
+        "id": "A1-G26-SCS",
+        "name": "A1-G26-SCS",
+        "gates": [
+          {
+            "id": "A1-G26-SCS",
+            "type": "OR",
+            "inputs": [
+              "A1-G26-SCS2",
+              "A1-G26-SCS1"
+            ]
+          },
+          {
+            "id": "G29-SCS",
+            "type": "OR",
+            "inputs": [
+              "SDC-CHL-LK-X45",
+              "SDC-MOV-OC-X46",
+              "SDC-MOV-OC-X47"
+            ]
+          },
+          {
+            "id": "G30-SCS",
+            "type": "OR",
+            "inputs": [
+              "SDC-CHL-LK-X48",
+              "SDC-MOV-CL-X49",
+              "SDC-MOV-CL-X50",
+              "G31-SCS",
+              "G32-SCS"
+            ]
+          },
+          {
+            "id": "G31-SCS",
+            "type": "OR",
+            "inputs": [
+              "SDC-MOV-OP-X51",
+              "SDC-MOV-OP-X52"
+            ]
+          },
+          {
+            "id": "G32-SCS",
+            "type": "OR",
+            "inputs": [
+              "SDC-MOV-CL-X53",
+              "SDC-MOV-CL-X54"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS2",
+            "type": "AND",
+            "inputs": [
+              "G30-SCS",
+              "G29-SCS"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS1",
+            "type": "OR",
+            "inputs": [
+              "CIRCULATOR-LK-BETA",
+              "MOV-FAILURE-BETA"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SDC-MOV-CL-X50",
+          "SDC-CHL-LK-X48",
+          "SDC-MOV-CL-X53",
+          "SDC-MOV-CL-X49",
+          "SDC-MOV-OP-X52",
+          "SDC-MOV-OC-X46",
+          "A1-G26-SCS1",
+          "CIRCULATOR-LK-BETA",
+          "SDC-MOV-CL-X54",
+          "MOV-FAILURE-BETA",
+          "SDC-MOV-OP-X51",
+          "A1-G26-SCS2",
+          "SDC-CHL-LK-X45",
+          "SDC-MOV-OC-X47"
+        ]
+      },
+      {
+        "id": "A1-G26-SCS-4A",
+        "name": "A1-G26-SCS-4A",
+        "gates": [
+          {
+            "id": "A1-G26-SCS-4A",
+            "type": "AND",
+            "inputs": [
+              "A1-G26-SCS-4A2",
+              "A1-G26-SCS-4A3"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4A2",
+            "type": "OR",
+            "inputs": [
+              "SDC-CHL-LK-X45-4A",
+              "SDC-MOV-OC-X46-4A",
+              "SDC-MOV-OC-X47-4A"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4A3",
+            "type": "OR",
+            "inputs": [
+              "A1-G26-SCS-4A35",
+              "A1-G26-SCS-4A36",
+              "SDC-CHL-LK-X48-4A",
+              "SDC-MOV-CL-X49-4A",
+              "SDC-MOV-CL-X50-4A"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4A35",
+            "type": "OR",
+            "inputs": [
+              "SDC-MOV-OP-X51-4A",
+              "SDC-MOV-OP-X52-4A"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4A36",
+            "type": "OR",
+            "inputs": [
+              "SDC-MOV-CL-X53-4A",
+              "SDC-MOV-CL-X54-4A"
+            ]
+          }
+        ],
+        "basic_events": [
+          "A1-G26-SCS-4A36",
+          "SDC-CHL-LK-X48-4A",
+          "SDC-MOV-CL-X50-4A",
+          "A1-G26-SCS-4A2",
+          "SDC-CHL-LK-X45-4A",
+          "SDC-MOV-CL-X53-4A",
+          "A1-G26-SCS-4A35",
+          "SDC-MOV-CL-X54-4A",
+          "A1-G26-SCS-4A3",
+          "SDC-MOV-OC-X46-4A",
+          "SDC-MOV-OP-X52-4A",
+          "SDC-MOV-CL-X49-4A",
+          "SDC-MOV-OP-X51-4A",
+          "SDC-MOV-OC-X47-4A"
+        ]
+      },
+      {
+        "id": "A1-G26-SCS-4B",
+        "name": "A1-G26-SCS-4B",
+        "gates": [
+          {
+            "id": "A1-G26-SCS-4B",
+            "type": "AND",
+            "inputs": [
+              "A1-G26-SCS-4B2",
+              "A1-G26-SCS-4B3"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4B2",
+            "type": "OR",
+            "inputs": [
+              "SDC-CHL-LK-X45-4B",
+              "SDC-MOV-OC-X46-4B",
+              "SDC-MOV-OC-X47-4B"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4B3",
+            "type": "OR",
+            "inputs": [
+              "A1-G26-SCS-4B35",
+              "A1-G26-SCS-4B36",
+              "SDC-CHL-LK-X48-4B",
+              "SDC-MOV-CL-X49-4B",
+              "SDC-MOV-CL-X50-4B"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4B35",
+            "type": "OR",
+            "inputs": [
+              "SDC-MOV-OP-X51-4B",
+              "SDC-MOV-OP-X52-4B"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4B36",
+            "type": "OR",
+            "inputs": [
+              "SDC-MOV-CL-X53-4B",
+              "SDC-MOV-CL-X54-4B"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SDC-MOV-OC-X47-4B",
+          "A1-G26-SCS-4B36",
+          "SDC-MOV-CL-X53-4B",
+          "SDC-CHL-LK-X48-4B",
+          "SDC-MOV-OP-X51-4B",
+          "SDC-MOV-CL-X54-4B",
+          "A1-G26-SCS-4B2",
+          "SDC-MOV-CL-X50-4B",
+          "SDC-MOV-CL-X49-4B",
+          "SDC-MOV-OP-X52-4B",
+          "A1-G26-SCS-4B3",
+          "SDC-CHL-LK-X45-4B",
+          "A1-G26-SCS-4B35",
+          "SDC-MOV-OC-X46-4B"
+        ]
+      },
+      {
+        "id": "A1-G26-SCS-4C",
+        "name": "A1-G26-SCS-4C",
+        "gates": [
+          {
+            "id": "A1-G26-SCS-4C",
+            "type": "AND",
+            "inputs": [
+              "A1-G26-SCS-4C2",
+              "A1-G26-SCS-4C3"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4C2",
+            "type": "OR",
+            "inputs": [
+              "SDC-CHL-LK-X45-4C",
+              "SDC-MOV-OC-X46-4C",
+              "SDC-MOV-OC-X47-4C"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4C3",
+            "type": "OR",
+            "inputs": [
+              "A1-G26-SCS-4C35",
+              "A1-G26-SCS-4C36",
+              "SDC-CHL-LK-X48-4C",
+              "SDC-MOV-CL-X49-4C",
+              "SDC-MOV-CL-X50-4C"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4C35",
+            "type": "OR",
+            "inputs": [
+              "SDC-MOV-OP-X51-4C",
+              "SDC-MOV-OP-X52-4C"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4C36",
+            "type": "OR",
+            "inputs": [
+              "SDC-MOV-CL-X53-4C",
+              "SDC-MOV-CL-X54-4C"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SDC-MOV-CL-X54-4C",
+          "SDC-MOV-OP-X52-4C",
+          "SDC-MOV-OC-X46-4C",
+          "A1-G26-SCS-4C35",
+          "SDC-MOV-CL-X49-4C",
+          "A1-G26-SCS-4C2",
+          "SDC-MOV-CL-X50-4C",
+          "SDC-MOV-OC-X47-4C",
+          "SDC-CHL-LK-X45-4C",
+          "A1-G26-SCS-4C3",
+          "SDC-MOV-CL-X53-4C",
+          "SDC-MOV-OP-X51-4C",
+          "SDC-CHL-LK-X48-4C",
+          "A1-G26-SCS-4C36"
+        ]
+      },
+      {
+        "id": "A1-G26-SCS-4D",
+        "name": "A1-G26-SCS-4D",
+        "gates": [
+          {
+            "id": "A1-G26-SCS-4D",
+            "type": "AND",
+            "inputs": [
+              "A1-G26-SCS-4D2",
+              "A1-G26-SCS-4D3"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4D2",
+            "type": "OR",
+            "inputs": [
+              "SDC-CHL-LK-X45-4D",
+              "SDC-MOV-OC-X46-4D",
+              "SDC-MOV-OC-X47-4D"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4D3",
+            "type": "OR",
+            "inputs": [
+              "A1-G26-SCS-4D35",
+              "A1-G26-SCS-4D36",
+              "SDC-CHL-LK-X48-4D",
+              "SDC-MOV-CL-X49-4D",
+              "SDC-MOV-CL-X50-4D"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4D35",
+            "type": "OR",
+            "inputs": [
+              "SDC-MOV-OP-X51-4D",
+              "SDC-MOV-OP-X52-4D"
+            ]
+          },
+          {
+            "id": "A1-G26-SCS-4D36",
+            "type": "OR",
+            "inputs": [
+              "SDC-MOV-CL-X53-4D",
+              "SDC-MOV-CL-X54-4D"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SDC-MOV-OC-X47-4D",
+          "SDC-MOV-CL-X50-4D",
+          "SDC-MOV-OP-X52-4D",
+          "SDC-CHL-LK-X48-4D",
+          "SDC-MOV-CL-X49-4D",
+          "SDC-CHL-LK-X45-4D",
+          "SDC-MOV-OP-X51-4D",
+          "A1-G26-SCS-4D36",
+          "SDC-MOV-CL-X54-4D",
+          "A1-G26-SCS-4D3",
+          "A1-G26-SCS-4D2",
+          "SDC-MOV-OC-X46-4D",
+          "A1-G26-SCS-4D35",
+          "SDC-MOV-CL-X53-4D"
+        ]
+      },
+      {
+        "id": "ATWS-NO-MODULES-1",
+        "name": "ATWS-NO-MODULES-1",
+        "gates": [
+          {
+            "id": "ATWS-NO-MODULES-1",
+            "type": "OR",
+            "inputs": [
+              "ATWS-NO-MODULES-10"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ATWS-NO-MODULES-10"
+        ]
+      },
+      {
+        "id": "ATWS-NO-MODULES-124-1",
+        "name": "ATWS-NO-MODULES-124-1",
+        "gates": [
+          {
+            "id": "ATWS-NO-MODULES-124-1",
+            "type": "OR",
+            "inputs": [
+              "ATWS-NO-MODULES-124-10"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ATWS-NO-MODULES-124-10"
+        ]
+      },
+      {
+        "id": "ATWS-NO-MODULES-124-2",
+        "name": "ATWS-NO-MODULES-124-2",
+        "gates": [
+          {
+            "id": "ATWS-NO-MODULES-124-2",
+            "type": "OR",
+            "inputs": [
+              "ATWS-NO-MODULES-124-20"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ATWS-NO-MODULES-124-20"
+        ]
+      },
+      {
+        "id": "ATWS-NO-MODULES-124-4",
+        "name": "ATWS-NO-MODULES-124-4",
+        "gates": [
+          {
+            "id": "ATWS-NO-MODULES-124-4",
+            "type": "OR",
+            "inputs": [
+              "ATWS-NO-MODULES-124-40"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ATWS-NO-MODULES-124-40"
+        ]
+      },
+      {
+        "id": "ATWS-NO-MODULES-14",
+        "name": "ATWS-NO-MODULES-14",
+        "gates": [
+          {
+            "id": "ATWS-NO-MODULES-14",
+            "type": "OR",
+            "inputs": [
+              "ATWS-NO-MODULES-140"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ATWS-NO-MODULES-140"
+        ]
+      },
+      {
+        "id": "ATWS-NO-MODULES-2",
+        "name": "ATWS-NO-MODULES-2",
+        "gates": [
+          {
+            "id": "ATWS-NO-MODULES-2",
+            "type": "OR",
+            "inputs": [
+              "ATWS-NO-MODULES-20"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ATWS-NO-MODULES-20"
+        ]
+      },
+      {
+        "id": "ATWS-NO-MODULES-3",
+        "name": "ATWS-NO-MODULES-3",
+        "gates": [
+          {
+            "id": "ATWS-NO-MODULES-3",
+            "type": "OR",
+            "inputs": [
+              "ATWS-NO-MODULES-30"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ATWS-NO-MODULES-30"
+        ]
+      },
+      {
+        "id": "ATWS-NO-MODULES-4",
+        "name": "ATWS-NO-MODULES-4",
+        "gates": [
+          {
+            "id": "ATWS-NO-MODULES-4",
+            "type": "OR",
+            "inputs": [
+              "ATWS-NO-MODULES-40"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ATWS-NO-MODULES-40"
+        ]
+      },
+      {
+        "id": "B-G10-SCS-HTS",
+        "name": "B-G10-SCS-HTS",
+        "gates": [
+          {
+            "id": "B-G10-SCS-HTS",
+            "type": "OR",
+            "inputs": [
+              "G11-SCS-HTS",
+              "G12-SCS-HTS",
+              "G13-SCS-HTS",
+              "G14-SCS-HTS"
+            ]
+          },
+          {
+            "id": "G11-SCS-HTS",
+            "type": "AND",
+            "inputs": [
+              "SDC-VCF-FO-X28",
+              "RCS-VCF-FO-X15"
+            ]
+          },
+          {
+            "id": "G12-SCS-HTS",
+            "type": "AND",
+            "inputs": [
+              "G15-SCS-HTS",
+              "RCS-VCF-FO-X16"
+            ]
+          },
+          {
+            "id": "G15-SCS-HTS",
+            "type": "OR",
+            "inputs": [
+              "SDC-VCF-FO-X19",
+              "SDC-VCF-FO-X20"
+            ]
+          },
+          {
+            "id": "G13-SCS-HTS",
+            "type": "AND",
+            "inputs": [
+              "G16-SCS-HTS",
+              "RCS-VCF-FO-X17"
+            ]
+          },
+          {
+            "id": "G16-SCS-HTS",
+            "type": "OR",
+            "inputs": [
+              "SDC-VCF-FO-X21",
+              "SDC-VCF-FO-X22",
+              "SDC-VCF-FO-X23"
+            ]
+          },
+          {
+            "id": "G14-SCS-HTS",
+            "type": "AND",
+            "inputs": [
+              "G17-SCS-HTS",
+              "RCS-VCF-FO-X18"
+            ]
+          },
+          {
+            "id": "G17-SCS-HTS",
+            "type": "OR",
+            "inputs": [
+              "SDC-VCF-FO-X25",
+              "SDC-VCF-FO-X26",
+              "SDC-VCF-FO-X27",
+              "SDC-VCF-FO-X24"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RCS-VCF-FO-X17",
+          "SDC-VCF-FO-X23",
+          "SDC-VCF-FO-X20",
+          "RCS-VCF-FO-X15",
+          "RCS-VCF-FO-X18",
+          "SDC-VCF-FO-X21",
+          "SDC-VCF-FO-X28",
+          "SDC-VCF-FO-X24",
+          "SDC-VCF-FO-X19",
+          "RCS-VCF-FO-X16",
+          "SDC-VCF-FO-X26",
+          "SDC-VCF-FO-X22",
+          "SDC-VCF-FO-X27",
+          "SDC-VCF-FO-X25"
+        ]
+      },
+      {
+        "id": "B-G10-SCS2-HTS2",
+        "name": "B-G10-SCS2-HTS2",
+        "gates": [
+          {
+            "id": "B-G10-SCS2-HTS2",
+            "type": "AND",
+            "inputs": [
+              "B-G10-SCS2-HTS-20",
+              "RCS-VCF-FO-X15"
+            ]
+          },
+          {
+            "id": "B-G10-SCS2-HTS-20",
+            "type": "OR",
+            "inputs": [
+              "SDC-VCF-FO-X24",
+              "SDC-VCF-FO-X25",
+              "SDC-VCF-FO-X26",
+              "SDC-VCF-FO-X27"
+            ]
+          }
+        ],
+        "basic_events": [
+          "B-G10-SCS2-HTS-20",
+          "RCS-VCF-FO-X15",
+          "SDC-VCF-FO-X24",
+          "SDC-VCF-FO-X26",
+          "SDC-VCF-FO-X27",
+          "SDC-VCF-FO-X25"
+        ]
+      },
+      {
+        "id": "B-G6-SCS",
+        "name": "B-G6-SCS",
+        "gates": [
+          {
+            "id": "B4-G7-SCS",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "F-G23-SCS",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "B-G6-SCS",
+            "type": "OR",
+            "inputs": [
+              "B4-G7-SCS",
+              "F-G23-SCS"
+            ]
+          }
+        ],
+        "basic_events": [
+          "B4-G7-SCS",
+          "F-G23-SCS"
+        ]
+      },
+      {
+        "id": "B1-G12A-SCS",
+        "name": "B1-G12A-SCS",
+        "gates": [
+          {
+            "id": "B1-G12A-SCS",
+            "type": "OR",
+            "inputs": [
+              "NSW-MOV-PG-X29",
+              "NSW-PSF-RP-X16",
+              "G9-SCS-NSW",
+              "G10-SCS-PSF",
+              "PUMP-FAILURE-BETA",
+              "MOV-FAILURE-NSW-BETA"
+            ]
+          },
+          {
+            "id": "G10-SCS-PSF",
+            "type": "AND",
+            "inputs": [
+              "NSW-MOV-CO-X12",
+              "G11-SCS-NSW"
+            ]
+          },
+          {
+            "id": "G11-SCS-NSW",
+            "type": "OR",
+            "inputs": [
+              "NSW-MOV-FO-X13",
+              "NSW-MOV-FO-X14",
+              "NSW-MOV-FO-X15"
+            ]
+          },
+          {
+            "id": "G9-SCS-NSW",
+            "type": "AND",
+            "inputs": [
+              "NSW-MDP-FO-X7",
+              "NSW-MDP-FO-X8",
+              "NSW-MDP-FO-X9"
+            ]
+          }
+        ],
+        "basic_events": [
+          "NSW-PSF-RP-X16",
+          "NSW-MDP-FO-X9",
+          "NSW-MDP-FO-X8",
+          "NSW-MDP-FO-X7",
+          "NSW-MOV-FO-X14",
+          "PUMP-FAILURE-BETA",
+          "MOV-FAILURE-NSW-BETA",
+          "NSW-MOV-CO-X12",
+          "NSW-MOV-FO-X13",
+          "NSW-MOV-PG-X29",
+          "NSW-MOV-FO-X15"
+        ]
+      },
+      {
+        "id": "B4-G7-SCS",
+        "name": "B4-G7-SCS",
+        "gates": [
+          {
+            "id": "B4-G7-SCS",
+            "type": "OR",
+            "inputs": [
+              "PSW-PSF-RP-X11",
+              "PSW-MOV-PG-X10",
+              "G8-SCS",
+              "G13-SCS"
+            ]
+          },
+          {
+            "id": "G8-SCS",
+            "type": "AND",
+            "inputs": [
+              "G12-SCS",
+              "G32-SCS-PWS"
+            ]
+          },
+          {
+            "id": "G12-SCS",
+            "type": "OR",
+            "inputs": [
+              "PSW-MOV-OC-X55",
+              "B1-G12A-SCS"
+            ]
+          },
+          {
+            "id": "G32-SCS-PWS",
+            "type": "OR",
+            "inputs": [
+              "PSW-MOV-CL-X56",
+              "PSW-MOV-OP-X57",
+              "G33-SCS-PSW",
+              "B4-G7-SCS213"
+            ]
+          },
+          {
+            "id": "G33-SCS-PSW",
+            "type": "AND",
+            "inputs": [
+              "B3-SCS-PSW",
+              "B4-G7-SCS2121",
+              "B4-G7-SCS2122"
+            ]
+          },
+          {
+            "id": "B3-SCS-PSW",
+            "type": "OR",
+            "inputs": [
+              "PSW-MDP-FO-X58-1",
+              "PSW-MOV-CL-X59-1"
+            ]
+          },
+          {
+            "id": "G13-SCS",
+            "type": "OR",
+            "inputs": [
+              "PSW-CHL-RP-X12",
+              "PSW-CHL-RP-X13"
+            ]
+          },
+          {
+            "id": "B1-G12A-SCS",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "B4-G7-SCS2121",
+            "type": "OR",
+            "inputs": [
+              "PSW-MDP-FO-X58-2",
+              "PSW-MOV-CL-X59-2"
+            ]
+          },
+          {
+            "id": "B4-G7-SCS2122",
+            "type": "OR",
+            "inputs": [
+              "PSW-MDP-FO-X58-3",
+              "PSW-MOV-CL-X59-3"
+            ]
+          },
+          {
+            "id": "B4-G7-SCS213",
+            "type": "OR",
+            "inputs": [
+              "PSW-MDP-BETA",
+              "PSW-MOV-BETA"
+            ]
+          }
+        ],
+        "basic_events": [
+          "PSW-MDP-FO-X58-3",
+          "B4-G7-SCS2121",
+          "PSW-MOV-CL-X56",
+          "PSW-MDP-BETA",
+          "PSW-MOV-OC-X55",
+          "PSW-PSF-RP-X11",
+          "PSW-CHL-RP-X13",
+          "B4-G7-SCS213",
+          "PSW-MOV-CL-X59-3",
+          "PSW-MOV-CL-X59-1",
+          "B1-G12A-SCS",
+          "B4-G7-SCS2122",
+          "PSW-CHL-RP-X12",
+          "PSW-MDP-FO-X58-1",
+          "PSW-MDP-FO-X58-2",
+          "PSW-MOV-BETA",
+          "B3-SCS-PSW",
+          "PSW-MOV-OP-X57",
+          "PSW-MOV-CL-X59-2",
+          "PSW-MOV-PG-X10"
+        ]
+      },
+      {
+        "id": "C1E-UPS-G-G120",
+        "name": "C1E-UPS-G-G120",
+        "gates": [
+          {
+            "id": "G1-G1311-A",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "C1E-UPS-G-G120",
+            "type": "AND",
+            "inputs": [
+              "C1E-UPS-G-G1202",
+              "C1E-UPS-G-G1203",
+              "C1E-UPS-G-G1204",
+              "C1E-UPS-G-G1206"
+            ]
+          },
+          {
+            "id": "G123",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-OP-X141",
+              "ACP-CRB-OP-X142"
+            ]
+          },
+          {
+            "id": "G124",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-OP-X143",
+              "ACP-CRB-OP-X144"
+            ]
+          },
+          {
+            "id": "G125",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-OP-X145",
+              "ACP-CRB-OP-X146"
+            ]
+          },
+          {
+            "id": "G126",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-OP-X147",
+              "ACP-CRB-OP-X148"
+            ]
+          },
+          {
+            "id": "C1E-UPS-G-G1202",
+            "type": "OR",
+            "inputs": [
+              "G123",
+              "G1-G1311-A"
+            ]
+          },
+          {
+            "id": "C1E-UPS-G-G1203",
+            "type": "OR",
+            "inputs": [
+              "G124",
+              "G1-G1311-B"
+            ]
+          },
+          {
+            "id": "C1E-UPS-G-G1204",
+            "type": "OR",
+            "inputs": [
+              "G125",
+              "G1-G1311-C"
+            ]
+          },
+          {
+            "id": "C1E-UPS-G-G1206",
+            "type": "OR",
+            "inputs": [
+              "G126",
+              "G1-G1311-D"
+            ]
+          },
+          {
+            "id": "G1-G1311-B",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G1-G1311-C",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G1-G1311-D",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "C1E-UPS-G-G1202",
+          "ACP-CRB-OP-X146",
+          "C1E-UPS-G-G1204",
+          "C1E-UPS-G-G1206",
+          "ACP-CRB-OP-X142",
+          "ACP-CRB-OP-X143",
+          "ACP-CRB-OP-X145",
+          "ACP-CRB-OP-X147",
+          "C1E-UPS-G-G1203",
+          "ACP-CRB-OP-X144",
+          "ACP-CRB-OP-X148",
+          "ACP-CRB-OP-X141"
+        ]
+      },
+      {
+        "id": "COOLING-RESTORED-1",
+        "name": "COOLING-RESTORED-1",
+        "gates": [
+          {
+            "id": "COOLING-RESTORED-1",
+            "type": "OR",
+            "inputs": [
+              "COOLING-RESTORED-EVENT-1"
+            ]
+          }
+        ],
+        "basic_events": [
+          "COOLING-RESTORED-EVENT-1"
+        ]
+      },
+      {
+        "id": "COOLING-RESTORED-2",
+        "name": "COOLING-RESTORED-2",
+        "gates": [
+          {
+            "id": "COOLING-RESTORED-2",
+            "type": "OR",
+            "inputs": [
+              "COOLING-RESTORED-EVENT-2"
+            ]
+          }
+        ],
+        "basic_events": [
+          "COOLING-RESTORED-EVENT-2"
+        ]
+      },
+      {
+        "id": "D1-G51",
+        "name": "D1-G51",
+        "gates": [
+          {
+            "id": "SWS-Q-G40",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "D1-G51",
+            "type": "OR",
+            "inputs": [
+              "G52",
+              "G59"
+            ]
+          },
+          {
+            "id": "G52",
+            "type": "OR",
+            "inputs": [
+              "TBC-MOV-SO-X83",
+              "TBC-XHE-XO-X84"
+            ]
+          },
+          {
+            "id": "G59",
+            "type": "OR",
+            "inputs": [
+              "SWS-Q-G40",
+              "D1-G5113"
+            ]
+          },
+          {
+            "id": "G54-D3",
+            "type": "OR",
+            "inputs": [
+              "G55",
+              "TBC-HTX-NF-X85"
+            ]
+          },
+          {
+            "id": "G55",
+            "type": "OR",
+            "inputs": [
+              "G56",
+              "G57"
+            ]
+          },
+          {
+            "id": "G56",
+            "type": "OR",
+            "inputs": [
+              "TBC-XHE-XO-X86",
+              "TBC-MOV-FO-X87"
+            ]
+          },
+          {
+            "id": "G57",
+            "type": "OR",
+            "inputs": [
+              "TBC-XHE-XO-X88",
+              "TBC-MOV-FO-X89"
+            ]
+          },
+          {
+            "id": "D1-G51111",
+            "type": "OR",
+            "inputs": [
+              "D1-G511110",
+              "TBC-HTX-NF-BACKUP-X85"
+            ]
+          },
+          {
+            "id": "D1-G511110",
+            "type": "OR",
+            "inputs": [
+              "D1-G5111100",
+              "D1-G5111101"
+            ]
+          },
+          {
+            "id": "D1-G5111100",
+            "type": "OR",
+            "inputs": [
+              "TBC-XHE-XO-BACKUP-X86",
+              "TBC-MOV-FO-BACKUP-X87"
+            ]
+          },
+          {
+            "id": "D1-G5111101",
+            "type": "OR",
+            "inputs": [
+              "TBC-XHE-XO-BACKUP-X88",
+              "TBC-MOV-FO-BACKUP-X89"
+            ]
+          },
+          {
+            "id": "D1-G5113",
+            "type": "AND",
+            "inputs": [
+              "D1-G51111",
+              "G54-D3"
+            ]
+          }
+        ],
+        "basic_events": [
+          "TBC-MOV-SO-X83",
+          "TBC-MOV-FO-BACKUP-X89",
+          "TBC-XHE-XO-X84",
+          "D1-G511110",
+          "SWS-Q-G40",
+          "TBC-MOV-FO-X87",
+          "TBC-HTX-NF-X85",
+          "D1-G5111100",
+          "TBC-XHE-XO-X88",
+          "D1-G5111101",
+          "TBC-XHE-XO-BACKUP-X86",
+          "D1-G5113",
+          "TBC-XHE-XO-X86",
+          "TBC-MOV-FO-BACKUP-X87",
+          "TBC-XHE-XO-BACKUP-X88",
+          "D1-G51111",
+          "TBC-HTX-NF-BACKUP-X85",
+          "TBC-MOV-FO-X89"
+        ]
+      },
+      {
+        "id": "D2-G90",
+        "name": "D2-G90",
+        "gates": [
+          {
+            "id": "NC1EPS-X-G200",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "D2-G90",
+            "type": "OR",
+            "inputs": [
+              "G91",
+              "G92",
+              "TBC-CKV-OO-X90"
+            ]
+          },
+          {
+            "id": "G91",
+            "type": "OR",
+            "inputs": [
+              "TBC-MDP-FO-X91",
+              "G93",
+              "NC1EPS-X-G200"
+            ]
+          },
+          {
+            "id": "G93",
+            "type": "OR",
+            "inputs": [
+              "G96",
+              "G97"
+            ]
+          },
+          {
+            "id": "G96",
+            "type": "OR",
+            "inputs": [
+              "TBC-MDP-OP-X93",
+              "TBC-MDP-FS-X94"
+            ]
+          },
+          {
+            "id": "G97",
+            "type": "OR",
+            "inputs": [
+              "TBC-MDP-FO-X95",
+              "TBC-XHE-XE-X96"
+            ]
+          },
+          {
+            "id": "G92",
+            "type": "OR",
+            "inputs": [
+              "G94",
+              "G95"
+            ]
+          },
+          {
+            "id": "G94",
+            "type": "OR",
+            "inputs": [
+              "G98",
+              "G99"
+            ]
+          },
+          {
+            "id": "G98",
+            "type": "OR",
+            "inputs": [
+              "TBC-MOV-FO-97",
+              "TBC-XHE-XE-X98"
+            ]
+          },
+          {
+            "id": "G99",
+            "type": "OR",
+            "inputs": [
+              "TBC-MOV-OP-X99",
+              "TBC-XHE-XE-X100"
+            ]
+          },
+          {
+            "id": "G95",
+            "type": "OR",
+            "inputs": [
+              "G100",
+              "TBC-XVM-XE-X92"
+            ]
+          },
+          {
+            "id": "G100",
+            "type": "OR",
+            "inputs": [
+              "TBC-MOV-FO-X101",
+              "TBC-XHE-XE-X102"
+            ]
+          }
+        ],
+        "basic_events": [
+          "TBC-XHE-XE-X98",
+          "TBC-XHE-XE-X102",
+          "TBC-XHE-XE-X100",
+          "NC1EPS-X-G200",
+          "TBC-XHE-XE-X96",
+          "TBC-MOV-FO-X101",
+          "TBC-CKV-OO-X90",
+          "TBC-MOV-OP-X99",
+          "TBC-MOV-FO-97",
+          "TBC-XVM-XE-X92",
+          "TBC-MDP-FO-X95",
+          "TBC-MDP-FS-X94",
+          "TBC-MDP-OP-X93",
+          "TBC-MDP-FO-X91"
+        ]
+      },
+      {
+        "id": "E-G21-SCS",
+        "name": "E-G21-SCS",
+        "gates": [
+          {
+            "id": "E-G21-SCS",
+            "type": "OR",
+            "inputs": [
+              "RHR-HTX-LK-X31",
+              "G22-SCS"
+            ]
+          },
+          {
+            "id": "G22-SCS",
+            "type": "OR",
+            "inputs": [
+              "RHR-MOV-SO-X32",
+              "RHR-MOV-SO-X33"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RHR-MOV-SO-X32",
+          "RHR-MOV-SO-X33",
+          "RHR-HTX-LK-X31"
+        ]
+      },
+      {
+        "id": "E-G21-SCS-4A",
+        "name": "E-G21-SCS-4A",
+        "gates": [
+          {
+            "id": "E-G21-SCS-4A",
+            "type": "OR",
+            "inputs": [
+              "E-G21-SCS-4A2",
+              "RHR-HTX-LK-X31-4A"
+            ]
+          },
+          {
+            "id": "E-G21-SCS-4A2",
+            "type": "OR",
+            "inputs": [
+              "RHR-MOV-SO-X32-4A",
+              "RHR-MOV-SO-X33-4A"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RHR-MOV-SO-X33-4A",
+          "RHR-HTX-LK-X31-4A",
+          "RHR-MOV-SO-X32-4A",
+          "E-G21-SCS-4A2"
+        ]
+      },
+      {
+        "id": "E-G21-SCS-4B",
+        "name": "E-G21-SCS-4B",
+        "gates": [
+          {
+            "id": "E-G21-SCS-4B",
+            "type": "OR",
+            "inputs": [
+              "E-G21-SCS-4B2",
+              "RHR-HTX-LK-X31-4B"
+            ]
+          },
+          {
+            "id": "E-G21-SCS-4B2",
+            "type": "OR",
+            "inputs": [
+              "RHR-MOV-SO-X33-4B",
+              "RHR-MOV-SO-X32-4B"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RHR-MOV-SO-X32-4B",
+          "E-G21-SCS-4B2",
+          "RHR-MOV-SO-X33-4B",
+          "RHR-HTX-LK-X31-4B"
+        ]
+      },
+      {
+        "id": "E-G21-SCS-4C",
+        "name": "E-G21-SCS-4C",
+        "gates": [
+          {
+            "id": "E-G21-SCS-4C",
+            "type": "OR",
+            "inputs": [
+              "E-G21-SCS-4C2",
+              "RHR-HTX-LK-X31-4C"
+            ]
+          },
+          {
+            "id": "E-G21-SCS-4C2",
+            "type": "OR",
+            "inputs": [
+              "RHR-MOV-SO-X32-4C",
+              "RHR-MOV-SO-X33-4C"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RHR-MOV-SO-X32-4C",
+          "E-G21-SCS-4C2",
+          "RHR-HTX-LK-X31-4C",
+          "RHR-MOV-SO-X33-4C"
+        ]
+      },
+      {
+        "id": "E-G21-SCS-4D",
+        "name": "E-G21-SCS-4D",
+        "gates": [
+          {
+            "id": "E-G21-SCS-4D",
+            "type": "OR",
+            "inputs": [
+              "E-G21-SCS-4D2",
+              "RHR-HTX-LK-X31-4D"
+            ]
+          },
+          {
+            "id": "E-G21-SCS-4D2",
+            "type": "OR",
+            "inputs": [
+              "RHR-MOV-SO-X33-4D",
+              "RHR-MOV-SO-X32-4D"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RHR-MOV-SO-X33-4D",
+          "E-G21-SCS-4D2",
+          "RHR-HTX-LK-X31-4D",
+          "RHR-MOV-SO-X32-4D"
+        ]
+      },
+      {
+        "id": "E1-G107-RE",
+        "name": "E1-G107-RE",
+        "gates": [
+          {
+            "id": "G110",
+            "type": "OR",
+            "inputs": [
+              "CWS-MDP-FO-X117",
+              "CWS-FCV-UD-X118"
+            ]
+          },
+          {
+            "id": "G108",
+            "type": "OR",
+            "inputs": [
+              "CWS-MDP-FO-X113",
+              "CWS-FCV-UD-X114"
+            ]
+          },
+          {
+            "id": "G109",
+            "type": "OR",
+            "inputs": [
+              "CWS-MDP-FO-X115",
+              "CWS-FCV-UD-X116"
+            ]
+          },
+          {
+            "id": "E1-G107-RE",
+            "type": "OR",
+            "inputs": [
+              "E1-G107-RE4",
+              "CWS-MDP-BETA"
+            ]
+          },
+          {
+            "id": "E1-G107-RE4",
+            "type": "AND",
+            "inputs": [
+              "G108",
+              "G109",
+              "G110"
+            ]
+          }
+        ],
+        "basic_events": [
+          "CWS-FCV-UD-X114",
+          "CWS-MDP-FO-X117",
+          "CWS-FCV-UD-X116",
+          "CWS-MDP-FO-X113",
+          "E1-G107-RE4",
+          "CWS-FCV-UD-X118",
+          "CWS-MDP-FO-X115",
+          "CWS-MDP-BETA"
+        ]
+      },
+      {
+        "id": "E4-G1031",
+        "name": "E4-G1031",
+        "gates": [
+          {
+            "id": "E4-G1031",
+            "type": "AND",
+            "inputs": [
+              "CWS-HTX-LK-X107",
+              "E4-G103132"
+            ]
+          },
+          {
+            "id": "E4-G103132",
+            "type": "OR",
+            "inputs": [
+              "E4-G1031323",
+              "E4-G1031324",
+              "CWS-HTX-UD-X108",
+              "CWS-MOV-BETA1"
+            ]
+          },
+          {
+            "id": "E4-G1031323",
+            "type": "OR",
+            "inputs": [
+              "CWS-MOV-OO-X109",
+              "CWS-MOV-OO-X110"
+            ]
+          },
+          {
+            "id": "E4-G1031324",
+            "type": "OR",
+            "inputs": [
+              "CWS-MOV-CC-X111",
+              "CWS-MOV-CC-X112"
+            ]
+          }
+        ],
+        "basic_events": [
+          "E4-G1031323",
+          "CWS-HTX-UD-X108",
+          "CWS-MOV-CC-X112",
+          "E4-G103132",
+          "E4-G1031324",
+          "CWS-MOV-OO-X110",
+          "CWS-MOV-CC-X111",
+          "CWS-MOV-OO-X109",
+          "CWS-HTX-LK-X107",
+          "CWS-MOV-BETA1"
+        ]
+      },
+      {
+        "id": "F-G23-SCS",
+        "name": "F-G23-SCS",
+        "gates": [
+          {
+            "id": "F-G23-SCS",
+            "type": "OR",
+            "inputs": [
+              "RHR-PSF-RP-X34",
+              "RHR-RCP-FO-X35",
+              "G24-SCS-RHR",
+              "G20-SCS-RHR",
+              "G37-SCS-RHR"
+            ]
+          },
+          {
+            "id": "I1-G16-SCS-RHR",
+            "type": "OR",
+            "inputs": [
+              "I2-G17-SCS-A",
+              "I3-G18-SHS-A"
+            ]
+          },
+          {
+            "id": "G15-SCS-RHR",
+            "type": "OR",
+            "inputs": [
+              "G19-SCS-RHR",
+              "F-G23-SCS3012"
+            ]
+          },
+          {
+            "id": "G19-SCS-RHR",
+            "type": "AND",
+            "inputs": [
+              "RHR-MOV-OP-X21",
+              "RHR-MOV-OP-X22"
+            ]
+          },
+          {
+            "id": "G37-SCS-RHR",
+            "type": "AND",
+            "inputs": [
+              "G38-SCS-RHR",
+              "G39-SCS-RHR"
+            ]
+          },
+          {
+            "id": "G38-SCS-RHR",
+            "type": "OR",
+            "inputs": [
+              "RHR-FLT-LK-X32",
+              "RHR-FLT-LK-X64",
+              "RHR-FLT-LK-X63"
+            ]
+          },
+          {
+            "id": "G39-SCS-RHR",
+            "type": "OR",
+            "inputs": [
+              "RHR-MOV-OP-X65",
+              "RHR-MOV-OP-X66"
+            ]
+          },
+          {
+            "id": "G20-SCS-RHR",
+            "type": "OR",
+            "inputs": [
+              "G35-SCS-RHR",
+              "G36-SCS-RHR"
+            ]
+          },
+          {
+            "id": "G24-SCS-RHR",
+            "type": "OR",
+            "inputs": [
+              "L1-G27-SCS-HTX",
+              "G28-SCS-RHR"
+            ]
+          },
+          {
+            "id": "G28-SCS-RHR",
+            "type": "AND",
+            "inputs": [
+              "L3-G28A-SCS-RHR",
+              "F-G23-SCS211"
+            ]
+          },
+          {
+            "id": "G35-SCS-RHR",
+            "type": "AND",
+            "inputs": [
+              "I1-G16-SCS-RHR",
+              "G15-SCS-RHR"
+            ]
+          },
+          {
+            "id": "G36-SCS-RHR",
+            "type": "AND",
+            "inputs": [
+              "RHR-MOV-OP-X60",
+              "RHR-MOV-OP-X61"
+            ]
+          },
+          {
+            "id": "L3-G28A-SCS-RHR",
+            "type": "OR",
+            "inputs": [
+              "RHR-MOV-OC-X41-A",
+              "RHR-MOV-OC-X42-A"
+            ]
+          },
+          {
+            "id": "L1-G27-SCS-HTX",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "I2-G17-SCS-A",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "I3-G18-SHS-A",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "F-G23-SCS211",
+            "type": "OR",
+            "inputs": [
+              "RHR-MOV-OC-X41-B",
+              "RHR-MOV-OC-X42-B"
+            ]
+          },
+          {
+            "id": "I2-G17-SCS-B",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "I3-G18-SHS-B",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "F-G23-SCS3012",
+            "type": "OR",
+            "inputs": [
+              "I2-G17-SCS-B",
+              "I3-G18-SHS-B"
+            ]
+          }
+        ],
+        "basic_events": [
+          "L1-G27-SCS-HTX",
+          "RHR-MOV-OP-X61",
+          "RHR-MOV-OC-X42-A",
+          "I2-G17-SCS-A",
+          "RHR-FLT-LK-X32",
+          "I1-G16-SCS-RHR",
+          "RHR-FLT-LK-X64",
+          "RHR-MOV-OC-X42-B",
+          "L3-G28A-SCS-RHR",
+          "F-G23-SCS3012",
+          "RHR-MOV-OP-X66",
+          "RHR-MOV-OC-X41-A",
+          "RHR-RCP-FO-X35",
+          "RHR-MOV-OC-X41-B",
+          "RHR-MOV-OP-X60",
+          "RHR-MOV-OP-X21",
+          "F-G23-SCS211",
+          "I2-G17-SCS-B",
+          "RHR-MOV-OP-X22",
+          "I3-G18-SHS-B",
+          "RHR-PSF-RP-X34",
+          "RHR-MOV-OP-X65",
+          "RHR-FLT-LK-X63",
+          "I3-G18-SHS-A"
+        ]
+      },
+      {
+        "id": "G1-G1311-A",
+        "name": "G1-G1311-A",
+        "gates": [
+          {
+            "id": "G11-G167",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G1-G13133",
+            "type": "AND",
+            "inputs": [
+              "G1-G131333",
+              "G1-G131334",
+              "G1-G131335"
+            ]
+          },
+          {
+            "id": "G1-G1311-A",
+            "type": "OR",
+            "inputs": [
+              "G1-G13133",
+              "G1-G13134",
+              "ACP-INV-UD-X149-A"
+            ]
+          },
+          {
+            "id": "G1-G131333",
+            "type": "OR",
+            "inputs": [
+              "G11-G167",
+              "DCP-CRB-OP-X154-A"
+            ]
+          },
+          {
+            "id": "G1-G131334",
+            "type": "OR",
+            "inputs": [
+              "G5-G145-RE-ALTERNATIVE",
+              "ACP-TFM-UD-X156-A",
+              "ACP-CRB-OP-X157-A"
+            ]
+          },
+          {
+            "id": "G1-G131335",
+            "type": "OR",
+            "inputs": [
+              "G5-G145-RE-NORMAL",
+              "ACP-CRB-OP-X152-A",
+              "ACP-CRB-OP-X158-A"
+            ]
+          },
+          {
+            "id": "G1-G13134",
+            "type": "OR",
+            "inputs": [
+              "ACP-XSW-OP-X150",
+              "ACP-XSW-XE-X151"
+            ]
+          },
+          {
+            "id": "G5-G145-RE-ALTERNATIVE",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G5-G145-RE-NORMAL",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "ACP-TFM-UD-X156-A",
+          "ACP-INV-UD-X149-A",
+          "DCP-CRB-OP-X154-A",
+          "ACP-CRB-OP-X152-A",
+          "ACP-CRB-OP-X157-A",
+          "ACP-XSW-OP-X150",
+          "ACP-CRB-OP-X158-A",
+          "ACP-XSW-XE-X151"
+        ]
+      },
+      {
+        "id": "G1-G1311-B",
+        "name": "G1-G1311-B",
+        "gates": [
+          {
+            "id": "G11-G167",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G5-G145-RE-ALTERNATIVE",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G1-G1311-B",
+            "type": "OR",
+            "inputs": [
+              "G1-G1311-B3",
+              "G1-G1311-B4",
+              "ACP-INV-UD-X149-B"
+            ]
+          },
+          {
+            "id": "G1-G1311-B3",
+            "type": "AND",
+            "inputs": [
+              "G1-G1311-B33",
+              "G1-G1311-B34",
+              "G1-G1311-B35"
+            ]
+          },
+          {
+            "id": "G1-G1311-B33",
+            "type": "OR",
+            "inputs": [
+              "G11-G167",
+              "DCP-CRB-OP-X154-B"
+            ]
+          },
+          {
+            "id": "G1-G1311-B34",
+            "type": "OR",
+            "inputs": [
+              "G5-G145-RE-ALTERNATIVE",
+              "ACP-TFM-UD-X156-B",
+              "ACP-CRB-OP-X157-B"
+            ]
+          },
+          {
+            "id": "G1-G1311-B35",
+            "type": "OR",
+            "inputs": [
+              "G5-G145-RE-NORMAL",
+              "ACP-CRB-OP-X152-B",
+              "ACP-CRB-OP-X158-B"
+            ]
+          },
+          {
+            "id": "G1-G1311-B4",
+            "type": "OR",
+            "inputs": [
+              "ACP-XSW-OP-X150-B",
+              "ACP-XSW-XE-X151-B"
+            ]
+          },
+          {
+            "id": "G5-G145-RE-NORMAL",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "ACP-TFM-UD-X156-B",
+          "ACP-XSW-XE-X151-B",
+          "ACP-XSW-OP-X150-B",
+          "ACP-CRB-OP-X157-B",
+          "DCP-CRB-OP-X154-B",
+          "ACP-CRB-OP-X158-B",
+          "ACP-INV-UD-X149-B",
+          "ACP-CRB-OP-X152-B"
+        ]
+      },
+      {
+        "id": "G1-G1311-C",
+        "name": "G1-G1311-C",
+        "gates": [
+          {
+            "id": "G11-G167",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G5-G145-RE-ALTERNATIVE",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G1-G1311-C",
+            "type": "OR",
+            "inputs": [
+              "G1-G1311-C3",
+              "G1-G1311-C4",
+              "ACP-INV-UD-X149-C"
+            ]
+          },
+          {
+            "id": "G1-G1311-C3",
+            "type": "AND",
+            "inputs": [
+              "G1-G1311-C33",
+              "G1-G1311-C34",
+              "G1-G1311-C35"
+            ]
+          },
+          {
+            "id": "G1-G1311-C33",
+            "type": "OR",
+            "inputs": [
+              "G11-G167",
+              "DCP-CRB-OP-X154-C"
+            ]
+          },
+          {
+            "id": "G1-G1311-C34",
+            "type": "OR",
+            "inputs": [
+              "G5-G145-RE-ALTERNATIVE",
+              "ACP-TFM-UD-X156-C",
+              "ACP-CRB-OP-X157-C"
+            ]
+          },
+          {
+            "id": "G1-G1311-C35",
+            "type": "OR",
+            "inputs": [
+              "G5-G145-RE-NORMAL",
+              "ACP-CRB-OP-X152-C",
+              "ACP-CRB-OP-X158-C"
+            ]
+          },
+          {
+            "id": "G1-G1311-C4",
+            "type": "OR",
+            "inputs": [
+              "ACP-XSW-OP-X150-C",
+              "ACP-XSW-XE-X151-C"
+            ]
+          },
+          {
+            "id": "G5-G145-RE-NORMAL",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "ACP-CRB-OP-X152-C",
+          "ACP-TFM-UD-X156-C",
+          "ACP-CRB-OP-X157-C",
+          "ACP-INV-UD-X149-C",
+          "ACP-XSW-XE-X151-C",
+          "ACP-CRB-OP-X158-C",
+          "DCP-CRB-OP-X154-C",
+          "ACP-XSW-OP-X150-C"
+        ]
+      },
+      {
+        "id": "G1-G1311-D",
+        "name": "G1-G1311-D",
+        "gates": [
+          {
+            "id": "G11-G167",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G5-G145-RE-ALTERNATIVE",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G1-G1311-D",
+            "type": "OR",
+            "inputs": [
+              "G1-G1311-D3",
+              "G1-G1311-D4",
+              "ACP-INV-UD-X149-D"
+            ]
+          },
+          {
+            "id": "G1-G1311-D3",
+            "type": "AND",
+            "inputs": [
+              "G1-G1311-D33",
+              "G1-G1311-D34",
+              "G1-G1311-D35"
+            ]
+          },
+          {
+            "id": "G1-G1311-D33",
+            "type": "OR",
+            "inputs": [
+              "G11-G167",
+              "DCP-CRB-OP-X154-D"
+            ]
+          },
+          {
+            "id": "G1-G1311-D34",
+            "type": "OR",
+            "inputs": [
+              "G5-G145-RE-ALTERNATIVE",
+              "ACP-TFM-UD-X156-D",
+              "ACP-CRB-OP-X157-D"
+            ]
+          },
+          {
+            "id": "G1-G1311-D35",
+            "type": "OR",
+            "inputs": [
+              "G5-G145-RE-NORMAL",
+              "ACP-CRB-OP-X152-D",
+              "ACP-CRB-OP-X158-D"
+            ]
+          },
+          {
+            "id": "G1-G1311-D4",
+            "type": "OR",
+            "inputs": [
+              "ACP-XSW-OP-X150",
+              "ACP-XSW-XE-X151"
+            ]
+          },
+          {
+            "id": "G5-G145-RE-NORMAL",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "ACP-CRB-OP-X158-D",
+          "ACP-CRB-OP-X157-D",
+          "ACP-CRB-OP-X152-D",
+          "ACP-INV-UD-X149-D",
+          "DCP-CRB-OP-X154-D",
+          "ACP-XSW-OP-X150",
+          "ACP-XSW-XE-X151",
+          "ACP-TFM-UD-X156-D"
+        ]
+      },
+      {
+        "id": "G11-G167",
+        "name": "G11-G167",
+        "gates": [
+          {
+            "id": "G11-G167",
+            "type": "AND",
+            "inputs": [
+              "G11-G1670",
+              "G11-G1671",
+              "G11-G1672",
+              "G11-G1673"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-D",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G11-G1670",
+            "type": "OR",
+            "inputs": [
+              "G11-G16700",
+              "G12-G178-RE-A"
+            ]
+          },
+          {
+            "id": "G11-G16700",
+            "type": "OR",
+            "inputs": [
+              "DCP-CRB-OP-X185",
+              "DCP-CRB-OP-X186"
+            ]
+          },
+          {
+            "id": "G11-G1671",
+            "type": "OR",
+            "inputs": [
+              "G11-G16710",
+              "G12-G178-RE-B"
+            ]
+          },
+          {
+            "id": "G11-G16710",
+            "type": "OR",
+            "inputs": [
+              "DCP-CRB-OP-X191",
+              "DCP-CRB-OP-X192"
+            ]
+          },
+          {
+            "id": "G11-G1672",
+            "type": "OR",
+            "inputs": [
+              "G11-G16720",
+              "G12-G178-RE-C"
+            ]
+          },
+          {
+            "id": "G11-G16720",
+            "type": "OR",
+            "inputs": [
+              "DCP-CRB-OP-X175",
+              "DCP-CRB-OP-X176"
+            ]
+          },
+          {
+            "id": "G11-G1673",
+            "type": "OR",
+            "inputs": [
+              "G11-G16730",
+              "G12-G178-RE-D"
+            ]
+          },
+          {
+            "id": "G11-G16730",
+            "type": "OR",
+            "inputs": [
+              "DCP-CRB-OP-X177",
+              "DCP-CRB-OP-X179"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-A",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G12-G178-RE-B",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G12-G178-RE-C",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "DCP-CRB-OP-X186",
+          "DCP-CRB-OP-X191",
+          "DCP-CRB-OP-X179",
+          "DCP-CRB-OP-X192",
+          "DCP-CRB-OP-X177",
+          "DCP-CRB-OP-X176",
+          "DCP-CRB-OP-X175",
+          "DCP-CRB-OP-X185"
+        ]
+      },
+      {
+        "id": "G12-G178-RE-A",
+        "name": "G12-G178-RE-A",
+        "gates": [
+          {
+            "id": "G12-G178-RE-A",
+            "type": "AND",
+            "inputs": [
+              "G12-G178-RE-A2",
+              "G12-G178-RE-A3"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-A2",
+            "type": "OR",
+            "inputs": [
+              "G12-G178-RE-A22",
+              "ACP-CRB-OP-X193-A"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-A22",
+            "type": "AND",
+            "inputs": [
+              "G12-G178-RE-A222",
+              "G12-G178-RE-A223"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-A222",
+            "type": "OR",
+            "inputs": [
+              "G12-G178-RE-A2223",
+              "ACP-CRB-CO-X196-A",
+              "DCP-BAT-FO-X197-A"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-A2223",
+            "type": "OR",
+            "inputs": [
+              "DCP-CRB-OO-X199-A",
+              "DCP-CRB-XE-X200-A"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-A223",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-OP-X201-A",
+              "DCP-BAT-FO-X202-A",
+              "G12-G178-RE-A2233"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-A2233",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-CO-X204-A",
+              "ACP-CRB-XE-X205-A"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-A3",
+            "type": "OR",
+            "inputs": [
+              "DCP-BAT-FO-X195-A",
+              "DCP-CRB-UD-X194-A"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ACP-CRB-CO-X204-A",
+          "ACP-CRB-CO-X196-A",
+          "ACP-CRB-XE-X205-A",
+          "DCP-CRB-UD-X194-A",
+          "DCP-CRB-XE-X200-A",
+          "ACP-CRB-OP-X193-A",
+          "DCP-CRB-OO-X199-A",
+          "ACP-CRB-OP-X201-A",
+          "DCP-BAT-FO-X195-A",
+          "DCP-BAT-FO-X202-A",
+          "DCP-BAT-FO-X197-A"
+        ]
+      },
+      {
+        "id": "G12-G178-RE-B",
+        "name": "G12-G178-RE-B",
+        "gates": [
+          {
+            "id": "G12-G178-RE-B",
+            "type": "AND",
+            "inputs": [
+              "G12-G178-RE-B2",
+              "G12-G178-RE-B3"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-B2",
+            "type": "OR",
+            "inputs": [
+              "G12-G178-RE-B22",
+              "ACP-CRB-OP-X193-B"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-B22",
+            "type": "AND",
+            "inputs": [
+              "G12-G178-RE-B222",
+              "G12-G178-RE-B223"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-B222",
+            "type": "OR",
+            "inputs": [
+              "G12-G178-RE-B2223",
+              "DCP-BAT-FO-X197-B",
+              "ACP-CRB-CO-X196-B"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-B2223",
+            "type": "OR",
+            "inputs": [
+              "DCP-CRB-OO-X199-B",
+              "DCP-CRB-XE-X200-B"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-B223",
+            "type": "OR",
+            "inputs": [
+              "G12-G178-RE-B2233",
+              "ACP-CRB-OP-X201-B",
+              "DCP-BAT-FO-X202-B"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-B2233",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-CO-X204-B",
+              "ACP-CRB-XE-X205-B"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-B3",
+            "type": "OR",
+            "inputs": [
+              "DCP-CRB-UD-X194-B",
+              "DCP-BAT-FO-X195-B"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ACP-CRB-XE-X205-B",
+          "DCP-BAT-FO-X202-B",
+          "ACP-CRB-CO-X196-B",
+          "DCP-CRB-OO-X199-B",
+          "ACP-CRB-OP-X193-B",
+          "DCP-BAT-FO-X197-B",
+          "DCP-BAT-FO-X195-B",
+          "ACP-CRB-CO-X204-B",
+          "ACP-CRB-OP-X201-B",
+          "DCP-CRB-UD-X194-B",
+          "DCP-CRB-XE-X200-B"
+        ]
+      },
+      {
+        "id": "G12-G178-RE-C",
+        "name": "G12-G178-RE-C",
+        "gates": [
+          {
+            "id": "G12-G178-RE-C",
+            "type": "AND",
+            "inputs": [
+              "G12-G178-RE-C2",
+              "G12-G178-RE-C3"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-C2",
+            "type": "OR",
+            "inputs": [
+              "G12-G178-RE-C22",
+              "ACP-CRB-OP-X193-C"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-C22",
+            "type": "AND",
+            "inputs": [
+              "G12-G178-RE-C222",
+              "G12-G178-RE-C223"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-C222",
+            "type": "OR",
+            "inputs": [
+              "G12-G178-RE-C2223",
+              "ACP-CRB-CO-X196-C",
+              "DCP-BAT-FO-X197-C"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-C2223",
+            "type": "OR",
+            "inputs": [
+              "DCP-CRB-OO-X199-C",
+              "DCP-CRB-XE-X200-C"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-C223",
+            "type": "OR",
+            "inputs": [
+              "G12-G178-RE-C2233",
+              "ACP-CRB-OP-X201-C",
+              "DCP-BAT-FO-X202-C"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-C2233",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-CO-X204-C",
+              "ACP-CRB-XE-X205-C"
+            ]
+          },
+          {
+            "id": "G12-G178-RE-C3",
+            "type": "OR",
+            "inputs": [
+              "DCP-CRB-UD-X194-C",
+              "DCP-BAT-FO-X195-C"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ACP-CRB-OP-X193-C",
+          "DCP-BAT-FO-X202-C",
+          "DCP-BAT-FO-X197-C",
+          "DCP-CRB-OO-X199-C",
+          "DCP-CRB-XE-X200-C",
+          "DCP-BAT-FO-X195-C",
+          "DCP-CRB-UD-X194-C",
+          "ACP-CRB-CO-X204-C",
+          "ACP-CRB-XE-X205-C",
+          "ACP-CRB-OP-X201-C",
+          "ACP-CRB-CO-X196-C"
+        ]
+      },
+      {
+        "id": "G12-G178-RE-D",
+        "name": "G12-G178-RE-D",
+        "gates": [
+          {
+            "id": "G12-G178-RE-D",
+            "type": "AND",
+            "inputs": [
+              "G179",
+              "G180"
+            ]
+          },
+          {
+            "id": "G179",
+            "type": "OR",
+            "inputs": [
+              "G181",
+              "ACP-CRB-OP-X193-D"
+            ]
+          },
+          {
+            "id": "G181",
+            "type": "AND",
+            "inputs": [
+              "G182",
+              "G183"
+            ]
+          },
+          {
+            "id": "G182",
+            "type": "OR",
+            "inputs": [
+              "G184",
+              "ACP-CRB-CO-X196-D",
+              "DCP-BAT-FO-X197-D"
+            ]
+          },
+          {
+            "id": "G184",
+            "type": "OR",
+            "inputs": [
+              "DCP-CRB-OO-X199-D",
+              "DCP-CRB-XE-X200-D"
+            ]
+          },
+          {
+            "id": "G183",
+            "type": "OR",
+            "inputs": [
+              "G185",
+              "ACP-CRB-OP-X201-D",
+              "DCP-BAT-FO-X202-D"
+            ]
+          },
+          {
+            "id": "G185",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-CO-X204-D",
+              "ACP-CRB-XE-X205-D"
+            ]
+          },
+          {
+            "id": "G180",
+            "type": "OR",
+            "inputs": [
+              "DCP-CRB-UD-X194-D",
+              "DCP-BAT-FO-X195-D"
+            ]
+          }
+        ],
+        "basic_events": [
+          "DCP-BAT-FO-X195-D",
+          "ACP-CRB-OP-X193-D",
+          "DCP-BAT-FO-X197-D",
+          "DCP-CRB-UD-X194-D",
+          "ACP-CRB-CO-X196-D",
+          "ACP-CRB-OP-X201-D",
+          "ACP-CRB-CO-X204-D",
+          "DCP-CRB-XE-X200-D",
+          "DCP-CRB-OO-X199-D",
+          "DCP-BAT-FO-X202-D",
+          "ACP-CRB-XE-X205-D"
+        ]
+      },
+      {
+        "id": "G2-G207",
+        "name": "G2-G207",
+        "gates": [
+          {
+            "id": "G2-G207",
+            "type": "OR",
+            "inputs": [
+              "ACP-VCF-UD-X314",
+              "ACP-TFM-FO-X315",
+              "ACP-VCF-UD-X316"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ACP-VCF-UD-X316",
+          "ACP-TFM-FO-X315",
+          "ACP-VCF-UD-X314"
+        ]
+      },
+      {
+        "id": "G2C-SCS-4COOLING-4A",
+        "name": "G2C-SCS-4COOLING-4A",
+        "gates": [
+          {
+            "id": "G20-SCS-4COOLING",
+            "type": "AND",
+            "inputs": [
+              "RPS-VCF-FO-X1-4COOLING-4A",
+              "SDC-XHE-XE-X20-4COOLING-4A"
+            ]
+          },
+          {
+            "id": "G2C-SCS-4COOLING-4A",
+            "type": "OR",
+            "inputs": [
+              "G20-SCS-4COOLING",
+              "SDC-ICC-FO-X19-4COOLING-4A"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SDC-XHE-XE-X20-4COOLING-4A",
+          "RPS-VCF-FO-X1-4COOLING-4A",
+          "SDC-ICC-FO-X19-4COOLING-4A"
+        ]
+      },
+      {
+        "id": "G2C-SCS-4COOLING-4B",
+        "name": "G2C-SCS-4COOLING-4B",
+        "gates": [
+          {
+            "id": "G2C-SCS-4COOLING-4B",
+            "type": "OR",
+            "inputs": [
+              "G2C-SCS-4COOLING-4B2",
+              "SDC-ICC-FO-X19-4COOLING-4B"
+            ]
+          },
+          {
+            "id": "G2C-SCS-4COOLING-4B2",
+            "type": "AND",
+            "inputs": [
+              "RPS-VCF-FO-X1-4COOLING-4B",
+              "SDC-XHE-XE-X20-4COOLING-4B"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RPS-VCF-FO-X1-4COOLING-4B",
+          "SDC-XHE-XE-X20-4COOLING-4B",
+          "SDC-ICC-FO-X19-4COOLING-4B"
+        ]
+      },
+      {
+        "id": "G2C-SCS-4COOLING-4C",
+        "name": "G2C-SCS-4COOLING-4C",
+        "gates": [
+          {
+            "id": "G2C-SCS-4COOLING-4C",
+            "type": "OR",
+            "inputs": [
+              "G2C-SCS-4COOLING-4C2",
+              "SDC-ICC-FO-X19-4COOLING-4C"
+            ]
+          },
+          {
+            "id": "G2C-SCS-4COOLING-4C2",
+            "type": "AND",
+            "inputs": [
+              "RPS-VCF-FO-X1-4COOLING-4C",
+              "SDC-XHE-XE-X20-4COOLING-4C"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SDC-XHE-XE-X20-4COOLING-4C",
+          "RPS-VCF-FO-X1-4COOLING-4C",
+          "SDC-ICC-FO-X19-4COOLING-4C"
+        ]
+      },
+      {
+        "id": "G2C-SCS-4COOLING-4D",
+        "name": "G2C-SCS-4COOLING-4D",
+        "gates": [
+          {
+            "id": "G2C-SCS-4COOLING-4D",
+            "type": "OR",
+            "inputs": [
+              "G2C-SCS-4COOLING-4D2",
+              "SDC-ICC-FO-X19-4COOLING-4D"
+            ]
+          },
+          {
+            "id": "G2C-SCS-4COOLING-4D2",
+            "type": "AND",
+            "inputs": [
+              "RPS-VCF-FO-X1-4COOLING-4D",
+              "SDC-XHE-XE-X20-4COOLING-4D"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SDC-XHE-XE-X20-4COOLING-4D",
+          "RPS-VCF-FO-X1-4COOLING-4D",
+          "SDC-ICC-FO-X19-4COOLING-4D"
+        ]
+      },
+      {
+        "id": "G3-ADS",
+        "name": "G3-ADS",
+        "gates": [
+          {
+            "id": "G3-ADS",
+            "type": "AND",
+            "inputs": [
+              "RPS-XHE-XM-X7",
+              "G4-ADS"
+            ]
+          },
+          {
+            "id": "G4-ADS",
+            "type": "OR",
+            "inputs": [
+              "RPS-VCF-FA-X8",
+              "ACP-VCF-UD-X9"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RPS-VCF-FA-X8",
+          "RPS-XHE-XM-X7",
+          "ACP-VCF-UD-X9"
+        ]
+      },
+      {
+        "id": "G3-G236-RE",
+        "name": "G3-G236-RE",
+        "gates": [
+          {
+            "id": "G4-G235-RE",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G3-G236-RE",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-OP-X351",
+              "ACP-CRB-OP-X352",
+              "ACP-CRB-OP-X353",
+              "G4-G235-RE"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ACP-CRB-OP-X352",
+          "ACP-CRB-OP-X353",
+          "ACP-CRB-OP-X351"
+        ]
+      },
+      {
+        "id": "G4-G235-RE",
+        "name": "G4-G235-RE",
+        "gates": [
+          {
+            "id": "G4-G235-RE",
+            "type": "OR",
+            "inputs": [
+              "ACP-VCF-UD-X321",
+              "ACP-TFM-FS-X322",
+              "ACP-VCF-UD-X323"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ACP-VCF-UD-X321",
+          "ACP-TFM-FS-X322",
+          "ACP-VCF-UD-X323"
+        ]
+      },
+      {
+        "id": "G5-G145-RE-ALTERNATIVE",
+        "name": "G5-G145-RE-ALTERNATIVE",
+        "gates": [
+          {
+            "id": "G6-G218",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G5-G145-RE-ALTERNATIVE",
+            "type": "OR",
+            "inputs": [
+              "ACP-VCF-UD-X164-ALT",
+              "ACP-TFM-FO-X165-ALT",
+              "ACP-CRB-OP-X166-ALT",
+              "G6-G218"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ACP-TFM-FO-X165-ALT",
+          "ACP-VCF-UD-X164-ALT",
+          "ACP-CRB-OP-X166-ALT"
+        ]
+      },
+      {
+        "id": "G5-G145-RE-NORMAL",
+        "name": "G5-G145-RE-NORMAL",
+        "gates": [
+          {
+            "id": "G6-G218",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G5-G145-RE-NORMAL",
+            "type": "OR",
+            "inputs": [
+              "G6-G218",
+              "ACP-VCF-UD-X164-NORMAL",
+              "ACP-TFM-FO-X165-NORMAL",
+              "ACP-CRB-OP-X166-NORMAL"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ACP-VCF-UD-X164-NORMAL",
+          "ACP-CRB-OP-X166-NORMAL",
+          "ACP-TFM-FO-X165-NORMAL"
+        ]
+      },
+      {
+        "id": "G6-G218",
+        "name": "G6-G218",
+        "gates": [
+          {
+            "id": "G7-G234",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G6-G218",
+            "type": "OR",
+            "inputs": [
+              "G219",
+              "G220"
+            ]
+          },
+          {
+            "id": "G219",
+            "type": "OR",
+            "inputs": [
+              "ACP-LOD-UD-X301",
+              "G221"
+            ]
+          },
+          {
+            "id": "G221",
+            "type": "AND",
+            "inputs": [
+              "G222",
+              "G6-G218012"
+            ]
+          },
+          {
+            "id": "G222",
+            "type": "AND",
+            "inputs": [
+              "G225",
+              "G8-G234"
+            ]
+          },
+          {
+            "id": "G225",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-OP-X305",
+              "G2-G207"
+            ]
+          },
+          {
+            "id": "G8-G234",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G224",
+            "type": "AND",
+            "inputs": [
+              "G226",
+              "G227"
+            ]
+          },
+          {
+            "id": "G226",
+            "type": "OR",
+            "inputs": [
+              "ACP-MGN-FO-X306",
+              "ACP-CRB-OP-X307",
+              "ACP-CRB-OP-X308",
+              "ACP-CRB-OP-X3096",
+              "ACP-CRB-OP-X310",
+              "ACP-CRB-CL-X311"
+            ]
+          },
+          {
+            "id": "G227",
+            "type": "OR",
+            "inputs": [
+              "ACP-MGN-FO-X312",
+              "ACP-CRB-OP-X313"
+            ]
+          },
+          {
+            "id": "G223",
+            "type": "OR",
+            "inputs": [
+              "G10-G208-TRANSFER",
+              "ACP-CRB-OP-X303",
+              "ACP-CRB-OP-X304"
+            ]
+          },
+          {
+            "id": "G10-G208-TRANSFER",
+            "type": "OR",
+            "inputs": [
+              "G9-G209",
+              "ACP-TFM-FO-X227"
+            ]
+          },
+          {
+            "id": "G220",
+            "type": "OR",
+            "inputs": [
+              "ACP-LOD-UD-X302",
+              "G7-G234"
+            ]
+          },
+          {
+            "id": "G2-G207",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G9-G209",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G6-G218012",
+            "type": "OR",
+            "inputs": [
+              "G6-G218013",
+              "ACP-MGN-BETA"
+            ]
+          },
+          {
+            "id": "G6-G218013",
+            "type": "AND",
+            "inputs": [
+              "G224",
+              "G223"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ACP-CRB-OP-X307",
+          "ACP-MGN-BETA",
+          "ACP-TFM-FO-X227",
+          "ACP-CRB-OP-X308",
+          "ACP-CRB-OP-X313",
+          "ACP-CRB-OP-X304",
+          "ACP-CRB-CL-X311",
+          "ACP-LOD-UD-X301",
+          "ACP-LOD-UD-X302",
+          "ACP-CRB-OP-X3096",
+          "ACP-CRB-OP-X303",
+          "ACP-CRB-OP-X310",
+          "ACP-CRB-OP-X305",
+          "ACP-MGN-FO-X312",
+          "ACP-MGN-FO-X306"
+        ]
+      },
+      {
+        "id": "G7-G234",
+        "name": "G7-G234",
+        "gates": [
+          {
+            "id": "G7-G234",
+            "type": "AND",
+            "inputs": [
+              "G228",
+              "G229",
+              "G230"
+            ]
+          },
+          {
+            "id": "G228",
+            "type": "OR",
+            "inputs": [
+              "G231",
+              "G3-G236-RE"
+            ]
+          },
+          {
+            "id": "G231",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-OP-X341",
+              "ACP-CRB-OP-X342",
+              "G2-G207"
+            ]
+          },
+          {
+            "id": "G3-G236-RE",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G229",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-OP-X340",
+              "G2080"
+            ]
+          },
+          {
+            "id": "G230",
+            "type": "AND",
+            "inputs": [
+              "G232",
+              "G233"
+            ]
+          },
+          {
+            "id": "G232",
+            "type": "OR",
+            "inputs": [
+              "ACP-MGN-FO-X343",
+              "ACP-CRB-OP-X344",
+              "ACP-CRB-OP-X345",
+              "ACP-CRB-OP-X346",
+              "ACP-CRB-CL-X347"
+            ]
+          },
+          {
+            "id": "G233",
+            "type": "OR",
+            "inputs": [
+              "ACP-MGN-FO-X348",
+              "ACP-CRB-OP-X349",
+              "ACP-CRB-OP-X350"
+            ]
+          },
+          {
+            "id": "G2-G207",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G2080",
+            "type": "OR",
+            "inputs": [
+              "ACP-TFM-FO-X227",
+              "G9-G209"
+            ]
+          },
+          {
+            "id": "G9-G209",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "ACP-CRB-OP-X341",
+          "ACP-CRB-OP-X340",
+          "ACP-MGN-FO-X348",
+          "ACP-TFM-FO-X227",
+          "ACP-CRB-CL-X347",
+          "ACP-CRB-OP-X350",
+          "ACP-CRB-OP-X346",
+          "ACP-MGN-FO-X343",
+          "ACP-CRB-OP-X344",
+          "ACP-CRB-OP-X342",
+          "ACP-CRB-OP-X345",
+          "ACP-CRB-OP-X349"
+        ]
+      },
+      {
+        "id": "G8-G234",
+        "name": "G8-G234",
+        "gates": [
+          {
+            "id": "G8-G234",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-OP-X317",
+              "ACP-CRB-OP-X318",
+              "ACP-CRB-OP-X319",
+              "ACP-CRB-OP-X320",
+              "G4-G235-RE"
+            ]
+          },
+          {
+            "id": "G4-G235-RE",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "ACP-CRB-OP-X318",
+          "ACP-CRB-OP-X320",
+          "ACP-CRB-OP-X317",
+          "ACP-CRB-OP-X319"
+        ]
+      },
+      {
+        "id": "G9-G209",
+        "name": "G9-G209",
+        "gates": [
+          {
+            "id": "G9-G209",
+            "type": "AND",
+            "inputs": [
+              "G210-G9-HTS",
+              "G211-G9-HTS"
+            ]
+          },
+          {
+            "id": "G210-G9-HTS",
+            "type": "OR",
+            "inputs": [
+              "G212-G9-HTS",
+              "ACP-CRB-OP-X324"
+            ]
+          },
+          {
+            "id": "G211-G9-HTS",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-CL-X325",
+              "ACP-CRB-OP-X326",
+              "ACP-CRB-OP-X327",
+              "G213-G9-HTS"
+            ]
+          },
+          {
+            "id": "G212-G9-HTS",
+            "type": "OR",
+            "inputs": [
+              "ACP-TFM-LF-X329",
+              "ACP-MGN-FO-X328",
+              "G214-G9-HTS"
+            ]
+          },
+          {
+            "id": "G214-G9-HTS",
+            "type": "OR",
+            "inputs": [
+              "G216-G9-HTS",
+              "ACP-LOD-UD-X332",
+              "ACP-LOD-LP-X333"
+            ]
+          },
+          {
+            "id": "G216-G9-HTS",
+            "type": "OR",
+            "inputs": [
+              "ACP-XHE-XE-X336",
+              "ACP-LOG-FO-X337"
+            ]
+          },
+          {
+            "id": "G213-G9-HTS",
+            "type": "OR",
+            "inputs": [
+              "ACP-MGN-FO-X330",
+              "ACP-TFM-LF-X331",
+              "G215-G9-HTS"
+            ]
+          },
+          {
+            "id": "G215-G9-HTS",
+            "type": "OR",
+            "inputs": [
+              "G217-G9-HTS",
+              "ACP-LOD-UD-X334",
+              "ACP-LOD-LP-X335"
+            ]
+          },
+          {
+            "id": "G217-G9-HTS",
+            "type": "OR",
+            "inputs": [
+              "ACP-LOG-FO-X339",
+              "ACP-XHE-XE-X338"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ACP-XHE-XE-X336",
+          "ACP-TFM-LF-X331",
+          "ACP-CRB-CL-X325",
+          "ACP-CRB-OP-X326",
+          "ACP-LOD-UD-X334",
+          "ACP-XHE-XE-X338",
+          "ACP-LOG-FO-X337",
+          "ACP-MGN-FO-X330",
+          "ACP-LOD-LP-X333",
+          "ACP-LOD-LP-X335",
+          "ACP-LOG-FO-X339",
+          "ACP-MGN-FO-X328",
+          "ACP-CRB-OP-X327",
+          "ACP-TFM-LF-X329",
+          "ACP-LOD-UD-X332",
+          "ACP-CRB-OP-X324"
+        ]
+      },
+      {
+        "id": "H-HTS-CIRCULATOR1FAILS",
+        "name": "H-HTS-CIRCULATOR1FAILS",
+        "gates": [
+          {
+            "id": "H-HTS-CIRCULATOR1FAILS",
+            "type": "OR",
+            "inputs": [
+              "RCS-MDP-FO-X166A-CIRC1",
+              "RCS-MDP-FC-X167A-CIRC1",
+              "RCS-MDP-UD-X168A-CIRC1",
+              "G161"
+            ]
+          },
+          {
+            "id": "G161",
+            "type": "AND",
+            "inputs": [
+              "RCS-CRB-FO-X169A-CIRC1",
+              "RCS-CRB-FO-X170A-CIRC1"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RCS-CRB-FO-X169A-CIRC1",
+          "RCS-MDP-FC-X167A-CIRC1",
+          "RCS-MDP-UD-X168A-CIRC1",
+          "RCS-MDP-FO-X166A-CIRC1",
+          "RCS-CRB-FO-X170A-CIRC1"
+        ]
+      },
+      {
+        "id": "HPS-PUMPDOWN-HTS",
+        "name": "HPS-PUMPDOWN-HTS",
+        "gates": [
+          {
+            "id": "HPS-PUMPDOWN-HTS",
+            "type": "OR",
+            "inputs": [
+              "HPS-PUMPDOWN0",
+              "INT-DEP"
+            ]
+          },
+          {
+            "id": "INT-DEP",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "HPS-PUMPDOWN0",
+          "INT-DEP"
+        ]
+      },
+      {
+        "id": "HPS-PUMPDOWN-HTS-SCS",
+        "name": "HPS-PUMPDOWN-HTS-SCS",
+        "gates": [
+          {
+            "id": "INT-DEP",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "HPS-PUMPDOWN-HTS-SCS",
+            "type": "OR",
+            "inputs": [
+              "HPS-PUMPDOWN-HTS-SCS0",
+              "INT-DEP"
+            ]
+          }
+        ],
+        "basic_events": [
+          "HPS-PUMPDOWN-HTS-SCS0",
+          "INT-DEP"
+        ]
+      },
+      {
+        "id": "HTS-FAILURE",
+        "name": "HTS-FAILURE",
+        "gates": [
+          {
+            "id": "SWS-Q-G40",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "A-G5-HTS-TRAIN-1",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "HTS-FAILURE",
+            "type": "OR",
+            "inputs": [
+              "SWS-Q-G40",
+              "G2",
+              "G157",
+              "TBCCWS-D-G44",
+              "IAS-VCF-FO-X2",
+              "RPCWS-E-G101",
+              "NC1EPS-X-G200",
+              "C1E-UPS-G-G120",
+              "NSSS-G3"
+            ]
+          },
+          {
+            "id": "G2",
+            "type": "AND",
+            "inputs": [
+              "A-G5-HTS-TRAIN-1",
+              "A-G5-HTS-TRAIN-2"
+            ]
+          },
+          {
+            "id": "RPCWS-E-G101",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G157",
+            "type": "OR",
+            "inputs": [
+              "RPS-VCF-UD-X1A",
+              "RPS-VCF-UD-X1B",
+              "RPS-VCF-UD-X1C",
+              "RPS-VCF-UD-X1D"
+            ]
+          },
+          {
+            "id": "NSSS-G3",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "TBCCWS-D-G44",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "NC1EPS-X-G200",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "C1E-UPS-G-G120",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "A-G5-HTS-TRAIN-2",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "RPS-VCF-UD-X1C",
+          "SWS-Q-G40",
+          "TBCCWS-D-G44",
+          "RPCWS-E-G101",
+          "IAS-VCF-FO-X2",
+          "NC1EPS-X-G200",
+          "RPS-VCF-UD-X1A",
+          "RPS-VCF-UD-X1D",
+          "A-G5-HTS-TRAIN-1",
+          "A-G5-HTS-TRAIN-2",
+          "RPS-VCF-UD-X1B",
+          "NSSS-G3",
+          "C1E-UPS-G-G120"
+        ]
+      },
+      {
+        "id": "HTS-FAILURE-ATWS",
+        "name": "HTS-FAILURE-ATWS",
+        "gates": [
+          {
+            "id": "HTS-FAILURE",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "HTS-FAILURE-ATWS",
+            "type": "AND",
+            "inputs": [
+              "HTS-FAILURE-ATWS1",
+              "HTS-FAILURE"
+            ]
+          }
+        ],
+        "basic_events": [
+          "HTS-FAILURE-ATWS1",
+          "HTS-FAILURE"
+        ]
+      },
+      {
+        "id": "HTS-FAILURE-ATWS-1",
+        "name": "HTS-FAILURE-ATWS-1",
+        "gates": [
+          {
+            "id": "HTS-FAILURE-ATWS-1",
+            "type": "OR",
+            "inputs": [
+              "HTS-FAILURE-ATWS-10"
+            ]
+          }
+        ],
+        "basic_events": [
+          "HTS-FAILURE-ATWS-10"
+        ]
+      },
+      {
+        "id": "HTS-FAILURE-ATWS-2",
+        "name": "HTS-FAILURE-ATWS-2",
+        "gates": [
+          {
+            "id": "HTS-FAILURE-ATWS-2",
+            "type": "OR",
+            "inputs": [
+              "HTS-FAILURE-ATWS-20"
+            ]
+          }
+        ],
+        "basic_events": [
+          "HTS-FAILURE-ATWS-20"
+        ]
+      },
+      {
+        "id": "HTS-FAILURE-CONTROL-ROD",
+        "name": "HTS-FAILURE-CONTROL-ROD",
+        "gates": [
+          {
+            "id": "HTS-FAILURE-CONTROL-ROD",
+            "type": "OR",
+            "inputs": [
+              "HTS-FAILURE-CONTROL-ROD0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "HTS-FAILURE-CONTROL-ROD0"
+        ]
+      },
+      {
+        "id": "HTS-FAILURE-LK-SIZE",
+        "name": "HTS-FAILURE-LK-SIZE",
+        "gates": [
+          {
+            "id": "HTS-FAILURE-PRIMARY-LOCA",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "HTS-FAILURE-LK-SIZE",
+            "type": "OR",
+            "inputs": [
+              "HTS-FAILURE-PRIMARY-LOCA",
+              "HTS-FAILURE-LK-SIZE1"
+            ]
+          }
+        ],
+        "basic_events": [
+          "HTS-FAILURE-PRIMARY-LOCA",
+          "HTS-FAILURE-LK-SIZE1"
+        ]
+      },
+      {
+        "id": "HTS-FAILURE-PRIMARY-LOCA",
+        "name": "HTS-FAILURE-PRIMARY-LOCA",
+        "gates": [
+          {
+            "id": "SWS-Q-G40",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "A-G5-HTS-TRAIN-1",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "RPCWS-E-G101",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "NSSS-G3",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "TBCCWS-D-G44",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "NC1EPS-X-G200",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "C1E-UPS-G-G120",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "A-G5-HTS-TRAIN-2",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "HTS-FAILURE-PRIMARY-LOCA",
+            "type": "OR",
+            "inputs": [
+              "SWS-Q-G40",
+              "HTS-FAILURE-PRIMARY-LOCA9",
+              "HTS-FAILURE-PRIMARY-LOCA10",
+              "TBCCWS-D-G44",
+              "IAS-VCF-FO-X2",
+              "RPCWS-E-G101",
+              "NC1EPS-X-G200",
+              "C1E-UPS-G-G120",
+              "NSSS-G3"
+            ]
+          },
+          {
+            "id": "HTS-FAILURE-PRIMARY-LOCA9",
+            "type": "AND",
+            "inputs": [
+              "A-G5-HTS-TRAIN-1",
+              "A-G5-HTS-TRAIN-2"
+            ]
+          },
+          {
+            "id": "HTS-FAILURE-PRIMARY-LOCA10",
+            "type": "OR",
+            "inputs": [
+              "RPS-VCF-UD-X1A",
+              "RPS-VCF-UD-X1B",
+              "RPS-VCF-UD-X1C",
+              "RPS-VCF-UD-X1D"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RPS-VCF-UD-X1C",
+          "SWS-Q-G40",
+          "IAS-VCF-FO-X2",
+          "TBCCWS-D-G44",
+          "RPCWS-E-G101",
+          "HTS-FAILURE-PRIMARY-LOCA9",
+          "NC1EPS-X-G200",
+          "RPS-VCF-UD-X1A",
+          "RPS-VCF-UD-X1D",
+          "A-G5-HTS-TRAIN-1",
+          "A-G5-HTS-TRAIN-2",
+          "RPS-VCF-UD-X1B",
+          "NSSS-G3",
+          "HTS-FAILURE-PRIMARY-LOCA10",
+          "C1E-UPS-G-G120"
+        ]
+      },
+      {
+        "id": "HTS-NO-MODULES-1",
+        "name": "HTS-NO-MODULES-1",
+        "gates": [
+          {
+            "id": "HTS-NO-MODULES-1",
+            "type": "OR",
+            "inputs": [
+              "HTS-NO-MODULES-1-EVENT"
+            ]
+          }
+        ],
+        "basic_events": [
+          "HTS-NO-MODULES-1-EVENT"
+        ]
+      },
+      {
+        "id": "HTS-NO-MODULES-14",
+        "name": "HTS-NO-MODULES-14",
+        "gates": [
+          {
+            "id": "HTS-NO-MODULES-14",
+            "type": "OR",
+            "inputs": [
+              "HTS-NO-MODULES-14-EVENT"
+            ]
+          }
+        ],
+        "basic_events": [
+          "HTS-NO-MODULES-14-EVENT"
+        ]
+      },
+      {
+        "id": "HTS-NO-MODULES-2",
+        "name": "HTS-NO-MODULES-2",
+        "gates": [
+          {
+            "id": "HTS-NO-MODULES-2",
+            "type": "OR",
+            "inputs": [
+              "HTS-NO-MODULES-2-EVENT"
+            ]
+          }
+        ],
+        "basic_events": [
+          "HTS-NO-MODULES-2-EVENT"
+        ]
+      },
+      {
+        "id": "HTS-NO-MODULES-3",
+        "name": "HTS-NO-MODULES-3",
+        "gates": [
+          {
+            "id": "HTS-NO-MODULES-3",
+            "type": "OR",
+            "inputs": [
+              "HTS-NO-MODULES-3-EVENT"
+            ]
+          }
+        ],
+        "basic_events": [
+          "HTS-NO-MODULES-3-EVENT"
+        ]
+      },
+      {
+        "id": "HTS-NO-MODULES-4",
+        "name": "HTS-NO-MODULES-4",
+        "gates": [
+          {
+            "id": "HTS-NO-MODULES-4",
+            "type": "OR",
+            "inputs": [
+              "HTS-NO-MODULES-4-EVENT"
+            ]
+          }
+        ],
+        "basic_events": [
+          "HTS-NO-MODULES-4-EVENT"
+        ]
+      },
+      {
+        "id": "I-G27-TRAIN-2",
+        "name": "I-G27-TRAIN-2",
+        "gates": [
+          {
+            "id": "I-G27-TRAIN-2",
+            "type": "OR",
+            "inputs": [
+              "I2-G28-TRAIN-2",
+              "I4-G34-TRAIN-2",
+              "I5-G37-TRAIN-2"
+            ]
+          },
+          {
+            "id": "I2-G28-TRAIN-2",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "I4-G34-TRAIN-2",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "I5-G37-TRAIN-2",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "I4-G34-TRAIN-2",
+          "I2-G28-TRAIN-2",
+          "I5-G37-TRAIN-2"
+        ]
+      },
+      {
+        "id": "I-G27-TRAIN1",
+        "name": "I-G27-TRAIN1",
+        "gates": [
+          {
+            "id": "I-G27-TRAIN1",
+            "type": "OR",
+            "inputs": [
+              "I2-G28-TRAIN1",
+              "I4-G34-TRAIN1",
+              "I5-G37-TRAIN1"
+            ]
+          },
+          {
+            "id": "I2-G28-TRAIN1",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "I4-G34-TRAIN1",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "I5-G37-TRAIN1",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "I2-G28-TRAIN1",
+          "I5-G37-TRAIN1",
+          "I4-G34-TRAIN1"
+        ]
+      },
+      {
+        "id": "I2-G17-SCS-A",
+        "name": "I2-G17-SCS-A",
+        "gates": [
+          {
+            "id": "I2-G17-SCS-A",
+            "type": "OR",
+            "inputs": [
+              "RHR-MDP-FO-X23-A",
+              "RHR-MOV-CL-X24-A",
+              "RHR-MOV-CL-X25-A"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RHR-MOV-CL-X24-A",
+          "RHR-MOV-CL-X25-A",
+          "RHR-MDP-FO-X23-A"
+        ]
+      },
+      {
+        "id": "I2-G17-SCS-B",
+        "name": "I2-G17-SCS-B",
+        "gates": [
+          {
+            "id": "I2-G17-SCS-B",
+            "type": "OR",
+            "inputs": [
+              "RHR-MDP-FO-X23-B",
+              "RHR-MOV-CL-X24-B",
+              "RHR-MOV-CL-X25-B"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RHR-MOV-CL-X24-B",
+          "RHR-MOV-CL-X25-B",
+          "RHR-MDP-FO-X23-B"
+        ]
+      },
+      {
+        "id": "I2-G28-TRAIN-2",
+        "name": "I2-G28-TRAIN-2",
+        "gates": [
+          {
+            "id": "I2-G28-TRAIN-2",
+            "type": "AND",
+            "inputs": [
+              "G29",
+              "G30"
+            ]
+          },
+          {
+            "id": "I3-G31-TRAIN-2",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G29",
+            "type": "OR",
+            "inputs": [
+              "MCW-VCF-FR-X41-TRAIN2",
+              "MCW-VCF-FC-X42-TRAIN2",
+              "MCW-CRB-OP-X43-TRAIN2",
+              "MCW-XHE-XO-X44-TRAIN2",
+              "I3-G31-TRAIN-2"
+            ]
+          },
+          {
+            "id": "G30",
+            "type": "OR",
+            "inputs": [
+              "MCW-VCF-FR-X45-TRAIN2",
+              "MCW-VCF-FC-X46-TRAIN2",
+              "MCW-CRB-OP-X47-TRAIN2",
+              "MCW-XHE-XO-X48-TRAIN2",
+              "I3-G31-2-TRAIN-2"
+            ]
+          },
+          {
+            "id": "I3-G31-2-TRAIN-2",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "MCW-VCF-FR-X41-TRAIN2",
+          "MCW-XHE-XO-X44-TRAIN2",
+          "MCW-XHE-XO-X48-TRAIN2",
+          "MCW-CRB-OP-X43-TRAIN2",
+          "I3-G31-2-TRAIN-2",
+          "MCW-VCF-FR-X45-TRAIN2",
+          "MCW-VCF-FC-X42-TRAIN2",
+          "I3-G31-TRAIN-2",
+          "MCW-VCF-FC-X46-TRAIN2",
+          "MCW-CRB-OP-X47-TRAIN2"
+        ]
+      },
+      {
+        "id": "I2-G28-TRAIN1",
+        "name": "I2-G28-TRAIN1",
+        "gates": [
+          {
+            "id": "I2-G28-TRAIN1",
+            "type": "AND",
+            "inputs": [
+              "I2-G28-TRAIN12",
+              "I2-G28-TRAIN13"
+            ]
+          },
+          {
+            "id": "I2-G28-TRAIN12",
+            "type": "OR",
+            "inputs": [
+              "I3-G31-TRAIN1",
+              "MCW-VCF-FR-X41-TRAIN1",
+              "MCW-VCF-FC-X42-TRAIN1",
+              "MCW-CRB-OP-X43-TRAIN1",
+              "MCW-XHE-XO-X44-TRAIN1"
+            ]
+          },
+          {
+            "id": "I2-G28-TRAIN13",
+            "type": "OR",
+            "inputs": [
+              "I3-G31-2-TRAIN1",
+              "MCW-VCF-FR-X45-TRAIN1",
+              "MCW-VCF-FC-X46-TRAIN1",
+              "MCW-CRB-OP-X47-TRAIN1",
+              "MCW-XHE-XO-X48-TRAIN1"
+            ]
+          },
+          {
+            "id": "I3-G31-TRAIN1",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "I3-G31-2-TRAIN1",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "MCW-XHE-XO-X48-TRAIN1",
+          "MCW-CRB-OP-X47-TRAIN1",
+          "I3-G31-TRAIN1",
+          "MCW-VCF-FC-X42-TRAIN1",
+          "I3-G31-2-TRAIN1",
+          "I2-G28-TRAIN12",
+          "MCW-VCF-FR-X45-TRAIN1",
+          "MCW-CRB-OP-X43-TRAIN1",
+          "I2-G28-TRAIN13",
+          "MCW-XHE-XO-X44-TRAIN1",
+          "MCW-VCF-FC-X46-TRAIN1",
+          "MCW-VCF-FR-X41-TRAIN1"
+        ]
+      },
+      {
+        "id": "I3-G18-SHS-A",
+        "name": "I3-G18-SHS-A",
+        "gates": [
+          {
+            "id": "I3-G18-SHS-A",
+            "type": "OR",
+            "inputs": [
+              "RHR-MDP-FO-X26-A",
+              "RHR-MOV-OC-X27-A",
+              "RHR-MOV-OC-X28-A"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RHR-MDP-FO-X26-A",
+          "RHR-MOV-OC-X28-A",
+          "RHR-MOV-OC-X27-A"
+        ]
+      },
+      {
+        "id": "I3-G18-SHS-B",
+        "name": "I3-G18-SHS-B",
+        "gates": [
+          {
+            "id": "I3-G18-SHS-B",
+            "type": "OR",
+            "inputs": [
+              "RHR-MDP-FO-X26-B",
+              "RHR-MOV-OC-X27-B",
+              "RHR-MOV-OC-X28-B"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RHR-MOV-OC-X28-B",
+          "RHR-MDP-FO-X26-B",
+          "RHR-MOV-OC-X27-B"
+        ]
+      },
+      {
+        "id": "I3-G31-2-TRAIN-2",
+        "name": "I3-G31-2-TRAIN-2",
+        "gates": [
+          {
+            "id": "I3-G31-2-TRAIN-2",
+            "type": "OR",
+            "inputs": [
+              "I3-G31-2-TRAIN-22",
+              "I3-G31-2-TRAIN-23"
+            ]
+          },
+          {
+            "id": "I3-G31-2-TRAIN-22",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X49-2-TRAIN2",
+              "MCW-FCV-FC-X50-2-TRAIN2",
+              "MCW-XHE-XE-X51-2-TRAIN2"
+            ]
+          },
+          {
+            "id": "I3-G31-2-TRAIN-23",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X52-2-TRAIN2",
+              "MCW-FCV-FC-X53-2-TRAIN2",
+              "MCW-XHE-XE-54-2-TRAIN2"
+            ]
+          }
+        ],
+        "basic_events": [
+          "MCW-FCV-FC-X50-2-TRAIN2",
+          "MCW-FCV-FO-X49-2-TRAIN2",
+          "I3-G31-2-TRAIN-22",
+          "MCW-XHE-XE-54-2-TRAIN2",
+          "MCW-FCV-FO-X52-2-TRAIN2",
+          "I3-G31-2-TRAIN-23",
+          "MCW-XHE-XE-X51-2-TRAIN2",
+          "MCW-FCV-FC-X53-2-TRAIN2"
+        ]
+      },
+      {
+        "id": "I3-G31-2-TRAIN1",
+        "name": "I3-G31-2-TRAIN1",
+        "gates": [
+          {
+            "id": "I3-G31-2-TRAIN1",
+            "type": "OR",
+            "inputs": [
+              "I3-G31-2-TRAIN12",
+              "I3-G31-2-TRAIN13"
+            ]
+          },
+          {
+            "id": "I3-G31-2-TRAIN12",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X49-2-TRAIN1",
+              "MCW-FCV-FC-X50-2-TRAIN1",
+              "MCW-XHE-XE-X51-2-TRAIN1"
+            ]
+          },
+          {
+            "id": "I3-G31-2-TRAIN13",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X52-2-TRAIN1",
+              "MCW-FCV-FC-X53-2-TRAIN1",
+              "MCW-XHE-XE-54-2-TRAIN1"
+            ]
+          }
+        ],
+        "basic_events": [
+          "MCW-FCV-FC-X53-2-TRAIN1",
+          "I3-G31-2-TRAIN12",
+          "I3-G31-2-TRAIN13",
+          "MCW-FCV-FO-X52-2-TRAIN1",
+          "MCW-FCV-FO-X49-2-TRAIN1",
+          "MCW-FCV-FC-X50-2-TRAIN1",
+          "MCW-XHE-XE-X51-2-TRAIN1",
+          "MCW-XHE-XE-54-2-TRAIN1"
+        ]
+      },
+      {
+        "id": "I3-G31-TRAIN-2",
+        "name": "I3-G31-TRAIN-2",
+        "gates": [
+          {
+            "id": "I3-G31-TRAIN-2",
+            "type": "OR",
+            "inputs": [
+              "G32",
+              "G33"
+            ]
+          },
+          {
+            "id": "G32",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X49-TRAIN2",
+              "MCW-FCV-FC-X50-TRAIN2",
+              "MCW-XHE-XE-X51-TRAIN2"
+            ]
+          },
+          {
+            "id": "G33",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X52-TRAIN2",
+              "MCW-FCV-FC-X53-TRAIN2",
+              "MCW-XHE-XE-54-TRAIN2"
+            ]
+          }
+        ],
+        "basic_events": [
+          "MCW-FCV-FC-X53-TRAIN2",
+          "MCW-FCV-FO-X52-TRAIN2",
+          "MCW-FCV-FO-X49-TRAIN2",
+          "MCW-XHE-XE-X51-TRAIN2",
+          "MCW-FCV-FC-X50-TRAIN2",
+          "MCW-XHE-XE-54-TRAIN2"
+        ]
+      },
+      {
+        "id": "I3-G31-TRAIN1",
+        "name": "I3-G31-TRAIN1",
+        "gates": [
+          {
+            "id": "I3-G31-TRAIN1",
+            "type": "OR",
+            "inputs": [
+              "I3-G31-TRAIN12",
+              "I3-G31-TRAIN13"
+            ]
+          },
+          {
+            "id": "I3-G31-TRAIN12",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X49-TRAIN1",
+              "MCW-FCV-FC-X50-TRAIN1",
+              "MCW-XHE-XE-X51-TRAIN1"
+            ]
+          },
+          {
+            "id": "I3-G31-TRAIN13",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X52-TRAIN1",
+              "MCW-FCV-FC-X53-TRAIN1",
+              "MCW-XHE-XE-54-TRAIN1"
+            ]
+          }
+        ],
+        "basic_events": [
+          "MCW-FCV-FO-X49-TRAIN1",
+          "MCW-XHE-XE-X51-TRAIN1",
+          "MCW-FCV-FC-X50-TRAIN1",
+          "MCW-FCV-FC-X53-TRAIN1",
+          "I3-G31-TRAIN13",
+          "MCW-FCV-FO-X52-TRAIN1",
+          "MCW-XHE-XE-54-TRAIN1",
+          "I3-G31-TRAIN12"
+        ]
+      },
+      {
+        "id": "I4-G34-TRAIN-2",
+        "name": "I4-G34-TRAIN-2",
+        "gates": [
+          {
+            "id": "I4-G34-TRAIN-2",
+            "type": "OR",
+            "inputs": [
+              "G35",
+              "G36"
+            ]
+          },
+          {
+            "id": "G35",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X55-TRAIN2",
+              "MCW-FCV-FC-X56-TRAIN2",
+              "MCW-XHE-XE-X57-TRAIN2"
+            ]
+          },
+          {
+            "id": "G36",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X58-TRAIN2",
+              "MCW-FCV-FC-X59-TRAIN2",
+              "MCW-XHE-XE-X60-TRAIN2"
+            ]
+          }
+        ],
+        "basic_events": [
+          "MCW-FCV-FC-X56-TRAIN2",
+          "MCW-XHE-XE-X60-TRAIN2",
+          "MCW-FCV-FO-X58-TRAIN2",
+          "MCW-FCV-FC-X59-TRAIN2",
+          "MCW-XHE-XE-X57-TRAIN2",
+          "MCW-FCV-FO-X55-TRAIN2"
+        ]
+      },
+      {
+        "id": "I4-G34-TRAIN1",
+        "name": "I4-G34-TRAIN1",
+        "gates": [
+          {
+            "id": "I4-G34-TRAIN1",
+            "type": "OR",
+            "inputs": [
+              "I4-G34-TRAIN12",
+              "I4-G34-TRAIN13"
+            ]
+          },
+          {
+            "id": "I4-G34-TRAIN12",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X55-TRAIN1",
+              "MCW-FCV-FC-X56-TRAIN1",
+              "MCW-XHE-XE-X57-TRAIN1"
+            ]
+          },
+          {
+            "id": "I4-G34-TRAIN13",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X58-TRAIN1",
+              "MCW-FCV-FC-X59-TRAIN1",
+              "MCW-XHE-XE-X60-TRAIN1"
+            ]
+          }
+        ],
+        "basic_events": [
+          "MCW-FCV-FO-X55-TRAIN1",
+          "MCW-FCV-FC-X59-TRAIN1",
+          "MCW-XHE-XE-X57-TRAIN1",
+          "I4-G34-TRAIN13",
+          "I4-G34-TRAIN12",
+          "MCW-XHE-XE-X60-TRAIN1",
+          "MCW-FCV-FC-X56-TRAIN1",
+          "MCW-FCV-FO-X58-TRAIN1"
+        ]
+      },
+      {
+        "id": "I5-G37-TRAIN-2",
+        "name": "I5-G37-TRAIN-2",
+        "gates": [
+          {
+            "id": "I5-G37-TRAIN-2",
+            "type": "OR",
+            "inputs": [
+              "G38",
+              "G39"
+            ]
+          },
+          {
+            "id": "G38",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X61-TRAIN2",
+              "MCW-FCV-FC-X62-TRAIN2",
+              "MCW-XHE-XE-X63-TRAIN2"
+            ]
+          },
+          {
+            "id": "G39",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X64-TRAIN2",
+              "MCW-FCV-FC-X65-TRAIN2",
+              "MCW-XHE-XE-X66-TRAIN2"
+            ]
+          }
+        ],
+        "basic_events": [
+          "MCW-XHE-XE-X63-TRAIN2",
+          "MCW-FCV-FC-X62-TRAIN2",
+          "MCW-FCV-FO-X64-TRAIN2",
+          "MCW-FCV-FO-X61-TRAIN2",
+          "MCW-FCV-FC-X65-TRAIN2",
+          "MCW-XHE-XE-X66-TRAIN2"
+        ]
+      },
+      {
+        "id": "I5-G37-TRAIN1",
+        "name": "I5-G37-TRAIN1",
+        "gates": [
+          {
+            "id": "I5-G37-TRAIN1",
+            "type": "OR",
+            "inputs": [
+              "I5-G37-TRAIN12",
+              "I5-G37-TRAIN13"
+            ]
+          },
+          {
+            "id": "I5-G37-TRAIN12",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X61-TRAIN1",
+              "MCW-FCV-FC-X62-TRAIN1",
+              "MCW-XHE-XE-X63-TRAIN1"
+            ]
+          },
+          {
+            "id": "I5-G37-TRAIN13",
+            "type": "OR",
+            "inputs": [
+              "MCW-FCV-FO-X64-TRAIN1",
+              "MCW-FCV-FC-X65-TRAIN1",
+              "MCW-XHE-XE-X66-TRAIN1"
+            ]
+          }
+        ],
+        "basic_events": [
+          "I5-G37-TRAIN12",
+          "MCW-FCV-FO-X64-TRAIN1",
+          "I5-G37-TRAIN13",
+          "MCW-XHE-XE-X66-TRAIN1",
+          "MCW-FCV-FC-X65-TRAIN1",
+          "MCW-XHE-XE-X63-TRAIN1",
+          "MCW-FCV-FC-X62-TRAIN1",
+          "MCW-FCV-FO-X61-TRAIN1"
+        ]
+      },
+      {
+        "id": "INT-DEP",
+        "name": "INT-DEP",
+        "gates": [
+          {
+            "id": "SWS-Q-G40",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "RPCWS-E-G101",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "NC1EPS-X-G200",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "C1E-UPS-G-G120",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "INT-DEP",
+            "type": "OR",
+            "inputs": [
+              "CHP-VCF-UD-X4",
+              "CVC-VCF-UD-X5",
+              "G2-ADS",
+              "RPCWS-E-G101",
+              "SWS-Q-G40",
+              "NC1EPS-X-G200",
+              "C1E-UPS-G-G120"
+            ]
+          },
+          {
+            "id": "G2-ADS",
+            "type": "OR",
+            "inputs": [
+              "CVC-VCF-UD-X6",
+              "G3-ADS"
+            ]
+          },
+          {
+            "id": "G3-ADS",
+            "type": "AND",
+            "inputs": [
+              "RPS-XHE-XM-X7",
+              "G4-ADS"
+            ]
+          },
+          {
+            "id": "G4-ADS",
+            "type": "OR",
+            "inputs": [
+              "RPS-VCF-FA-X8",
+              "ACP-VCF-UD-X9"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RPS-VCF-FA-X8",
+          "CVC-VCF-UD-X5",
+          "CVC-VCF-UD-X6",
+          "ACP-VCF-UD-X9",
+          "SWS-Q-G40",
+          "RPCWS-E-G101",
+          "NC1EPS-X-G200",
+          "CHP-VCF-UD-X4",
+          "RPS-XHE-XM-X7",
+          "C1E-UPS-G-G120"
+        ]
+      },
+      {
+        "id": "J-G158-TRAIN-1",
+        "name": "J-G158-TRAIN-1",
+        "gates": [
+          {
+            "id": "J-G158-TRAIN-1",
+            "type": "OR",
+            "inputs": [
+              "J1-G7-TRAIN-1",
+              "J2-G10-TRAIN-1",
+              "MFW-DEA-VF-X10-TRAIN1",
+              "MFW-CND-LK-X12-TRAIN1"
+            ]
+          },
+          {
+            "id": "J1-G7-TRAIN-1",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "J2-G10-TRAIN-1",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "J1-G7-TRAIN-1",
+          "MFW-CND-LK-X12-TRAIN1",
+          "J2-G10-TRAIN-1",
+          "MFW-DEA-VF-X10-TRAIN1"
+        ]
+      },
+      {
+        "id": "J-G158-TRAIN-2",
+        "name": "J-G158-TRAIN-2",
+        "gates": [
+          {
+            "id": "J1-G7-TRAIN-2",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "J2-G10-TRAIN-2",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "J-G158-TRAIN-2",
+            "type": "OR",
+            "inputs": [
+              "J1-G7-TRAIN-2",
+              "J2-G10-TRAIN-2",
+              "MFW-CND-LK-X12-TRAIN2",
+              "MFW-DEA-VF-X10-TRAIN2"
+            ]
+          }
+        ],
+        "basic_events": [
+          "J1-G7-TRAIN-2",
+          "MFW-DEA-VF-X10-TRAIN2",
+          "J2-G10-TRAIN-2",
+          "MFW-CND-LK-X12-TRAIN2"
+        ]
+      },
+      {
+        "id": "J1-G7-TRAIN-1",
+        "name": "J1-G7-TRAIN-1",
+        "gates": [
+          {
+            "id": "J1-G7-TRAIN-1",
+            "type": "OR",
+            "inputs": [
+              "J1-G7-TRAIN-12",
+              "J1-G7-TRAIN-13"
+            ]
+          },
+          {
+            "id": "J1-G7-TRAIN-12",
+            "type": "AND",
+            "inputs": [
+              "J1-G7-TRAIN-122",
+              "MFW-MDP-FO-X13-TRAIN1"
+            ]
+          },
+          {
+            "id": "J1-G7-TRAIN-122",
+            "type": "OR",
+            "inputs": [
+              "MFW-MDP-FS-X14A-TRAIN1",
+              "MFW-MDP-FR-X14B-TRAIN1"
+            ]
+          },
+          {
+            "id": "J1-G7-TRAIN-13",
+            "type": "AND",
+            "inputs": [
+              "J1-G7-TRAIN-132",
+              "MFW-MDP-FO-X15-TRAIN1"
+            ]
+          },
+          {
+            "id": "J1-G7-TRAIN-132",
+            "type": "OR",
+            "inputs": [
+              "MFW-MDP-FS-X16A-TRAIN1",
+              "MFW-MDP-FA-X16B-TRAIN1"
+            ]
+          }
+        ],
+        "basic_events": [
+          "MFW-MDP-FO-X13-TRAIN1",
+          "MFW-MDP-FS-X14A-TRAIN1",
+          "J1-G7-TRAIN-12",
+          "MFW-MDP-FA-X16B-TRAIN1",
+          "J1-G7-TRAIN-122",
+          "J1-G7-TRAIN-132",
+          "MFW-MDP-FR-X14B-TRAIN1",
+          "MFW-MDP-FS-X16A-TRAIN1",
+          "J1-G7-TRAIN-13",
+          "MFW-MDP-FO-X15-TRAIN1"
+        ]
+      },
+      {
+        "id": "J1-G7-TRAIN-2",
+        "name": "J1-G7-TRAIN-2",
+        "gates": [
+          {
+            "id": "J1-G7-TRAIN-2",
+            "type": "OR",
+            "inputs": [
+              "G8",
+              "G9"
+            ]
+          },
+          {
+            "id": "G8",
+            "type": "AND",
+            "inputs": [
+              "G159",
+              "MFW-MDP-FO-X13-TRAIN2"
+            ]
+          },
+          {
+            "id": "G159",
+            "type": "OR",
+            "inputs": [
+              "MFW-MDP-FS-X14A-TRAIN2",
+              "MFW-MDP-FR-X14B-TRAIN2"
+            ]
+          },
+          {
+            "id": "G9",
+            "type": "AND",
+            "inputs": [
+              "G160",
+              "MFW-MDP-FO-X15-TRAIN2"
+            ]
+          },
+          {
+            "id": "G160",
+            "type": "OR",
+            "inputs": [
+              "MFW-MDP-FS-X16A-TRAIN2",
+              "MFW-MDP-FA-X16B-TRAIN2"
+            ]
+          }
+        ],
+        "basic_events": [
+          "MFW-MDP-FO-X13-TRAIN2",
+          "MFW-MDP-FA-X16B-TRAIN2",
+          "MFW-MDP-FS-X14A-TRAIN2",
+          "MFW-MDP-FO-X15-TRAIN2",
+          "MFW-MDP-FS-X16A-TRAIN2",
+          "MFW-MDP-FR-X14B-TRAIN2"
+        ]
+      },
+      {
+        "id": "J2-G10-TRAIN-1",
+        "name": "J2-G10-TRAIN-1",
+        "gates": [
+          {
+            "id": "J2-G10-TRAIN-1",
+            "type": "OR",
+            "inputs": [
+              "J2-G10-TRAIN-13",
+              "J2-G10-TRAIN-14",
+              "J2-G10-TRAIN-15"
+            ]
+          },
+          {
+            "id": "J2-G10-TRAIN-13",
+            "type": "AND",
+            "inputs": [
+              "J2-G10-TRAIN-132",
+              "CDS-HDW-LK-X17-TRAIN1"
+            ]
+          },
+          {
+            "id": "J2-G10-TRAIN-132",
+            "type": "OR",
+            "inputs": [
+              "J2-G10-TRAIN-1324",
+              "J2-G10-TRAIN-1325",
+              "CDS-FRV-CC-X19-TRAIN1",
+              "CDS-FRV-OO-X20-TRAIN1"
+            ]
+          },
+          {
+            "id": "J2-G10-TRAIN-1324",
+            "type": "AND",
+            "inputs": [
+              "J2-G10-TRAIN-13242",
+              "CDS-FRV-CC-X25-TRAIN1"
+            ]
+          },
+          {
+            "id": "J2-G10-TRAIN-13242",
+            "type": "OR",
+            "inputs": [
+              "CDS-FRV-CC-X33-TRAIN1",
+              "CDS-FRV-CC-X34-TRAIN1"
+            ]
+          },
+          {
+            "id": "J2-G10-TRAIN-1325",
+            "type": "AND",
+            "inputs": [
+              "J2-G10-TRAIN-13252",
+              "CDS-FRV-OO-X26-TRAIN1"
+            ]
+          },
+          {
+            "id": "J2-G10-TRAIN-13252",
+            "type": "OR",
+            "inputs": [
+              "J2-G10-TRAIN-13242",
+              "CDS-FRV-OO-X35-TRAIN1"
+            ]
+          },
+          {
+            "id": "J2-G10-TRAIN-14",
+            "type": "AND",
+            "inputs": [
+              "J2-G10-TRAIN-142",
+              "CDS-HDW-LK-X18-TRAIN1"
+            ]
+          },
+          {
+            "id": "J2-G10-TRAIN-142",
+            "type": "OR",
+            "inputs": [
+              "J2-G10-TRAIN-1425",
+              "J2-G10-TRAIN-1426",
+              "CDS-FRV-CC-X21-TRAIN1",
+              "CDS-FRV-CC-X22-TRAIN1",
+              "CDS-FRV-OO-X23-TRAIN1"
+            ]
+          },
+          {
+            "id": "J2-G10-TRAIN-1425",
+            "type": "AND",
+            "inputs": [
+              "CDS-FRV-CC-X27-TRAIN1",
+              "CDS-FRV-CC-X28-TRAIN1"
+            ]
+          },
+          {
+            "id": "J2-G10-TRAIN-1426",
+            "type": "AND",
+            "inputs": [
+              "J2-G10-TRAIN-14262",
+              "CDS-FRV-OO-X29-TRAIN1"
+            ]
+          },
+          {
+            "id": "J2-G10-TRAIN-14262",
+            "type": "OR",
+            "inputs": [
+              "CDS-FRV-OO-X36-TRAIN1",
+              "CDS-FRV-CC-X37-TRAIN1"
+            ]
+          },
+          {
+            "id": "J2-G10-TRAIN-15",
+            "type": "AND",
+            "inputs": [
+              "CDS-HDW-LK-X24-TRAIN1",
+              "CDS-HDW-LK-X24(2)-TRAIN1",
+              "J3-G21-TRAIN-1"
+            ]
+          },
+          {
+            "id": "J3-G21-TRAIN-1",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "J2-G10-TRAIN-13252",
+          "J2-G10-TRAIN-1324",
+          "J2-G10-TRAIN-13",
+          "J2-G10-TRAIN-14",
+          "CDS-FRV-CC-X19-TRAIN1",
+          "J2-G10-TRAIN-13242",
+          "CDS-FRV-CC-X22-TRAIN1",
+          "J2-G10-TRAIN-142",
+          "J2-G10-TRAIN-132",
+          "CDS-FRV-CC-X27-TRAIN1",
+          "CDS-FRV-OO-X26-TRAIN1",
+          "CDS-FRV-OO-X35-TRAIN1",
+          "CDS-HDW-LK-X18-TRAIN1",
+          "J3-G21-TRAIN-1",
+          "J2-G10-TRAIN-1426",
+          "CDS-HDW-LK-X24-TRAIN1",
+          "CDS-FRV-CC-X34-TRAIN1",
+          "CDS-FRV-OO-X36-TRAIN1",
+          "CDS-FRV-OO-X29-TRAIN1",
+          "CDS-FRV-CC-X25-TRAIN1",
+          "J2-G10-TRAIN-1325",
+          "CDS-FRV-OO-X20-TRAIN1",
+          "CDS-FRV-OO-X23-TRAIN1",
+          "J2-G10-TRAIN-14262",
+          "J2-G10-TRAIN-1425",
+          "CDS-HDW-LK-X17-TRAIN1",
+          "CDS-FRV-CC-X33-TRAIN1",
+          "CDS-FRV-CC-X28-TRAIN1",
+          "CDS-HDW-LK-X24(2)-TRAIN1",
+          "CDS-FRV-CC-X21-TRAIN1",
+          "CDS-FRV-CC-X37-TRAIN1",
+          "J2-G10-TRAIN-15"
+        ]
+      },
+      {
+        "id": "J2-G10-TRAIN-2",
+        "name": "J2-G10-TRAIN-2",
+        "gates": [
+          {
+            "id": "J2-G10-TRAIN-2",
+            "type": "OR",
+            "inputs": [
+              "G11",
+              "G12",
+              "G37-I5"
+            ]
+          },
+          {
+            "id": "G11",
+            "type": "AND",
+            "inputs": [
+              "CDS-HDW-LK-X17-TRAIN2",
+              "G14"
+            ]
+          },
+          {
+            "id": "G14",
+            "type": "OR",
+            "inputs": [
+              "CDS-FRV-CC-X19-TRAIN2",
+              "CDS-FRV-OO-X20-TRAIN2",
+              "E4-G103",
+              "G1-G131"
+            ]
+          },
+          {
+            "id": "E4-G103",
+            "type": "AND",
+            "inputs": [
+              "CDS-FRV-CC-X25-TRAIN2",
+              "JA-G22"
+            ]
+          },
+          {
+            "id": "G1-G131",
+            "type": "AND",
+            "inputs": [
+              "CDS-FRV-OO-X26-TRAIN2",
+              "G3-G236"
+            ]
+          },
+          {
+            "id": "G3-G236",
+            "type": "OR",
+            "inputs": [
+              "CDS-FRV-OO-X35-TRAIN2",
+              "JA-G22"
+            ]
+          },
+          {
+            "id": "G12",
+            "type": "AND",
+            "inputs": [
+              "CDS-HDW-LK-X18-TRAIN2",
+              "G28-I2"
+            ]
+          },
+          {
+            "id": "G28-I2",
+            "type": "OR",
+            "inputs": [
+              "CDS-FRV-CC-X21-TRAIN2",
+              "CDS-FRV-CC-X22-TRAIN2",
+              "CDS-FRV-OO-X23-TRAIN2",
+              "G19",
+              "G20"
+            ]
+          },
+          {
+            "id": "G19",
+            "type": "AND",
+            "inputs": [
+              "CDS-FRV-CC-X28-TRAIN2",
+              "CDS-FRV-CC-X27-TRAIN2"
+            ]
+          },
+          {
+            "id": "G20",
+            "type": "AND",
+            "inputs": [
+              "CDS-FRV-OO-X29-TRAIN2",
+              "G24"
+            ]
+          },
+          {
+            "id": "G24",
+            "type": "OR",
+            "inputs": [
+              "CDS-FRV-OO-X36-TRAIN2",
+              "CDS-FRV-CC-X37-TRAIN2"
+            ]
+          },
+          {
+            "id": "G37-I5",
+            "type": "AND",
+            "inputs": [
+              "CDS-HDW-LK-X24-TRAIN2",
+              "CDS-HDW-LK-X24(2)-TRAIN2",
+              "J3-G21-TRAIN-2"
+            ]
+          },
+          {
+            "id": "JA-G22",
+            "type": "OR",
+            "inputs": [
+              "CDS-FRV-CC-X33-TRAIN2",
+              "CDS-FRV-CC-X34-TRAIN2"
+            ]
+          },
+          {
+            "id": "J3-G21-TRAIN-2",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "CDS-FRV-CC-X19-TRAIN2",
+          "CDS-FRV-CC-X34-TRAIN2",
+          "CDS-HDW-LK-X18-TRAIN2",
+          "CDS-FRV-CC-X22-TRAIN2",
+          "CDS-FRV-OO-X29-TRAIN2",
+          "CDS-HDW-LK-X17-TRAIN2",
+          "CDS-FRV-CC-X27-TRAIN2",
+          "CDS-FRV-CC-X37-TRAIN2",
+          "CDS-FRV-CC-X25-TRAIN2",
+          "CDS-FRV-OO-X35-TRAIN2",
+          "CDS-HDW-LK-X24(2)-TRAIN2",
+          "CDS-FRV-OO-X26-TRAIN2",
+          "CDS-FRV-CC-X28-TRAIN2",
+          "CDS-FRV-CC-X21-TRAIN2",
+          "E4-G103",
+          "CDS-HDW-LK-X24-TRAIN2",
+          "CDS-FRV-OO-X23-TRAIN2",
+          "JA-G22",
+          "CDS-FRV-OO-X20-TRAIN2",
+          "CDS-FRV-CC-X33-TRAIN2",
+          "CDS-FRV-OO-X36-TRAIN2",
+          "J3-G21-TRAIN-2"
+        ]
+      },
+      {
+        "id": "J3-G21-DEMINERALIZER-TRAIN-1",
+        "name": "J3-G21-DEMINERALIZER-TRAIN-1",
+        "gates": [
+          {
+            "id": "J3-G21-DEMINERALIZER-TRAIN-1",
+            "type": "OR",
+            "inputs": [
+              "CDS-FRV-OO-X30-D-TRAIN1",
+              "CDS-FRV-OO-X31-D-TRAIN1",
+              "CDS-FRV-CC-X32-D-TRAIN1"
+            ]
+          }
+        ],
+        "basic_events": [
+          "CDS-FRV-CC-X32-D-TRAIN1",
+          "CDS-FRV-OO-X31-D-TRAIN1",
+          "CDS-FRV-OO-X30-D-TRAIN1"
+        ]
+      },
+      {
+        "id": "J3-G21-DEMINERALIZER-TRAIN-2",
+        "name": "J3-G21-DEMINERALIZER-TRAIN-2",
+        "gates": [
+          {
+            "id": "J3-G21-DEMINERALIZER-TRAIN-2",
+            "type": "OR",
+            "inputs": [
+              "CDS-FRV-OO-X30-D-TRAIN2",
+              "CDS-FRV-OO-X31-D-TRAIN2",
+              "CDS-FRV-CC-X32-D-TRAIN2"
+            ]
+          }
+        ],
+        "basic_events": [
+          "CDS-FRV-OO-X30-D-TRAIN2",
+          "CDS-FRV-CC-X32-D-TRAIN2",
+          "CDS-FRV-OO-X31-D-TRAIN2"
+        ]
+      },
+      {
+        "id": "J3-G21-TRAIN-1",
+        "name": "J3-G21-TRAIN-1",
+        "gates": [
+          {
+            "id": "J3-G21-TRAIN-1",
+            "type": "OR",
+            "inputs": [
+              "CDS-FRV-OO-X30-TRAIN1",
+              "CDS-FRV-OO-X31-TRAIN1",
+              "CDS-FRV-CC-X32-TRAIN1"
+            ]
+          }
+        ],
+        "basic_events": [
+          "CDS-FRV-OO-X30-TRAIN1",
+          "CDS-FRV-CC-X32-TRAIN1",
+          "CDS-FRV-OO-X31-TRAIN1"
+        ]
+      },
+      {
+        "id": "J3-G21-TRAIN-2",
+        "name": "J3-G21-TRAIN-2",
+        "gates": [
+          {
+            "id": "J3-G21-TRAIN-2",
+            "type": "OR",
+            "inputs": [
+              "CDS-FRV-OO-X30-TRAIN2",
+              "CDS-FRV-OO-X31-TRAIN2",
+              "CDS-FRV-CC-X32-TRAIN2"
+            ]
+          }
+        ],
+        "basic_events": [
+          "CDS-FRV-OO-X31-TRAIN2",
+          "CDS-FRV-CC-X32-TRAIN2",
+          "CDS-FRV-OO-X30-TRAIN2"
+        ]
+      },
+      {
+        "id": "L1-G27-SCS-HTX",
+        "name": "L1-G27-SCS-HTX",
+        "gates": [
+          {
+            "id": "L1-G27-SCS-HTX",
+            "type": "OR",
+            "inputs": [
+              "27A-SCS-HTX",
+              "27B-SCS-HTX",
+              "27C-SCS-HTX",
+              "SCS-HTX-BETA"
+            ]
+          },
+          {
+            "id": "27B-SCS-HTX",
+            "type": "AND",
+            "inputs": [
+              "RHR-HTX-LK-X39",
+              "L2-G270-SCS-HTX"
+            ]
+          },
+          {
+            "id": "L2-G270-SCS-HTX",
+            "type": "OR",
+            "inputs": [
+              "RHR-MOV-OP-X43-A",
+              "RHR-MOV-OP-X44-A"
+            ]
+          },
+          {
+            "id": "27C-SCS-HTX",
+            "type": "AND",
+            "inputs": [
+              "RHR-HTX-LK-X40",
+              "L1-G27-SCS-HTX21"
+            ]
+          },
+          {
+            "id": "27A-SCS-HTX",
+            "type": "AND",
+            "inputs": [
+              "RHR-HTX-LK-X37",
+              "RHR-HTX-LK-X38"
+            ]
+          },
+          {
+            "id": "L1-G27-SCS-HTX21",
+            "type": "OR",
+            "inputs": [
+              "RHR-MOV-OP-X43-B",
+              "RHR-MOV-OP-X44-B"
+            ]
+          }
+        ],
+        "basic_events": [
+          "27B-SCS-HTX",
+          "L1-G27-SCS-HTX21",
+          "RHR-HTX-LK-X37",
+          "RHR-HTX-LK-X40",
+          "RHR-HTX-LK-X39",
+          "RHR-MOV-OP-X43-A",
+          "RHR-MOV-OP-X44-A",
+          "27A-SCS-HTX",
+          "RHR-MOV-OP-X44-B",
+          "SCS-HTX-BETA",
+          "27C-SCS-HTX",
+          "RHR-HTX-LK-X38",
+          "L2-G270-SCS-HTX",
+          "RHR-MOV-OP-X43-B"
+        ]
+      },
+      {
+        "id": "LOOP-NO-MODULES-1",
+        "name": "LOOP-NO-MODULES-1",
+        "gates": [
+          {
+            "id": "LOOP-NO-MODULES-1",
+            "type": "OR",
+            "inputs": [
+              "LOOP-NO-MODULES-10"
+            ]
+          }
+        ],
+        "basic_events": [
+          "LOOP-NO-MODULES-10"
+        ]
+      },
+      {
+        "id": "LOOP-NO-MODULES-2",
+        "name": "LOOP-NO-MODULES-2",
+        "gates": [
+          {
+            "id": "LOOP-NO-MODULES-2",
+            "type": "OR",
+            "inputs": [
+              "LOOP-NO-MODULES-20"
+            ]
+          }
+        ],
+        "basic_events": [
+          "LOOP-NO-MODULES-20"
+        ]
+      },
+      {
+        "id": "LOOP-NO-MODULES-3",
+        "name": "LOOP-NO-MODULES-3",
+        "gates": [
+          {
+            "id": "LOOP-NO-MODULES-3",
+            "type": "OR",
+            "inputs": [
+              "LOOP-NO-MODULES-30"
+            ]
+          }
+        ],
+        "basic_events": [
+          "LOOP-NO-MODULES-30"
+        ]
+      },
+      {
+        "id": "LOOP-NO-MODULES-4",
+        "name": "LOOP-NO-MODULES-4",
+        "gates": [
+          {
+            "id": "LOOP-NO-MODULES-4",
+            "type": "OR",
+            "inputs": [
+              "LOOP-NO-MODULES-40"
+            ]
+          }
+        ],
+        "basic_events": [
+          "LOOP-NO-MODULES-40"
+        ]
+      },
+      {
+        "id": "LSD1",
+        "name": "LSD1",
+        "gates": [
+          {
+            "id": "LSD1",
+            "type": "OR",
+            "inputs": [
+              "LSD-1"
+            ]
+          }
+        ],
+        "basic_events": [
+          "LSD-1"
+        ]
+      },
+      {
+        "id": "LSD2",
+        "name": "LSD2",
+        "gates": [
+          {
+            "id": "LSD2",
+            "type": "OR",
+            "inputs": [
+              "LSD-2"
+            ]
+          }
+        ],
+        "basic_events": [
+          "LSD-2"
+        ]
+      },
+      {
+        "id": "LSD3",
+        "name": "LSD3",
+        "gates": [
+          {
+            "id": "LSD3",
+            "type": "OR",
+            "inputs": [
+              "LSD-3"
+            ]
+          }
+        ],
+        "basic_events": [
+          "LSD-3"
+        ]
+      },
+      {
+        "id": "LSD4",
+        "name": "LSD4",
+        "gates": [
+          {
+            "id": "LSD4",
+            "type": "OR",
+            "inputs": [
+              "LSD-4"
+            ]
+          }
+        ],
+        "basic_events": [
+          "LSD-4"
+        ]
+      },
+      {
+        "id": "LSD5",
+        "name": "LSD5",
+        "gates": [
+          {
+            "id": "LSD5",
+            "type": "OR",
+            "inputs": [
+              "LSD-5"
+            ]
+          }
+        ],
+        "basic_events": [
+          "LSD-5"
+        ]
+      },
+      {
+        "id": "MMD",
+        "name": "MMD",
+        "gates": [
+          {
+            "id": "MMD",
+            "type": "OR",
+            "inputs": [
+              "MMD0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "MMD0"
+        ]
+      },
+      {
+        "id": "N-G25-DEMINERALIZER-TRAIN-2",
+        "name": "N-G25-DEMINERALIZER-TRAIN-2",
+        "gates": [
+          {
+            "id": "N1-G26",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "N-G25-DEMINERALIZER-TRAIN-2",
+            "type": "AND",
+            "inputs": [
+              "N1-G26",
+              "J3-G21-DEMINERALIZER-TRAIN-2"
+            ]
+          },
+          {
+            "id": "J3-G21-DEMINERALIZER-TRAIN-2",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "J3-G21-DEMINERALIZER-TRAIN-2",
+          "N1-G26"
+        ]
+      },
+      {
+        "id": "N-G25-DEMINERALIZER-TRAIN1",
+        "name": "N-G25-DEMINERALIZER-TRAIN1",
+        "gates": [
+          {
+            "id": "N-G25-DEMINERALIZER-TRAIN1",
+            "type": "AND",
+            "inputs": [
+              "J3-G21-DEMINERALIZER-TRAIN-1",
+              "N1-G26-TRAIN1"
+            ]
+          },
+          {
+            "id": "N1-G26-TRAIN1",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "J3-G21-DEMINERALIZER-TRAIN-1",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "J3-G21-DEMINERALIZER-TRAIN-1",
+          "N1-G26-TRAIN1"
+        ]
+      },
+      {
+        "id": "N1-G26",
+        "name": "N1-G26",
+        "gates": [
+          {
+            "id": "N1-G26",
+            "type": "OR",
+            "inputs": [
+              "CVC-PTF-LK-X38-TRAIN2",
+              "CVC-PTF-LK-X39-TRAIN2",
+              "CVC-PTF-LK-X40-TRAIN2"
+            ]
+          }
+        ],
+        "basic_events": [
+          "CVC-PTF-LK-X38-TRAIN2",
+          "CVC-PTF-LK-X39-TRAIN2",
+          "CVC-PTF-LK-X40-TRAIN2"
+        ]
+      },
+      {
+        "id": "N1-G26-TRAIN-2",
+        "name": "N1-G26-TRAIN-2",
+        "gates": [
+          {
+            "id": "N1-G26-TRAIN-2",
+            "type": "OR",
+            "inputs": [
+              "CVC-PTF-LK-X38-TRAIN2",
+              "CVC-PTF-LK-X39-TRAIN2",
+              "CVC-PTF-LK-X40-TRAIN2"
+            ]
+          }
+        ],
+        "basic_events": [
+          "CVC-PTF-LK-X38-TRAIN2",
+          "CVC-PTF-LK-X39-TRAIN2",
+          "CVC-PTF-LK-X40-TRAIN2"
+        ]
+      },
+      {
+        "id": "N1-G26-TRAIN1",
+        "name": "N1-G26-TRAIN1",
+        "gates": [
+          {
+            "id": "N1-G26-TRAIN1",
+            "type": "OR",
+            "inputs": [
+              "CVC-PTF-LK-X38-TRAIN1",
+              "CVC-PTF-LK-X39-TRAIN1",
+              "CVC-PTF-LK-X40-TRAIN1"
+            ]
+          }
+        ],
+        "basic_events": [
+          "CVC-PTF-LK-X39-TRAIN1",
+          "CVC-PTF-LK-X40-TRAIN1",
+          "CVC-PTF-LK-X38-TRAIN1"
+        ]
+      },
+      {
+        "id": "NC1EPS-X-G200",
+        "name": "NC1EPS-X-G200",
+        "gates": [
+          {
+            "id": "NC1EPS-X-G200",
+            "type": "OR",
+            "inputs": [
+              "G201",
+              "G202",
+              "ACP-LOD-UD-X218"
+            ]
+          },
+          {
+            "id": "G201",
+            "type": "AND",
+            "inputs": [
+              "G203",
+              "G204"
+            ]
+          },
+          {
+            "id": "G203",
+            "type": "OR",
+            "inputs": [
+              "X1-G207",
+              "ACP-CRB-OP-X219"
+            ]
+          },
+          {
+            "id": "X1-G207",
+            "type": "OR",
+            "inputs": [
+              "ACP-TFM-FS-X225",
+              "ACP-TFM-LP-X224",
+              "ACP-TFM-LP-X226"
+            ]
+          },
+          {
+            "id": "G204",
+            "type": "OR",
+            "inputs": [
+              "X2-G208",
+              "ACP-CRB-OP-X220",
+              "ACP-CRB-OP-X221"
+            ]
+          },
+          {
+            "id": "X2-G208",
+            "type": "OR",
+            "inputs": [
+              "X3-G209-HTS",
+              "ACP-TFM-FO-X227"
+            ]
+          },
+          {
+            "id": "G202",
+            "type": "AND",
+            "inputs": [
+              "G205",
+              "G206"
+            ]
+          },
+          {
+            "id": "G205",
+            "type": "OR",
+            "inputs": [
+              "X1-G207",
+              "ACP-CRB-OP-X244",
+              "ACP-CRB-OP-X222"
+            ]
+          },
+          {
+            "id": "G206",
+            "type": "OR",
+            "inputs": [
+              "X2-G208",
+              "ACP-CRB-OP-X223"
+            ]
+          },
+          {
+            "id": "X3-G209-HTS",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "ACP-CRB-OP-X221",
+          "ACP-CRB-OP-X222",
+          "ACP-TFM-FO-X227",
+          "X1-G207",
+          "ACP-CRB-OP-X220",
+          "X3-G209-HTS",
+          "ACP-CRB-OP-X244",
+          "X2-G208",
+          "ACP-LOD-UD-X218",
+          "ACP-TFM-LP-X226",
+          "ACP-CRB-OP-X223",
+          "ACP-TFM-LP-X224",
+          "ACP-TFM-FS-X225",
+          "ACP-CRB-OP-X219"
+        ]
+      },
+      {
+        "id": "NSSS-G3",
+        "name": "NSSS-G3",
+        "gates": [
+          {
+            "id": "NSSS-G3",
+            "type": "OR",
+            "inputs": [
+              "H-HTS-CIRCULATOR1FAILS",
+              "G1-HTS71",
+              "G1-HTS72",
+              "G1-HTS73",
+              "NSSS-CIRC-BETA-COMPOUND"
+            ]
+          },
+          {
+            "id": "H-HTS-CIRCULATOR1FAILS",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G1-HTS71",
+            "type": "OR",
+            "inputs": [
+              "G1-HTS710",
+              "RCS-MDP-FO-X166A-CIRC2",
+              "RCS-MDP-FC-X167A-CIRC2",
+              "RCS-MDP-UD-X168A-CIRC2"
+            ]
+          },
+          {
+            "id": "G1-HTS710",
+            "type": "AND",
+            "inputs": [
+              "RCS-CRB-FO-X169A-CIRC2",
+              "RCS-CRB-FO-X170A-CIRC2"
+            ]
+          },
+          {
+            "id": "G1-HTS72",
+            "type": "OR",
+            "inputs": [
+              "G1-HTS720",
+              "RCS-MDP-FO-X166A-CIRC3",
+              "RCS-MDP-FC-X167A-CIRC3",
+              "RCS-MDP-UD-X168A-CIRC3"
+            ]
+          },
+          {
+            "id": "G1-HTS720",
+            "type": "AND",
+            "inputs": [
+              "RCS-CRB-FO-X169A-CIRC3",
+              "RCS-CRB-FO-X170A-CIRC3"
+            ]
+          },
+          {
+            "id": "G1-HTS73",
+            "type": "OR",
+            "inputs": [
+              "G1-HTS730",
+              "RCS-MDP-FO-X166A-CIRC4",
+              "RCS-MDP-FC-X167A-CIRC4",
+              "RCS-MDP-UD-X168A-CIRC4"
+            ]
+          },
+          {
+            "id": "G1-HTS730",
+            "type": "AND",
+            "inputs": [
+              "RCS-CRB-FO-X169A-CIRC4",
+              "RCS-CRB-FO-X170A-CIRC4"
+            ]
+          }
+        ],
+        "basic_events": [
+          "H-HTS-CIRCULATOR1FAILS",
+          "RCS-MDP-UD-X168A-CIRC2",
+          "RCS-MDP-FO-X166A-CIRC2",
+          "RCS-MDP-UD-X168A-CIRC3",
+          "NSSS-CIRC-BETA-COMPOUND",
+          "RCS-CRB-FO-X170A-CIRC2",
+          "RCS-MDP-FC-X167A-CIRC2",
+          "RCS-MDP-UD-X168A-CIRC4",
+          "RCS-MDP-FO-X166A-CIRC4",
+          "RCS-MDP-FC-X167A-CIRC4",
+          "RCS-CRB-FO-X170A-CIRC4",
+          "RCS-CRB-FO-X169A-CIRC3",
+          "RCS-MDP-FO-X166A-CIRC3",
+          "RCS-CRB-FO-X169A-CIRC4",
+          "RCS-CRB-FO-X170A-CIRC3",
+          "RCS-MDP-FC-X167A-CIRC3",
+          "RCS-CRB-FO-X169A-CIRC2"
+        ]
+      },
+      {
+        "id": "OP-TRIP",
+        "name": "OP-TRIP",
+        "gates": [
+          {
+            "id": "OP-TRIP",
+            "type": "OR",
+            "inputs": [
+              "OP-TRIP0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "OP-TRIP0"
+        ]
+      },
+      {
+        "id": "PRIMARY-COOLANT-LK",
+        "name": "PRIMARY-COOLANT-LK",
+        "gates": [
+          {
+            "id": "PRIMARY-COOLANT-LK",
+            "type": "OR",
+            "inputs": [
+              "RCS-VCF-LK-PC"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RCS-VCF-LK-PC"
+        ]
+      },
+      {
+        "id": "PRIMARY-RT",
+        "name": "PRIMARY-RT",
+        "gates": [
+          {
+            "id": "PRIMARY-RT",
+            "type": "OR",
+            "inputs": [
+              "PRIMARY-RT0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "PRIMARY-RT0"
+        ]
+      },
+      {
+        "id": "PRIMARY-RT-FC",
+        "name": "PRIMARY-RT-FC",
+        "gates": [
+          {
+            "id": "PRIMARY-RT-FC",
+            "type": "OR",
+            "inputs": [
+              "PRIMARY-RT-FC0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "PRIMARY-RT-FC0"
+        ]
+      },
+      {
+        "id": "PRIMARY-RT-FO",
+        "name": "PRIMARY-RT-FO",
+        "gates": [
+          {
+            "id": "PRIMARY-RT-FO",
+            "type": "OR",
+            "inputs": [
+              "PRIMARY-RT-FO0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "PRIMARY-RT-FO0"
+        ]
+      },
+      {
+        "id": "PRIMARY-RT-FO-2",
+        "name": "PRIMARY-RT-FO-2",
+        "gates": [
+          {
+            "id": "PRIMARY-RT-FO-2",
+            "type": "OR",
+            "inputs": [
+              "PRIMARY-RT-FO-20"
+            ]
+          }
+        ],
+        "basic_events": [
+          "PRIMARY-RT-FO-20"
+        ]
+      },
+      {
+        "id": "PRIMARY-RT-FO-3",
+        "name": "PRIMARY-RT-FO-3",
+        "gates": [
+          {
+            "id": "PRIMARY-RT-FO-3",
+            "type": "OR",
+            "inputs": [
+              "PRIMARY-RT-FO-30"
+            ]
+          }
+        ],
+        "basic_events": [
+          "PRIMARY-RT-FO-30"
+        ]
+      },
+      {
+        "id": "PRIMARY-RT-OC",
+        "name": "PRIMARY-RT-OC",
+        "gates": [
+          {
+            "id": "PRIMARY-RT-OC",
+            "type": "OR",
+            "inputs": [
+              "PRIMARY-RT-OC0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "PRIMARY-RT-OC0"
+        ]
+      },
+      {
+        "id": "PRIMARY-RT-OTHERS",
+        "name": "PRIMARY-RT-OTHERS",
+        "gates": [
+          {
+            "id": "PRIMARY-RT-OTHERS",
+            "type": "OR",
+            "inputs": [
+              "PRIMARY-RT-OTHERS0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "PRIMARY-RT-OTHERS0"
+        ]
+      },
+      {
+        "id": "PRIMARY-RT-STAYSSHUT",
+        "name": "PRIMARY-RT-STAYSSHUT",
+        "gates": [
+          {
+            "id": "PRIMARY-RT-STAYSSHUT",
+            "type": "OR",
+            "inputs": [
+              "PRIMARY-RT-STAYSSHUT0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "PRIMARY-RT-STAYSSHUT0"
+        ]
+      },
+      {
+        "id": "RCCS-COOLING",
+        "name": "RCCS-COOLING",
+        "gates": [
+          {
+            "id": "RCCS-COOLING",
+            "type": "OR",
+            "inputs": [
+              "RCCS-COOLING-EVENT"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RCCS-COOLING-EVENT"
+        ]
+      },
+      {
+        "id": "RCCS-COOLING-MULTIPLE-MODULES",
+        "name": "RCCS-COOLING-MULTIPLE-MODULES",
+        "gates": [
+          {
+            "id": "RCCS-COOLING-MULTIPLE-MODULES",
+            "type": "OR",
+            "inputs": [
+              "RCCS-COOLING-MULTIPLE-MODULES0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "RCCS-COOLING-MULTIPLE-MODULES0"
+        ]
+      },
+      {
+        "id": "RPCWS-E-G101",
+        "name": "RPCWS-E-G101",
+        "gates": [
+          {
+            "id": "RPCWS-E-G101",
+            "type": "OR",
+            "inputs": [
+              "E4-G1031",
+              "E1-G107-RE",
+              "G102",
+              "CWS-PSF-RP-XUNK"
+            ]
+          },
+          {
+            "id": "G102",
+            "type": "OR",
+            "inputs": [
+              "CWS-TNK-RP-X104",
+              "CWS-VCF-UD-X105",
+              "CWS-FCV-VF-X106"
+            ]
+          },
+          {
+            "id": "E4-G1031",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "E1-G107-RE",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "CWS-FCV-VF-X106",
+          "CWS-VCF-UD-X105",
+          "CWS-TNK-RP-X104",
+          "E4-G1031",
+          "E1-G107-RE",
+          "CWS-PSF-RP-XUNK"
+        ]
+      },
+      {
+        "id": "SCS-1COOLING",
+        "name": "SCS-1COOLING",
+        "gates": [
+          {
+            "id": "C1E-UPS-G-G120",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G6-G218",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "E-G21-SCS",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "A-G4-SCS",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "B-G6-SCS",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "SCS-1COOLING",
+            "type": "OR",
+            "inputs": [
+              "G2-SCS-1COOLING",
+              "G3-SCS-1COOLING"
+            ]
+          },
+          {
+            "id": "G2-SCS-1COOLING",
+            "type": "OR",
+            "inputs": [
+              "E-G21-SCS",
+              "A-G4-SCS",
+              "G2A-SCS-1COOLING"
+            ]
+          },
+          {
+            "id": "G2A-SCS-1COOLING",
+            "type": "OR",
+            "inputs": [
+              "G2B-SCS-1COOLING",
+              "SDC-ICC-FO-X19"
+            ]
+          },
+          {
+            "id": "G2B-SCS-1COOLING",
+            "type": "AND",
+            "inputs": [
+              "RPS-VCF-FO-X1",
+              "SDC-XHE-XE-X20"
+            ]
+          },
+          {
+            "id": "G3-SCS-1COOLING",
+            "type": "OR",
+            "inputs": [
+              "B-G6-SCS",
+              "C1E-UPS-G-G120",
+              "G6-G218"
+            ]
+          }
+        ],
+        "basic_events": [
+          "C1E-UPS-G-G120",
+          "E-G21-SCS",
+          "B-G6-SCS",
+          "A-G4-SCS",
+          "RPS-VCF-FO-X1",
+          "SDC-ICC-FO-X19",
+          "SDC-XHE-XE-X20"
+        ]
+      },
+      {
+        "id": "SCS-1COOLING-WC4-ALT",
+        "name": "SCS-1COOLING-WC4-ALT",
+        "gates": [
+          {
+            "id": "SCS-1COOLING",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "SCS-1COOLING-WC4-ALT",
+            "type": "OR",
+            "inputs": [
+              "SCS-1COOLING-WC4-ALT0",
+              "SCS-1COOLING"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SCS-1COOLING-WC4-ALT0",
+          "SCS-1COOLING"
+        ]
+      },
+      {
+        "id": "SCS-4COOLING",
+        "name": "SCS-4COOLING",
+        "gates": [
+          {
+            "id": "C1E-UPS-G-G120",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G6-G218",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "B-G6-SCS",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "SCS-4COOLING",
+            "type": "OR",
+            "inputs": [
+              "G2-SCS-4COOLING",
+              "G3-SCS-4COOLING"
+            ]
+          },
+          {
+            "id": "G2-SCS-4COOLING",
+            "type": "OR",
+            "inputs": [
+              "G21A-SCS-4COOLING",
+              "G2A-SCS-4COOLING",
+              "G2B-SCS-4COOLING"
+            ]
+          },
+          {
+            "id": "G21A-SCS-4COOLING",
+            "type": "OR",
+            "inputs": [
+              "E-G21-SCS-4A",
+              "E-G21-SCS-4B",
+              "E-G21-SCS-4C",
+              "E-G21-SCS-4D"
+            ]
+          },
+          {
+            "id": "G2A-SCS-4COOLING",
+            "type": "OR",
+            "inputs": [
+              "A-G4-SCS-4A",
+              "A-G4-SCS-4B",
+              "A-G4-SCS-4C",
+              "A-G4-SCS-4D"
+            ]
+          },
+          {
+            "id": "G2B-SCS-4COOLING",
+            "type": "OR",
+            "inputs": [
+              "G2C-SCS-4COOLING-4A",
+              "G2C-SCS-4COOLING-4B",
+              "G2C-SCS-4COOLING-4C",
+              "G2C-SCS-4COOLING-4D"
+            ]
+          },
+          {
+            "id": "G3-SCS-4COOLING",
+            "type": "OR",
+            "inputs": [
+              "B-G6-SCS",
+              "C1E-UPS-G-G120",
+              "G6-G218"
+            ]
+          },
+          {
+            "id": "E-G21-SCS-4A",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "E-G21-SCS-4B",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "E-G21-SCS-4C",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "E-G21-SCS-4D",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "A-G4-SCS-4A",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "A-G4-SCS-4B",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "A-G4-SCS-4C",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "A-G4-SCS-4D",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G2C-SCS-4COOLING-4A",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G2C-SCS-4COOLING-4B",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G2C-SCS-4COOLING-4C",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G2C-SCS-4COOLING-4D",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "E-G21-SCS-4A",
+          "E-G21-SCS-4D",
+          "A-G4-SCS-4D",
+          "A-G4-SCS-4B",
+          "B-G6-SCS",
+          "E-G21-SCS-4C",
+          "E-G21-SCS-4B",
+          "A-G4-SCS-4C",
+          "A-G4-SCS-4A",
+          "C1E-UPS-G-G120"
+        ]
+      },
+      {
+        "id": "SCS-FAIL-HTS-FAIL",
+        "name": "SCS-FAIL-HTS-FAIL",
+        "gates": [
+          {
+            "id": "SCS-FAIL-HTS-FAIL",
+            "type": "OR",
+            "inputs": [
+              "A-G2-SCS2-HTS2",
+              "B-G10-SCS2-HTS2"
+            ]
+          },
+          {
+            "id": "A-G2-SCS2-HTS2",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "B-G10-SCS2-HTS2",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "B-G10-SCS2-HTS2",
+          "A-G2-SCS2-HTS2"
+        ]
+      },
+      {
+        "id": "SG-AUTO-DUMP-10",
+        "name": "SG-AUTO-DUMP-10",
+        "gates": [
+          {
+            "id": "SG-AUTO-DUMP-10",
+            "type": "OR",
+            "inputs": [
+              "SG-AUTO-DUMP-100"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-AUTO-DUMP-100"
+        ]
+      },
+      {
+        "id": "SG-DUMP-AUTO",
+        "name": "SG-DUMP-AUTO",
+        "gates": [
+          {
+            "id": "SG-DUMP-AUTO",
+            "type": "OR",
+            "inputs": [
+              "SG-DUMP-AUTO0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-DUMP-AUTO0"
+        ]
+      },
+      {
+        "id": "SG-DUMP-AUTO-ISOLATED",
+        "name": "SG-DUMP-AUTO-ISOLATED",
+        "gates": [
+          {
+            "id": "SG-DUMP-AUTO-ISOLATED",
+            "type": "OR",
+            "inputs": [
+              "SG-DUMP-AUTO-ISOLATED0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-DUMP-AUTO-ISOLATED0"
+        ]
+      },
+      {
+        "id": "SG-DUMP-SMALL-ALT",
+        "name": "SG-DUMP-SMALL-ALT",
+        "gates": [
+          {
+            "id": "SG-DUMP-SMALL-ALT",
+            "type": "OR",
+            "inputs": [
+              "SG-DUMP-SMALL-ALT0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-DUMP-SMALL-ALT0"
+        ]
+      },
+      {
+        "id": "SG-ISO-DEL-20",
+        "name": "SG-ISO-DEL-20",
+        "gates": [
+          {
+            "id": "SG-ISO-DEL-20",
+            "type": "OR",
+            "inputs": [
+              "SG-ISO-DEL-200"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-ISO-DEL-200"
+        ]
+      },
+      {
+        "id": "SG-ISO-DEL-20-30",
+        "name": "SG-ISO-DEL-20-30",
+        "gates": [
+          {
+            "id": "SG-ISO-DEL-20-30",
+            "type": "OR",
+            "inputs": [
+              "SG-ISO-DEL-20-300"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-ISO-DEL-20-300"
+        ]
+      },
+      {
+        "id": "SG-ISO-DEL-30",
+        "name": "SG-ISO-DEL-30",
+        "gates": [
+          {
+            "id": "SG-ISO-DEL-30",
+            "type": "OR",
+            "inputs": [
+              "SG-ISO-DEL-300"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-ISO-DEL-300"
+        ]
+      },
+      {
+        "id": "SG-ISO-DEL-30-2",
+        "name": "SG-ISO-DEL-30-2",
+        "gates": [
+          {
+            "id": "SG-ISO-DEL-30-2",
+            "type": "OR",
+            "inputs": [
+              "SG-ISO-DEL-30-20"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-ISO-DEL-30-20"
+        ]
+      },
+      {
+        "id": "SG-ISOLATION",
+        "name": "SG-ISOLATION",
+        "gates": [
+          {
+            "id": "SG-ISOLATION",
+            "type": "OR",
+            "inputs": [
+              "SG-ISOLATION0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-ISOLATION0"
+        ]
+      },
+      {
+        "id": "SG-ISOLATION-DELAYED",
+        "name": "SG-ISOLATION-DELAYED",
+        "gates": [
+          {
+            "id": "SG-ISOLATION-DELAYED",
+            "type": "OR",
+            "inputs": [
+              "SG-ISOLATION-DELAYED0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-ISOLATION-DELAYED0"
+        ]
+      },
+      {
+        "id": "SG-ISOLATION-FW-FO",
+        "name": "SG-ISOLATION-FW-FO",
+        "gates": [
+          {
+            "id": "SG-ISOLATION-FW-FO",
+            "type": "OR",
+            "inputs": [
+              "SG-ISOLATION-FW-FO0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-ISOLATION-FW-FO0"
+        ]
+      },
+      {
+        "id": "SG-ISOLATION-SFV-FO",
+        "name": "SG-ISOLATION-SFV-FO",
+        "gates": [
+          {
+            "id": "SG-ISOLATION-SFV-FO",
+            "type": "OR",
+            "inputs": [
+              "SG-ISOLATION-SFV-FO0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-ISOLATION-SFV-FO0"
+        ]
+      },
+      {
+        "id": "SG-ISOLATION-SV-FO",
+        "name": "SG-ISOLATION-SV-FO",
+        "gates": [
+          {
+            "id": "SG-ISOLATION-SV-FO",
+            "type": "OR",
+            "inputs": [
+              "SG-ISOLATION-SV-FO0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-ISOLATION-SV-FO0"
+        ]
+      },
+      {
+        "id": "SG-PR-BYPASS",
+        "name": "SG-PR-BYPASS",
+        "gates": [
+          {
+            "id": "SG-PR-BYPASS",
+            "type": "OR",
+            "inputs": [
+              "SG-PR-BYPASS0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-PR-BYPASS0"
+        ]
+      },
+      {
+        "id": "SG-PR-FO",
+        "name": "SG-PR-FO",
+        "gates": [
+          {
+            "id": "SG-PR-FO",
+            "type": "OR",
+            "inputs": [
+              "SG-PR-FO0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-PR-FO0"
+        ]
+      },
+      {
+        "id": "SG-PR-OC",
+        "name": "SG-PR-OC",
+        "gates": [
+          {
+            "id": "SG-PR-OC",
+            "type": "OR",
+            "inputs": [
+              "SG-PR-OC0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SG-PR-OC0"
+        ]
+      },
+      {
+        "id": "SWS-Q-G40",
+        "name": "SWS-Q-G40",
+        "gates": [
+          {
+            "id": "SWS-Q-G40",
+            "type": "OR",
+            "inputs": [
+              "SWS-PSF-PG-X67",
+              "SWS-PSF-RP-X68",
+              "G41",
+              "G42",
+              "SWS-MDP-BETA",
+              "SWS-MDP-BETA2"
+            ]
+          },
+          {
+            "id": "G41",
+            "type": "AND",
+            "inputs": [
+              "SWS-MDP-FO-X69",
+              "SWS-MDP-FO-X70",
+              "SWS-MDP-FO-X71"
+            ]
+          },
+          {
+            "id": "G42",
+            "type": "AND",
+            "inputs": [
+              "G43",
+              "SWS-MOV-SO-X72"
+            ]
+          },
+          {
+            "id": "G43",
+            "type": "OR",
+            "inputs": [
+              "SWS-CKV-FO-X73",
+              "SWS-CKV-FO-X74",
+              "SWS-CKV-FO-X75"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SWS-CKV-FO-X73",
+          "SWS-CKV-FO-X75",
+          "SWS-CKV-FO-X74",
+          "SWS-PSF-PG-X67",
+          "SWS-MDP-BETA",
+          "SWS-PSF-RP-X68",
+          "SWS-MOV-SO-X72",
+          "SWS-MDP-FO-X69",
+          "SWS-MDP-FO-X71",
+          "SWS-MDP-FO-X70",
+          "SWS-MDP-BETA2"
+        ]
+      },
+      {
+        "id": "TBCCWS-D-G44",
+        "name": "TBCCWS-D-G44",
+        "gates": [
+          {
+            "id": "TBCCWS-D-G44",
+            "type": "OR",
+            "inputs": [
+              "G45",
+              "D1-G51"
+            ]
+          },
+          {
+            "id": "G45",
+            "type": "AND",
+            "inputs": [
+              "G46",
+              "D2-G90"
+            ]
+          },
+          {
+            "id": "G46",
+            "type": "OR",
+            "inputs": [
+              "G47",
+              "G48",
+              "TBC-CKV-CC-X76"
+            ]
+          },
+          {
+            "id": "G47",
+            "type": "OR",
+            "inputs": [
+              "TBC-MDP-FR-X77",
+              "G49",
+              "NC1EPS-X-G200"
+            ]
+          },
+          {
+            "id": "G49",
+            "type": "OR",
+            "inputs": [
+              "TBC-XHE-XE-X79",
+              "TBC-MDP-FC-X80"
+            ]
+          },
+          {
+            "id": "NC1EPS-X-G200",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "G48",
+            "type": "OR",
+            "inputs": [
+              "G50",
+              "TBC-XHE-XE-X78"
+            ]
+          },
+          {
+            "id": "G50",
+            "type": "OR",
+            "inputs": [
+              "TBC-XHE-XE-X81",
+              "TBC-MOV-FC-X82"
+            ]
+          },
+          {
+            "id": "D2-G90",
+            "type": "TRAN",
+            "inputs": []
+          },
+          {
+            "id": "D1-G51",
+            "type": "TRAN",
+            "inputs": []
+          }
+        ],
+        "basic_events": [
+          "TBC-MDP-FR-X77",
+          "NC1EPS-X-G200",
+          "TBC-MOV-FC-X82",
+          "TBC-XHE-XE-X79",
+          "D1-G51",
+          "TBC-XHE-XE-X81",
+          "TBC-CKV-CC-X76",
+          "TBC-MDP-FC-X80",
+          "TBC-XHE-XE-X78",
+          "D2-G90"
+        ]
+      },
+      {
+        "id": "TRIP-CR",
+        "name": "TRIP-CR",
+        "gates": [
+          {
+            "id": "TRIP-CR",
+            "type": "OR",
+            "inputs": [
+              "CRD-CRM-FO-CR"
+            ]
+          }
+        ],
+        "basic_events": [
+          "CRD-CRM-FO-CR"
+        ]
+      },
+      {
+        "id": "TRIP-HM",
+        "name": "TRIP-HM",
+        "gates": [
+          {
+            "id": "TRIP-HM",
+            "type": "OR",
+            "inputs": [
+              "TRIP-HM0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "TRIP-HM0"
+        ]
+      },
+      {
+        "id": "TRIP-HP",
+        "name": "TRIP-HP",
+        "gates": [
+          {
+            "id": "TRIP-HP",
+            "type": "OR",
+            "inputs": [
+              "TRIP-HP0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "TRIP-HP0"
+        ]
+      },
+      {
+        "id": "TRIP-MANUAL",
+        "name": "TRIP-MANUAL",
+        "gates": [
+          {
+            "id": "TRIP-MANUAL",
+            "type": "OR",
+            "inputs": [
+              "TRIP-MANUAL0"
+            ]
+          }
+        ],
+        "basic_events": [
+          "TRIP-MANUAL0"
+        ]
+      },
+      {
+        "id": "TRIP-RSCE",
+        "name": "TRIP-RSCE",
+        "gates": [
+          {
+            "id": "TRIP-RSCE",
+            "type": "OR",
+            "inputs": [
+              "SSF-VCF-UD-BORON"
+            ]
+          }
+        ],
+        "basic_events": [
+          "SSF-VCF-UD-BORON"
+        ]
+      },
+      {
+        "id": "X3-G209-HTS",
+        "name": "X3-G209-HTS",
+        "gates": [
+          {
+            "id": "X3-G209-HTS",
+            "type": "AND",
+            "inputs": [
+              "G210-HTS",
+              "G211-HTS"
+            ]
+          },
+          {
+            "id": "G210-HTS",
+            "type": "OR",
+            "inputs": [
+              "G212-HTS",
+              "ACP-CRB-OP-X228"
+            ]
+          },
+          {
+            "id": "G212-HTS",
+            "type": "OR",
+            "inputs": [
+              "ACP-MGN-FO-X232",
+              "ACP-TFM-LF-X233",
+              "G214-HTS"
+            ]
+          },
+          {
+            "id": "G214-HTS",
+            "type": "OR",
+            "inputs": [
+              "G216-HTS",
+              "ACP-LOD-UD-X236",
+              "ACP-LOD-LP-X237"
+            ]
+          },
+          {
+            "id": "G216-HTS",
+            "type": "OR",
+            "inputs": [
+              "ACP-XHE-XE-X240",
+              "ACP-LOG-FO-X241"
+            ]
+          },
+          {
+            "id": "G211-HTS",
+            "type": "OR",
+            "inputs": [
+              "ACP-CRB-CL-X229",
+              "G213-HTS",
+              "ACP-CRB-OP-X230",
+              "ACP-CRB-OP-X231"
+            ]
+          },
+          {
+            "id": "G213-HTS",
+            "type": "OR",
+            "inputs": [
+              "ACP-MGN-FO-X234",
+              "ACP-TFM-LF-X235",
+              "G215-HTS"
+            ]
+          },
+          {
+            "id": "G215-HTS",
+            "type": "OR",
+            "inputs": [
+              "G217-HTS",
+              "ACP-LOD-UD-X238",
+              "ACP-LOD-LP-X239"
+            ]
+          },
+          {
+            "id": "G217-HTS",
+            "type": "OR",
+            "inputs": [
+              "ACP-XHE-XE-X242",
+              "ACP-LOG-FO-243"
+            ]
+          }
+        ],
+        "basic_events": [
+          "ACP-MGN-FO-X232",
+          "ACP-LOD-LP-X237",
+          "ACP-XHE-XE-X240",
+          "ACP-LOD-LP-X239",
+          "ACP-LOG-FO-243",
+          "ACP-TFM-LF-X235",
+          "ACP-TFM-LF-X233",
+          "ACP-LOG-FO-X241",
+          "ACP-LOD-UD-X236",
+          "ACP-CRB-OP-X231",
+          "ACP-MGN-FO-X234",
+          "ACP-CRB-OP-X228",
+          "ACP-CRB-OP-X230",
+          "ACP-CRB-CL-X229",
+          "ACP-XHE-XE-X242",
+          "ACP-LOD-UD-X238"
+        ]
+      },
+      {
+        "type": "unknown",
+        "data": {},
+        "errors": [
+          "Unknown file type: .FTY"
+        ]
+      },
+      {
+        "type": "unknown",
+        "data": {},
+        "errors": [
+          "Unknown file type: .FTC"
+        ]
+      },
+      {
+        "type": "unknown",
+        "data": {},
+        "errors": [
+          "Unknown file type: .FTD"
+        ]
+      },
+      {
+        "type": "unknown",
+        "data": {},
+        "errors": [
+          "Unknown file type: .FTT"
+        ]
+      },
+      {
+        "type": "unknown",
+        "data": {},
+        "errors": [
+          "Unknown file type: .FTA"
+        ]
+      }
+    ],
+    "event_trees": [],
+    "basic_events": [],
+    "end_states": [],
+    "sequences": [],
+    "project": {
+      "type": "unknown",
+      "data": {},
+      "errors": [
+        "Unknown file type: .FAT"
+      ]
+    }
+  }
+}

@@ -1,0 +1,631 @@
+{
+  "job_id": "1742671184",
+  "files": {
+    "HTGR_Seq/.MARD": {
+      "type": "master_db",
+      "size": 180,
+      "path": "HTGR_Seq/.MARD"
+    },
+    "HTGR_Seq/_Subs/.EGI": {
+      "type": "master_db",
+      "size": 265,
+      "path": "HTGR_Seq/_Subs/.EGI"
+    },
+    "HTGR_Seq/_Subs/.PHD": {
+      "type": "project",
+      "size": 442,
+      "path": "HTGR_Seq/_Subs/.PHD"
+    },
+    "HTGR_Seq/_Subs/.SQA": {
+      "type": "sequence",
+      "size": 82235,
+      "path": "HTGR_Seq/_Subs/.SQA"
+    },
+    "HTGR_Seq/_Subs/.FAD": {
+      "type": "project",
+      "size": 53,
+      "path": "HTGR_Seq/_Subs/.FAD"
+    },
+    "HTGR_Seq/_Subs/.HID": {
+      "type": "project",
+      "size": 11,
+      "path": "HTGR_Seq/_Subs/.HID"
+    },
+    "HTGR_Seq/_Subs/.EGD": {
+      "type": "master_db",
+      "size": 281,
+      "path": "HTGR_Seq/_Subs/.EGD"
+    },
+    "HTGR_Seq/_Subs/.SQD": {
+      "type": "sequence",
+      "size": 4260,
+      "path": "HTGR_Seq/_Subs/.SQD"
+    },
+    "HTGR_Seq/_Subs/.SQC": {
+      "type": "sequence",
+      "size": 106,
+      "path": "HTGR_Seq/_Subs/.SQC"
+    },
+    "HTGR_Seq/_Subs/.SQP": {
+      "type": "sequence",
+      "size": 9198,
+      "path": "HTGR_Seq/_Subs/.SQP"
+    },
+    "HTGR_Seq/_Subs/.SQY": {
+      "type": "sequence",
+      "size": 9198,
+      "path": "HTGR_Seq/_Subs/.SQY"
+    },
+    "HTGR_Seq/_Subs/.SQL": {
+      "type": "sequence",
+      "size": 27141,
+      "path": "HTGR_Seq/_Subs/.SQL"
+    },
+    "HTGR_Seq/_Subs/.FAU": {
+      "type": "project",
+      "size": 244,
+      "path": "HTGR_Seq/_Subs/.FAU"
+    },
+    "HTGR_Seq/_Subs/.MTD": {
+      "type": "project",
+      "size": 438,
+      "path": "HTGR_Seq/_Subs/.MTD"
+    },
+    "HTGR_Seq/_Subs/.FAA": {
+      "type": "project",
+      "size": 470,
+      "path": "HTGR_Seq/_Subs/.FAA"
+    },
+    "HTGR_Seq/_Subs/.FAT": {
+      "type": "project",
+      "size": 20,
+      "path": "HTGR_Seq/_Subs/.FAT"
+    }
+  },
+  "metadata": {
+    "total_files": 16,
+    "errors": 0,
+    "warnings": 0
+  },
+  "saphire_data": {
+    "fault_trees": [],
+    "event_trees": [],
+    "basic_events": [],
+    "end_states": [],
+    "sequences": [
+      {
+        "type": "unknown",
+        "data": {},
+        "errors": [
+          "Unknown file type: .SQA"
+        ]
+      },
+      {
+        "id": "02",
+        "name": "02",
+        "description": "Sequence 02",
+        "end_state": ""
+      },
+      {
+        "id": "03",
+        "name": "03",
+        "description": "Sequence 03",
+        "end_state": ""
+      },
+      {
+        "id": "04",
+        "name": "04",
+        "description": "Sequence 04",
+        "end_state": ""
+      },
+      {
+        "id": "05",
+        "name": "05",
+        "description": "Sequence 05",
+        "end_state": ""
+      },
+      {
+        "id": "06",
+        "name": "06",
+        "description": "Sequence 06",
+        "end_state": ""
+      },
+      {
+        "id": "07",
+        "name": "07",
+        "description": "Sequence 07",
+        "end_state": ""
+      },
+      {
+        "id": "08",
+        "name": "08",
+        "description": "Sequence 08",
+        "end_state": ""
+      },
+      {
+        "id": "09",
+        "name": "09",
+        "description": "Sequence 09",
+        "end_state": ""
+      },
+      {
+        "id": "10",
+        "name": "10",
+        "description": "Sequence 10",
+        "end_state": ""
+      },
+      {
+        "id": "11",
+        "name": "11",
+        "description": "Sequence 11",
+        "end_state": ""
+      },
+      {
+        "id": "12",
+        "name": "12",
+        "description": "Sequence 12",
+        "end_state": ""
+      },
+      {
+        "id": "13",
+        "name": "13",
+        "description": "Sequence 13",
+        "end_state": ""
+      },
+      {
+        "id": "14",
+        "name": "14",
+        "description": "Sequence 14",
+        "end_state": ""
+      },
+      {
+        "id": "15",
+        "name": "15",
+        "description": "Sequence 15",
+        "end_state": ""
+      },
+      {
+        "id": "16",
+        "name": "16",
+        "description": "Sequence 16",
+        "end_state": ""
+      },
+      {
+        "id": "17",
+        "name": "17",
+        "description": "Sequence 17",
+        "end_state": ""
+      },
+      {
+        "id": "18",
+        "name": "18",
+        "description": "Sequence 18",
+        "end_state": ""
+      },
+      {
+        "id": "19",
+        "name": "19",
+        "description": "Sequence 19",
+        "end_state": ""
+      },
+      {
+        "id": "20",
+        "name": "20",
+        "description": "Sequence 20",
+        "end_state": ""
+      },
+      {
+        "id": "21",
+        "name": "21",
+        "description": "Sequence 21",
+        "end_state": ""
+      },
+      {
+        "id": "22",
+        "name": "22",
+        "description": "Sequence 22",
+        "end_state": ""
+      },
+      {
+        "id": "23",
+        "name": "23",
+        "description": "Sequence 23",
+        "end_state": ""
+      },
+      {
+        "id": "24",
+        "name": "24",
+        "description": "Sequence 24",
+        "end_state": ""
+      },
+      {
+        "id": "25",
+        "name": "25",
+        "description": "Sequence 25",
+        "end_state": ""
+      },
+      {
+        "id": "26",
+        "name": "26",
+        "description": "Sequence 26",
+        "end_state": ""
+      },
+      {
+        "id": "27",
+        "name": "27",
+        "description": "Sequence 27",
+        "end_state": ""
+      },
+      {
+        "id": "28",
+        "name": "28",
+        "description": "Sequence 28",
+        "end_state": ""
+      },
+      {
+        "id": "29",
+        "name": "29",
+        "description": "Sequence 29",
+        "end_state": ""
+      },
+      {
+        "id": "30",
+        "name": "30",
+        "description": "Sequence 30",
+        "end_state": ""
+      },
+      {
+        "id": "31",
+        "name": "31",
+        "description": "Sequence 31",
+        "end_state": ""
+      },
+      {
+        "id": "32",
+        "name": "32",
+        "description": "Sequence 32",
+        "end_state": ""
+      },
+      {
+        "id": "33",
+        "name": "33",
+        "description": "Sequence 33",
+        "end_state": ""
+      },
+      {
+        "id": "34",
+        "name": "34",
+        "description": "Sequence 34",
+        "end_state": ""
+      },
+      {
+        "id": "35",
+        "name": "35",
+        "description": "Sequence 35",
+        "end_state": ""
+      },
+      {
+        "id": "36",
+        "name": "36",
+        "description": "Sequence 36",
+        "end_state": ""
+      },
+      {
+        "id": "37",
+        "name": "37",
+        "description": "Sequence 37",
+        "end_state": ""
+      },
+      {
+        "id": "38",
+        "name": "38",
+        "description": "Sequence 38",
+        "end_state": ""
+      },
+      {
+        "id": "39",
+        "name": "39",
+        "description": "Sequence 39",
+        "end_state": ""
+      },
+      {
+        "id": "40",
+        "name": "40",
+        "description": "Sequence 40",
+        "end_state": ""
+      },
+      {
+        "id": "41",
+        "name": "41",
+        "description": "Sequence 41",
+        "end_state": ""
+      },
+      {
+        "id": "42",
+        "name": "42",
+        "description": "Sequence 42",
+        "end_state": ""
+      },
+      {
+        "id": "43",
+        "name": "43",
+        "description": "Sequence 43",
+        "end_state": ""
+      },
+      {
+        "id": "44",
+        "name": "44",
+        "description": "Sequence 44",
+        "end_state": ""
+      },
+      {
+        "id": "45",
+        "name": "45",
+        "description": "Sequence 45",
+        "end_state": ""
+      },
+      {
+        "id": "46",
+        "name": "46",
+        "description": "Sequence 46",
+        "end_state": ""
+      },
+      {
+        "id": "47",
+        "name": "47",
+        "description": "Sequence 47",
+        "end_state": ""
+      },
+      {
+        "id": "48",
+        "name": "48",
+        "description": "Sequence 48",
+        "end_state": ""
+      },
+      {
+        "id": "49",
+        "name": "49",
+        "description": "Sequence 49",
+        "end_state": ""
+      },
+      {
+        "id": "50",
+        "name": "50",
+        "description": "Sequence 50",
+        "end_state": ""
+      },
+      {
+        "id": "51",
+        "name": "51",
+        "description": "Sequence 51",
+        "end_state": ""
+      },
+      {
+        "id": "^EOS",
+        "name": "^EOS",
+        "description": "Sequence ^EOS",
+        "end_state": ""
+      },
+      {
+        "id": "01",
+        "name": "01",
+        "description": "Sequence 01",
+        "end_state": ""
+      },
+      {
+        "id": "1",
+        "name": "1",
+        "description": "Sequence 1",
+        "end_state": ""
+      },
+      {
+        "id": "2",
+        "name": "2",
+        "description": "Sequence 2",
+        "end_state": ""
+      },
+      {
+        "id": "3",
+        "name": "3",
+        "description": "Sequence 3",
+        "end_state": ""
+      },
+      {
+        "id": "4",
+        "name": "4",
+        "description": "Sequence 4",
+        "end_state": ""
+      },
+      {
+        "id": "5",
+        "name": "5",
+        "description": "Sequence 5",
+        "end_state": ""
+      },
+      {
+        "id": "6",
+        "name": "6",
+        "description": "Sequence 6",
+        "end_state": ""
+      },
+      {
+        "id": "7",
+        "name": "7",
+        "description": "Sequence 7",
+        "end_state": ""
+      },
+      {
+        "id": "8",
+        "name": "8",
+        "description": "Sequence 8",
+        "end_state": ""
+      },
+      {
+        "id": "52",
+        "name": "52",
+        "description": "Sequence 52",
+        "end_state": ""
+      },
+      {
+        "id": "53",
+        "name": "53",
+        "description": "Sequence 53",
+        "end_state": ""
+      },
+      {
+        "id": "54",
+        "name": "54",
+        "description": "Sequence 54",
+        "end_state": ""
+      },
+      {
+        "id": "55",
+        "name": "55",
+        "description": "Sequence 55",
+        "end_state": ""
+      },
+      {
+        "id": "56",
+        "name": "56",
+        "description": "Sequence 56",
+        "end_state": ""
+      },
+      {
+        "id": "57",
+        "name": "57",
+        "description": "Sequence 57",
+        "end_state": ""
+      },
+      {
+        "id": "58",
+        "name": "58",
+        "description": "Sequence 58",
+        "end_state": ""
+      },
+      {
+        "id": "60",
+        "name": "60",
+        "description": "Sequence 60",
+        "end_state": ""
+      },
+      {
+        "id": "61",
+        "name": "61",
+        "description": "Sequence 61",
+        "end_state": ""
+      },
+      {
+        "id": "62",
+        "name": "62",
+        "description": "Sequence 62",
+        "end_state": ""
+      },
+      {
+        "id": "64",
+        "name": "64",
+        "description": "Sequence 64",
+        "end_state": ""
+      },
+      {
+        "id": "65",
+        "name": "65",
+        "description": "Sequence 65",
+        "end_state": ""
+      },
+      {
+        "id": "66",
+        "name": "66",
+        "description": "Sequence 66",
+        "end_state": ""
+      },
+      {
+        "id": "67",
+        "name": "67",
+        "description": "Sequence 67",
+        "end_state": ""
+      },
+      {
+        "id": "69",
+        "name": "69",
+        "description": "Sequence 69",
+        "end_state": ""
+      },
+      {
+        "id": "70",
+        "name": "70",
+        "description": "Sequence 70",
+        "end_state": ""
+      },
+      {
+        "id": "71",
+        "name": "71",
+        "description": "Sequence 71",
+        "end_state": ""
+      },
+      {
+        "id": "73",
+        "name": "73",
+        "description": "Sequence 73",
+        "end_state": ""
+      },
+      {
+        "id": "74",
+        "name": "74",
+        "description": "Sequence 74",
+        "end_state": ""
+      },
+      {
+        "id": "75",
+        "name": "75",
+        "description": "Sequence 75",
+        "end_state": ""
+      },
+      {
+        "id": "76",
+        "name": "76",
+        "description": "Sequence 76",
+        "end_state": ""
+      },
+      {
+        "id": "77",
+        "name": "77",
+        "description": "Sequence 77",
+        "end_state": ""
+      },
+      {
+        "id": "78",
+        "name": "78",
+        "description": "Sequence 78",
+        "end_state": ""
+      },
+      {
+        "type": "unknown",
+        "data": {},
+        "errors": [
+          "Unknown file type: .SQC"
+        ]
+      },
+      {
+        "type": "unknown",
+        "data": {},
+        "errors": [
+          "Unknown file type: .SQP"
+        ]
+      },
+      {
+        "type": "unknown",
+        "data": {},
+        "errors": [
+          "Unknown file type: .SQY"
+        ]
+      }
+    ],
+    "project": {
+      "type": "unknown",
+      "data": {},
+      "errors": [
+        "Unknown file type: .FAT"
+      ]
+    }
+  }
+}
