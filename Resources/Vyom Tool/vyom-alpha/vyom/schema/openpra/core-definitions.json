@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "BaseEvent": {
+      "description": "Base Event - parent of all events",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": ["name", "uuid"],
+      "type": "object"
+    },
+    "BasicEvent": {
+      "description": "Basic Event type",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "eventType": {
+          "const": "BASIC",
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": ["eventType", "name", "uuid"],
+      "type": "object"
+    },
+    "Component": {
+      "description": "Base interface for components",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "systemId": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": ["name", "systemId", "type", "uuid"],
+      "type": "object"
+    },
+    "Assumption": {
+      "description": "Interface representing an assumption made during the analysis",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "impact": {
+          "type": "string"
+        },
+        "status": {
+          "enum": ["CLOSED", "IN_PROGRESS", "OPEN"],
+          "type": "string"
+        },
+        "uuid": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": ["description", "status", "uuid"],
+      "type": "object"
+    },
+    "Uncertainty": {
+      "description": "Base interface for uncertainty information",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "distribution": {
+          "type": "string",
+          "enum": ["NORMAL", "LOGNORMAL", "UNIFORM", "BETA", "GAMMA", "OTHER"]
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        },
+        "uuid": {
+          "type": "string",
+          "format": "uuid"
+        }
+      },
+      "required": ["description", "distribution", "parameters", "uuid"],
+      "type": "object"
+    }
+  }
+} 

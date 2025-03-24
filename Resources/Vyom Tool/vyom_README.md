@@ -549,7 +549,7 @@ tiktoken>=0.5.0
 4. **Extensibility**: Easy to add support for new models and pricing
 5. **Minimal Overhead**: Efficient token counting with tiktoken
 
-### Implementation Strategy
+### Implementation Strategy`
 
 1. Start with a basic implementation that tracks and displays costs
 2. Add support for logging costs to file for persistent tracking
