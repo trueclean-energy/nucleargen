@@ -1,7 +1,10 @@
 import fetch from 'node-fetch';
 
 // Together.ai API configuration
-const TOGETHER_API_KEY = process.env.TOGETHER_API_KEY || "tgp_v1_o5hrdZH4ynalgoF9oxpJXB_ojCfPA__bnHMYmkLMuUc";
+const TOGETHER_API_KEY = process.env.TOGETHER_API_KEY;
+if (!TOGETHER_API_KEY) {
+    throw new Error('TOGETHER_API_KEY not found in environment variables');
+}
 const TOGETHER_API_URL = 'https://api.together.xyz/v1/chat/completions';
 const MODEL_NAME = 'meta-llama/Llama-3.3-70B-Instruct-Turbo';
 
