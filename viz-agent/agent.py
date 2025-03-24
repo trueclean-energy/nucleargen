@@ -1,12 +1,15 @@
 import base64
 import os
-from google import genai
-from google.genai import types
+from dotenv import load_dotenv
+import google.generativeai as genai
+from google.generativeai import types
 
+# Load environment variables
+load_dotenv()
 
 def generate():
     client = genai.Client(
-        api_key="AIzaSyA6CAdYzTjFaRMRCxY57NqcgPhD0eSyLek"#os.environ.get("GEMINI_API_KEY"),
+        api_key=os.environ.get("GEMINI_API_KEY"),
     )
 
     files = [
