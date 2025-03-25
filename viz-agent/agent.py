@@ -1,32 +1,23 @@
-import base64
 import os
-from dotenv import load_dotenv
-import google.generativeai as genai
-from google.generativeai import types
-
-# Load environment variables
-load_dotenv()
+from google import genai
+from google.genai import types
+import json
 
 def generate():
     client = genai.Client(
         api_key=os.environ.get("GEMINI_API_KEY"),
     )
 
-    files = [
-        # Make the file available in local system working directory
-        client.files.upload(file="../Resources/SAPHIRE/event_trees.json"),
-    ]
+    user_prompt = "Mermaid code for this json file\n" + \
+                  "```" + \
+                  json.dumps(json.load(open("../Resources/SAPHIRE/event_trees.json"))) + \
+                  "```"
     model = "gemini-2.0-pro-exp-02-05"
     contents = [
         types.Content(
             role="user",
             parts=[
-                types.Part.from_uri(
-                    file_uri=files[0].uri,
-                    mime_type=files[0].mime_type,
-                ),
-                types.Part.from_text(text="""Mermaid code for this json file"""),
-                types.Part.from_text(text="""INSERT_INPUT_HERE"""),
+                types.Part.from_text(text=user_prompt),
             ],
         ),
     ]
@@ -178,7 +169,11 @@ graph TD
         print(chunk.text, end="")
 
 if __name__ == "__main__":
-    # generate()
+    generate()
+
+
+if __name__ == "__main__":
+    generate()
     # Just print response.json in case of API error.
-    with open("response.json", "r") as f:
-        print(f.read())
+    # with open("response.json", "r") as f:
+    #     print(f.read())
